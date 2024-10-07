@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mc9NX8d1eY0=",
+  "dgSpecHash": "91p2kSv71yA=",
   "success": true,
-  "projectFilePath": "/Users/omarabdelghany/Documents/DOTNET/MyBackend/MyBackend.csproj",
+  "projectFilePath": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
   "expectedPackageFiles": [
     "/Users/omarabdelghany/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.aspnetcore.openapi/8.0.8/microsoft.aspnetcore.openapi.8.0.8.nupkg.sha512",
@@ -24,6 +24,9 @@
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.dependencymodel/8.0.1/microsoft.extensions.dependencymodel.8.0.1.nupkg.sha512",
+    "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.fileproviders.abstractions/8.0.0/microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.fileproviders.physical/8.0.0/microsoft.extensions.fileproviders.physical.8.0.0.nupkg.sha512",
+    "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.filesystemglobbing/8.0.0/microsoft.extensions.filesystemglobbing.8.0.0.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/Users/omarabdelghany/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",

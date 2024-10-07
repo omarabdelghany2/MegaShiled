@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyBackend.Data;  // Make sure to use the correct namespace for AppDbContext
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,12 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "static")),
+    RequestPath = "/static" // This will allow you to access static files at /static/{filename}
+});
 
 var summaries = new[]
 {

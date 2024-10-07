@@ -4,6 +4,7 @@ using MyBackend.Data;
 using MyBackend.Models;
 using MyBackend.DTOs;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 [Route("api/homepage")]
@@ -21,42 +22,71 @@ public class SlidesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Slide>>> GetSlides()
     {
-            return await _context.Slides.ToListAsync();
+        return await _context.Slides.ToListAsync();
     }
+
+    // POST: api/slides
     [HttpPost]
     public async Task<ActionResult<Slide>> CreateSlide([FromForm] SlideUploadDto slideDto)
     {
-            if (slideDto.Image == null || slideDto.Image.Length == 0)
-            {
-                return BadRequest("Image file is required.");
-            }
+        if (slideDto.Image == null || slideDto.Image.Length == 0)
+        {
+            return BadRequest("Image file is required.");
+        }
 
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder); // Create the directory if it doesn't exist
-            }
+        // Check if the slide name already exists
+        if (await _context.Slides.AnyAsync(s => s.Name == slideDto.Name))
+        {
+            return Conflict("A slide with this name already exists.");
+        }
 
-            var fileName = Guid.NewGuid() + Path.GetExtension(slideDto.Image.FileName);
-            var filePath = Path.Combine(uploadsFolder, fileName);
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "static/slides");
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder); // Create the directory if it doesn't exist
+        }
 
+        // Create a unique filename for the uploaded image
+        var fileName = Guid.NewGuid() + Path.GetExtension(slideDto.Image.FileName);
+        var filePath = Path.Combine(uploadsFolder, fileName);
+
+        try
+        {
+            // Save the uploaded image file
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await slideDto.Image.CopyToAsync(stream);
             }
+        }
+        catch (IOException ex)
+        {
+            return StatusCode(500, "Internal server error: " + ex.Message);
+        }
 
-            var slide = new Slide
-            {
-                Name = slideDto.Name,
-                Image = fileName // Save the file name or path
-            };
+        // Create a new Slide object
+        var slide = new Slide
+        {
+            Name = slideDto.Name,
+            Image = fileName // Store the filename or path
+        };
 
-            _context.Slides.Add(slide);
+        _context.Slides.Add(slide);
+
+        // Save changes to the database
+        try
+        {
             await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            return StatusCode(500, "Error saving to the database: " + ex.Message);
+        }
 
-            return CreatedAtAction(nameof(GetSlides), new { id = slide.Id }, slide);
+        // Return a 201 Created response with the created slide
+        return CreatedAtAction(nameof(GetSlides), new { id = slide.Id }, slide);
     }
 
+    // DELETE: api/slides/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteSlide(int id)
     {
@@ -66,6 +96,15 @@ public class SlidesController : ControllerBase
             return NotFound();
         }
 
+        // Optionally: Remove the image file from the server
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "static/slides");
+        var filePath = Path.Combine(uploadsFolder, slide.Image);
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
+
+        // Remove the slide from the database
         _context.Slides.Remove(slide);
         await _context.SaveChangesAsync();
 

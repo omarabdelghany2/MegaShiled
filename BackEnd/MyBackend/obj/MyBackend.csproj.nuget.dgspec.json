@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/omarabdelghany/Documents/DOTNET/MyBackend/MyBackend.csproj": {}
+    "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {}
   },
   "projects": {
-    "/Users/omarabdelghany/Documents/DOTNET/MyBackend/MyBackend.csproj": {
+    "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/omarabdelghany/Documents/DOTNET/MyBackend/MyBackend.csproj",
+        "projectUniqueName": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
         "projectName": "MyBackend",
-        "projectPath": "/Users/omarabdelghany/Documents/DOTNET/MyBackend/MyBackend.csproj",
+        "projectPath": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
         "packagesPath": "/Users/omarabdelghany/.nuget/packages/",
-        "outputPath": "/Users/omarabdelghany/Documents/DOTNET/MyBackend/obj/",
+        "outputPath": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/omarabdelghany/.nuget/NuGet/NuGet.Config"
@@ -52,6 +52,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.8, )"
+            },
+            "Microsoft.Extensions.FileProviders.Physical": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
