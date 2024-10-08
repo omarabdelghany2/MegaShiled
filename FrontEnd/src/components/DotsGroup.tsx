@@ -5,9 +5,7 @@ type DotsGroupProps = {
   page: number
   percentage: number
   go: (num: number) => void
-  setPercentage: React.Dispatch<
-    React.SetStateAction<number>
-  >
+  setPercentage: React.Dispatch<React.SetStateAction<number>>
   count: number
 }
 
@@ -18,29 +16,28 @@ const DotsGroup = ({
   setPercentage,
   count,
 }: DotsGroupProps) => {
-  const [nums, setNums] = useState([1])
+  const [nums, setNums] = useState<number[]>([1])
 
   useEffect(() => {
-    if (count !== nums.at(-1)) {
-      setNums(prev => [...prev, prev.at(-1)! + 1])
+    // Ensure `nums` is updated only if `count` has increased
+    if (count > nums.length) {
+      setNums(Array.from({ length: count }, (_, i) => i + 1))
     }
-  }, [count])
+  }, [count, nums.length])
+
   return (
-    <div className="flex items-center justify-center w-fit">
+    <div className="flex items-center justify-center w-fit gap-2">
       {nums.map(num => {
         return page === num ? (
           <div
             className="w-[30px] h-[30px] flex items-center justify-center"
             key={num}
           >
-            <CircularProgress
-              aspectWidth="30px"
-              percentage={percentage}
-            />
+            <CircularProgress aspectWidth="30px" percentage={percentage} />
           </div>
         ) : (
           <div
-            className="w-[30px] h-[30] flex items-center justify-center"
+            className="w-[30px] h-[30px] flex items-center justify-center"
             key={num}
           >
             <div
@@ -56,4 +53,5 @@ const DotsGroup = ({
     </div>
   )
 }
+
 export default DotsGroup

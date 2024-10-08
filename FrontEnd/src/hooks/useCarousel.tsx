@@ -15,33 +15,24 @@ const useCarousel = ({
   const canScrollPrev = page > 1
 
   useEffect(() => {
+    let interval: NodeJS.Timeout | null = null
     if (autoPlay) {
-      const interval = setInterval(() => {
-        if (page < pages) {
-          setPage(prev => prev + 1)
-        } else {
-          setPage(1)
-        }
+      interval = setInterval(() => {
+        setPage(prevPage => (prevPage < pages ? prevPage + 1 : 1))
       }, time)
-
-      return () => clearInterval(interval)
     }
-  }, [page])
+
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [autoPlay, time, pages])
 
   function next() {
-    if (canScrollNext) {
-      setPage(prev => prev + 1)
-    } else {
-      setPage(1)
-    }
+    setPage(prev => (prev < pages ? prev + 1 : 1))
   }
 
   function prev() {
-    if (canScrollPrev) {
-      setPage(prev => prev - 1)
-    } else {
-      setPage(pages)
-    }
+    setPage(prev => (prev > 1 ? prev - 1 : pages))
   }
 
   function go(num: number) {
@@ -55,4 +46,5 @@ const useCarousel = ({
     go,
   }
 }
+
 export default useCarousel
