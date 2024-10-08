@@ -11,8 +11,7 @@ const About = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [content, setContent] = useState("")
 
-  const { data: mainServices } =
-    useGetAllMainServicesQuery("")
+  const { data: mainServices } = useGetAllMainServicesQuery("")
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,7 +88,7 @@ const About = () => {
           <Slide
             isOpen={isOpen}
             setContent={setContent}
-            img={item.photo}
+            img={item.image}
             pageNumber={i! + 1}
             currentPageNumber={page}
             description={item.description}
@@ -145,7 +144,7 @@ const Slide = ({
   }, [currentPageNumber, isOpen])
   return (
     <div
-      style={{ backgroundImage: `url("${img}")` }}
+      style={{ backgroundImage: `url("http://41.44.208.217:5176/static/slides/${img}")` }}
       className={`absolute w-full h-full z-40 bg-cover bg-center bg-no-repeat flex items-center justify-center
       ${
         pageNumber === currentPageNumber

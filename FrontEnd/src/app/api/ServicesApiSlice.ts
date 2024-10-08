@@ -113,7 +113,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       any
     >({
       query: () => ({
-        url: `/mainservices/allMainServices`,
+        url: `/homepage`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",

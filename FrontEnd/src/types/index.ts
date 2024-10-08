@@ -64,12 +64,10 @@ export type MainServiceProps = {
 }
 
 export type MainService = {
-  _id: string
+  id: string
   name: string
-  description: string
-  photo: string
-  __v: number
-  isAdditional: boolean
+  description: "test here please change me"
+  image: string
 }
 
 export type Service = {

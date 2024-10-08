@@ -18,13 +18,13 @@ const Home = () => {
 }
 
 const Page = () => (
-  <div>
+  <main>
     <Carousel />
     <Welcome />
     <About />
     <Adds />
     <Locations />
-  </div>
+  </main>
 )
 
 export default Home
