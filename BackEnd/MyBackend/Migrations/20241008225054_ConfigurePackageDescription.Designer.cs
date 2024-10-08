@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyBackend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241007155122_MakeSlideNameAndImageRequired")]
-    partial class MakeSlideNameAndImageRequired
+    [Migration("20241008225054_ConfigurePackageDescription")]
+    partial class ConfigurePackageDescription
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,49 @@ namespace MyBackend.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("MyBackend.Models.Package", b =>
+                {
+                    b.Property<string>("_id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("__v")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("belongTo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("bigPrice")
+                        .HasColumnType("integer");
+
+                    b.Property<string[]>("description")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<bool>("isAdditional")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("mediumPrice")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("smallPrice")
+                        .HasColumnType("integer");
+
+                    b.HasKey("_id");
+
+                    b.HasIndex("_id")
+                        .IsUnique();
+
+                    b.HasIndex("name")
+                        .IsUnique();
+
+                    b.ToTable("Packages");
+                });
 
             modelBuilder.Entity("MyBackend.Models.Slide", b =>
                 {

@@ -5,23 +5,24 @@
 namespace MyBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class MakeSlideNameUnique : Migration
+    public partial class AddIsAdditionalToSlide : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateIndex(
-                name: "IX_Slides_Name",
+            migrationBuilder.AddColumn<bool>(
+                name: "IsAdditional",
                 table: "Slides",
-                column: "Name",
-                unique: true);
+                type: "boolean",
+                nullable: false,
+                defaultValue: false);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
-                name: "IX_Slides_Name",
+            migrationBuilder.DropColumn(
+                name: "IsAdditional",
                 table: "Slides");
         }
     }

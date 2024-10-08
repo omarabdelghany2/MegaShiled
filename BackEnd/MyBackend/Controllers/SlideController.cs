@@ -20,9 +20,16 @@ public class SlidesController : ControllerBase
 
     // GET: api/slides
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Slide>>> GetSlides()
+    public async Task<ActionResult<SlideResponse>> GetSlides()
     {
-        return await _context.Slides.ToListAsync();
+        var slides = await _context.Slides.ToListAsync(); // Fetch all slides
+        var response = new SlideResponse
+        {
+            Count = slides.Count, // Set the count
+            MainServices = slides  // Assign the slides to MainService
+        };
+
+        return Ok(response); // Return the response object
     }
 
     // POST: api/slides
@@ -63,11 +70,12 @@ public class SlidesController : ControllerBase
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
 
-        // Create a new Slide object
+        // Create a new Slide object with IsAdditional included
         var slide = new Slide
         {
             Name = slideDto.Name,
-            Image = fileName // Store the filename or path
+            Image = fileName, // Store the filename or path
+            IsAdditional = slideDto.IsAdditional // Set IsAdditional from DTO
         };
 
         _context.Slides.Add(slide);

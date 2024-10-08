@@ -21,6 +21,46 @@ namespace MyBackend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MyBackend.Models.Package", b =>
+                {
+                    b.Property<string>("_id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("__v")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("belongTo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("bigPrice")
+                        .HasColumnType("integer");
+
+                    b.Property<string[]>("description")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<int>("mediumPrice")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("smallPrice")
+                        .HasColumnType("integer");
+
+                    b.HasKey("_id");
+
+                    b.HasIndex("_id")
+                        .IsUnique();
+
+                    b.HasIndex("name")
+                        .IsUnique();
+
+                    b.ToTable("Packages");
+                });
+
             modelBuilder.Entity("MyBackend.Models.Slide", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +72,9 @@ namespace MyBackend.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsAdditional")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
