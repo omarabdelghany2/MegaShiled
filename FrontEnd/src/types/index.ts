@@ -68,6 +68,7 @@ export type MainService = {
   name: string
   description: "test here please change me"
   image: string
+  isAdditional: boolean
 }
 
 export type Service = {

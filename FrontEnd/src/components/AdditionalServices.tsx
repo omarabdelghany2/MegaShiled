@@ -17,11 +17,9 @@ const AdditionalServices = ({
   setPackages,
   carSize,
 }: PackagesProps) => {
-  const [additionalServices, setAdditionalServices] =
-    useState<MainService[]>([])
+  const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
 
-  const { data: mainServices, isLoading } =
-    useGetAllMainServicesQuery("")
+  const { data: mainServices, isLoading } = useGetAllMainServicesQuery("")
 
   useEffect(() => {
     if (mainServices) {

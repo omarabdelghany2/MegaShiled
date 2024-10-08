@@ -214,7 +214,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string }
     >({
       query: args => ({
-        url: `/services/servicePackages/${args.id}`,
+        url: `/packages/${args.id}`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",

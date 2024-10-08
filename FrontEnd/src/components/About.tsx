@@ -11,42 +11,34 @@ const About = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [content, setContent] = useState("")
 
-  const { data: mainServices } = useGetAllMainServicesQuery("")
+  // Fetch main services
+  const { data: mainServices, isSuccess } = useGetAllMainServicesQuery("")
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (percentage < 100) {
-        setPercentage(prev => prev + 1)
-      } else {
-        setPercentage(0)
-      }
-    }, 40)
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [mainServices])
-
+  // Carousel logic
   const { page, next, go } = useCarousel({
     time: 5000,
-    pages: mainServices?.count!,
+    pages: mainServices?.count || 1,
     autoPlay: true,
   })
+
+  // Percentage update logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPercentage(prev => (prev < 100 ? prev + 1 : 0))
+    }, 40)
+
+    return () => clearInterval(interval)
+  }, [mainServices])
 
   useEffect(() => {
     setPercentage(0)
   }, [page])
 
-  const count = useMemo(
-    () => (mainServices ? mainServices.count : 3),
-    [mainServices]
-  )
+  // Memoized count for better performance
+  const count = useMemo(() => mainServices?.count || 3, [mainServices])
 
   return (
-    <section
-      id="about"
-      className="cut-viewport overflow-hidden relative"
-    >
+    <section id="about" className="cut-viewport overflow-hidden relative">
       <div
         onClick={() => {
           next()
@@ -83,34 +75,31 @@ const About = () => {
         </svg>
       </div>
 
-      {mainServices &&
+      {isSuccess &&
         mainServices.mainServices.map((item, i) => (
           <Slide
+            key={i}
             isOpen={isOpen}
             setContent={setContent}
             img={item.image}
-            pageNumber={i! + 1}
+            pageNumber={i + 1}
             currentPageNumber={page}
             description={item.description}
-            key={i}
             title={item.name}
             setIsOpen={setIsOpen}
           />
         ))}
+
       <div className="absolute z-[40] bottom-5 left-1/2 -translate-x-1/2">
         <DotsGroup
-          count={count}
+          count={count - 1}
           page={page}
           percentage={percentage}
           go={go}
           setPercentage={setPercentage}
         />
       </div>
-      <MoreDialog
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        content={content}
-      />
+      <MoreDialog isOpen={isOpen} setIsOpen={setIsOpen} content={content} />
     </section>
   )
 }
@@ -139,18 +128,16 @@ const Slide = ({
   isOpen,
 }: SlideProps) => {
   useEffect(() => {
-    if (pageNumber === currentPageNumber && !isOpen)
+    if (pageNumber === currentPageNumber && !isOpen) {
       setContent(description)
-  }, [currentPageNumber, isOpen])
+    }
+  }, [currentPageNumber, isOpen, description, pageNumber, setContent])
+
   return (
     <div
-      style={{ backgroundImage: `url("http://41.44.208.217:5176/static/slides/${img}")` }}
+      style={{ backgroundImage: `url("http://172.20.10.10:5176/static/slides/${img}")` }}
       className={`absolute w-full h-full z-40 bg-cover bg-center bg-no-repeat flex items-center justify-center
-      ${
-        pageNumber === currentPageNumber
-          ? "bottom-0"
-          : "-bottom-full delay-500"
-      }
+      ${pageNumber === currentPageNumber ? "bottom-0" : "-bottom-full delay-500"}
       transition-all duration-500`}
     >
       <div className="inset-0 absolute bg-black/40" />
@@ -164,14 +151,10 @@ const Slide = ({
           </h1>
 
           <div className="flex items-center gap-7 justify-center">
-            <Link to={"/service"}>
-              <Button
-                className={`font-arabic text-lg transition-all hover:text-primary hover:scale-125 relative group flex h-[65px] w-[150px]`}
-              >
+            <Link to="/service">
+              <Button className="font-arabic text-lg transition-all hover:text-primary hover:scale-125 relative group flex h-[65px] w-[150px]">
                 <div className="inset-0 absolute bg-black/40 hidden group-hover:block" />
-                <span className="z-50 text-2xl font-arabic">
-                  أحجز الآن
-                </span>
+                <span className="z-50 text-2xl font-arabic">أحجز الآن</span>
               </Button>
             </Link>
             <Button

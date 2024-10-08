@@ -6,7 +6,7 @@ import {
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://41.44.208.217:5176/api",
+    baseUrl: "http://172.20.10.10:5176/api",
   }),
   tagTypes: ["mainServices", "subServices", "package"],
   endpoints: () => ({}),
