@@ -53,6 +53,9 @@ public class BookingsController : ControllerBase
             return BadRequest("Booking data is required.");
         }
 
+        // Log the received booking data
+        Console.WriteLine($"Received booking: {System.Text.Json.JsonSerializer.Serialize(booking)}");
+
         // Save the new booking (with auto-generated _id and __v)
         _context.Bookings.Add(booking);
         await _context.SaveChangesAsync();

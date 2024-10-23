@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173","http://172.20.10.13:5173")
+            policy.WithOrigins("http://localhost:5173","http://172.20.10.13:5173","http://10.10.10.190")
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials(); // This allows credentials
@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowSpecificOrigin");
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseAuthorization();
