@@ -6,6 +6,7 @@ import {
   useGetSubServicesQuery,
 } from "@/app/api/ServicesApiSlice"
 import { MainService } from "@/types"
+import { API } from "@/utils/server"
 
 type ServicesProps = {
   setSubServiceID: React.Dispatch<
@@ -152,7 +153,7 @@ const Slide = ({
   const ref = useRef<HTMLDivElement>(null)
 
   const { data: subServices } = useGetSubServicesQuery({
-    id: service._id,
+    id: service.id,
   })
 
   useEffect(() => {
@@ -165,7 +166,7 @@ const Slide = ({
       className={`transition-all duration-500 rounded-s-lg p-5 flex flex-col items-center justify-center h-full
       grow-0 w-full shrink-0 bg-center bg-no-repeat bg-cover slider-child`}
       style={{
-        backgroundImage: `url("${service.photo}")`,
+        backgroundImage: `url("${API.media}slides/${service.image}")`,
         backgroundRepeat: "no-repeat",
       }}
       ref={ref}

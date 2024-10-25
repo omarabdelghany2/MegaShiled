@@ -5,6 +5,7 @@ import { Button } from "./ui/button"
 import { MoreDialog } from "."
 import { Link } from "react-router-dom"
 import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
+import { API } from "@/utils/server"
 
 const About = () => {
   const [percentage, setPercentage] = useState(0)
@@ -135,7 +136,7 @@ const Slide = ({
 
   return (
     <div
-      style={{ backgroundImage: `url("http://172.20.10.10:5176/static/slides/${img}")` }}
+      style={{ backgroundImage: `url("${API.media}/slides/${img}")` }}
       className={`absolute w-full h-full z-40 bg-cover bg-center bg-no-repeat flex items-center justify-center
       ${pageNumber === currentPageNumber ? "bottom-0" : "-bottom-full delay-500"}
       transition-all duration-500`}

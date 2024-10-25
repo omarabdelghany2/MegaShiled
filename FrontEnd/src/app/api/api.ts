@@ -1,3 +1,4 @@
+import { API } from "@/utils/server"
 import {
   createApi,
   fetchBaseQuery,
@@ -6,7 +7,7 @@ import {
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://172.20.10.10:5176/api",
+    baseUrl: `${API.apiV1}`,
   }),
   tagTypes: ["mainServices", "subServices", "package"],
   endpoints: () => ({}),
