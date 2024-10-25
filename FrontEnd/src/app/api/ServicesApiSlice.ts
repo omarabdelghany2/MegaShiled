@@ -276,12 +276,12 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
     }),
     AddBooking: builder.mutation<any, BookingProps>({
       query: args => ({
-        url: `/bookings/makeAppointment`,
+        url: `/bookings`,
         credentials: "include",
         method: "POST",
         body: JSON.stringify(args),
         headers: {
-          "Content-type": "application/json",
+          "Content-type": "application/json; charset=utf-8",
         },
       }),
       invalidatesTags: [

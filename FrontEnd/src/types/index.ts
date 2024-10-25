@@ -84,7 +84,7 @@ export type BookingProps = {
   customerFname: string
   customerLname: string
   customerPhone: string
-  service: string[]
+  services: string[]
   city: string
   date: string
   status?: string

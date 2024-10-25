@@ -20,13 +20,9 @@ const AdditionalServices = ({
   const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
 
   const { data: mainServices, isLoading } = useGetAllMainServicesQuery("")
-
   useEffect(() => {
     if (mainServices) {
-      const filtered = mainServices.mainServices.filter(
-        item => item.isAdditional
-      )
-
+      const filtered = mainServices.mainServices.filter(itm => itm.isAdditional === true)
       setAdditionalServices(filtered)
     }
   }, [mainServices])
@@ -42,11 +38,11 @@ const AdditionalServices = ({
         <For each={additionalServices}>
           {(item, i) => (
             <AdditionalServiceCard
-              carSize={carSize}
-              packages={packages}
-              setPackages={setPackages}
-              mainService={item}
-              key={i}
+            carSize={carSize}
+            packages={packages}
+            setPackages={setPackages}
+            mainService={item}
+            key={i}
             />
           )}
         </For>

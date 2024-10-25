@@ -55,7 +55,7 @@ const PersonalInfo = ({
       customerLname: lastName,
       customerPhone: phone,
       date,
-      service: packagesName,
+      services: packagesName,
     })
       .unwrap()
       .then(() => {
