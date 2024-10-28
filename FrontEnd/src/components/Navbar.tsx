@@ -2,6 +2,7 @@ import { MenuSheet, NavLink } from "@/components"
 
 import logo from "/logo.png"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
   return (
@@ -25,14 +26,16 @@ const Navbar = () => {
           <NavLink to="/who">من نحن</NavLink>
         </div>
 
-        <motion.div
-          initial={{ y: "-220%" }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.4, delay: 0.6 }}
-          className="w-[120px] sm:block hidden"
-        >
-          <img src={logo} alt="logo" />
-        </motion.div>
+        <Link to={"/"}>
+          <motion.div
+            initial={{ y: "-220%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+            className="w-[120px] sm:block hidden"
+          >
+            <img src={logo} alt="logo" />
+          </motion.div>
+        </Link>
 
         <div className="h-14 grid place-content-center">
           <NavLink to="/contact">تواصل</NavLink>

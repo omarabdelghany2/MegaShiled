@@ -53,7 +53,7 @@ const Adds = () => {
             <button
               className="flex items-center justify-center text-3xl font-bold font-arabic h-20 w-[220px] bg-primary mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors hover:bg-transparent hover:border-primary"
+          transition-colors"
             >
               التسوق
             </button>
@@ -84,7 +84,7 @@ const Adds = () => {
           <button
             className="flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors hover:bg-transparent hover:border-black"
+          transition-colors"
             onClick={() => navigate("/service")}
           >
             إحجز الان

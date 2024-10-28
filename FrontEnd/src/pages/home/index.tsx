@@ -20,7 +20,7 @@ const Home = () => {
 const Page = () => (
   <main>
     <Carousel />
-    <Welcome />
+    {/* <Welcome /> */}
     <About />
     <Adds />
     <Locations />

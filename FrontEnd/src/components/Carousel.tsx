@@ -33,7 +33,7 @@ const Carousel = () => {
         >
           محترفي خدمات
           <br />
-          السيارات في المملكة
+          السيارات في الشرق الأوسط
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
