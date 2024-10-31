@@ -111,7 +111,7 @@ const ServicePackageCard = ({
       </div>
       <div
         className="p-5 bg-cover bg-no-repeat
-              rounded-lg overflow-hidden absolute inset-0 z-10 transition-transform duration-500 peer-hover:scale-110"
+              rounded-lg overflow-hidden absolute inset-0 z-10 transition-transform duration-500 peer-hover:scale-110 "
         style={{
           backgroundImage: `url(${packImagesURLS[random]})`,
         }}

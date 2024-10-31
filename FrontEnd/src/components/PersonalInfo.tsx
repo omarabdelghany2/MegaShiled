@@ -1,9 +1,10 @@
-import { CarFront } from "lucide-react"
+import {  CarFront } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { useEffect, useState } from "react"
 import { useAddBookingMutation } from "@/app/api/ServicesApiSlice"
 import { toast } from "react-toastify"
+import Calendar from 'react-calendar';
 
 type PersonalInfoProps = {
   carSize: 0 | 1 | 2
@@ -13,6 +14,10 @@ type PersonalInfoProps = {
     React.SetStateAction<{ title: string; price: number }[]>
   >
 }
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const PersonalInfo = ({
   carSize,
@@ -26,6 +31,8 @@ const PersonalInfo = ({
   const [phone, setPhone] = useState("")
   const [city, setCity] = useState("")
   const [date, setDate] = useState("")
+  const [value, onChange] = useState<Value>(new Date());
+  const [time, setTime] = useState('12:00'); // Default time
 
   useEffect(() => {
     setPackagesName([])
@@ -69,7 +76,7 @@ const PersonalInfo = ({
   return (
     <div
       id="personal-info"
-      className="min-h-screen max-w-5xl mx-auto flex items-center max-lg:flex-col justify-center gap-5"
+      className=" max-w-5xl mx-auto flex items-center max-lg:flex-col justify-center gap-5 p-5"
     >
       <form
         className="block min-w-[300px] rounded-lg shadow-2xl bg-slate-400/20 backdrop-blur-lg relative
@@ -103,7 +110,7 @@ const PersonalInfo = ({
           value={phone}
           onChange={e => setPhone(e.target.value)}
         />
-        <Input
+        {/* <Input
           className="my- placeholder:text-white text-white mb-4"
           type="datetime-local"
           onChange={e =>
@@ -118,7 +125,8 @@ const PersonalInfo = ({
               })
             )
           }
-        />
+        /> */}
+        <Calendar onChange={onChange} value={value} className={"p-4 h-80 text-lg"} />
         <Button
           className="text-lg font-arabic w-full bg-transparent border-2 border-primary"
           onClick={handleAddBooking}

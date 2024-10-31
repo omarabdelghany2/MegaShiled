@@ -1,23 +1,25 @@
 import { ReactNode, useState } from "react"
-import bigCar from "/big.png"
-import mediumCar from "/medium.png"
-import smallCar from "/small.png"
+import bigCar from "/bigCar.png"
+import mediumCar from "/mediumCar.png"
+import smallCar from "/smallCar.png"
 import {
   AdditionalServices,
   Packages,
   PersonalInfo,
 } from "@/components"
+import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
 
 const Services = () => {
   const [active, setActive] = useState<0 | 1 | 2>(0)
   const [className, setClassName] = useState("opacity-1")
-  const [packages, setPackages] = useState<
-    { title: string; price: number }[]
-  >([])
+  const [packages, setPackages] = useState<{ title: string; price: number }[]>([])
+
+  const { data: mainServicesData } = useGetAllMainServicesQuery("")
+  const [selectedService, setSelectedService] = useState(mainServicesData?.mainServices[0].name || "")
 
   return (
     <section className="text-center py-20 bg-neutral-900">
-      <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
+      <div className="h-screen text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
         <div className="text-center flex flex-col z-40">
           <Heading content="الخطوة الاولي" />
@@ -68,21 +70,28 @@ const Services = () => {
           />
         </div>
       </div>
-      <Packages
-        packages={packages}
-        setPackages={setPackages}
-        carSize={active}
-      />
-      <AdditionalServices
-        carSize={active}
-        packages={packages}
-        setPackages={setPackages}
-      />
-      <PersonalInfo
-        setPackages={setPackages}
-        packages={packages}
-        carSize={active}
-      />
+      <div className="container p-5">
+        <Packages
+          packages={packages}
+          setPackages={setPackages}
+          carSize={active}
+          selectedService={selectedService}
+          setSelectedService={setSelectedService}
+          mainServicesData={mainServicesData}
+        />
+        <AdditionalServices
+          carSize={active}
+          packages={packages}
+          setPackages={setPackages}
+          selectedService={selectedService}
+          mainServicesData={mainServicesData}
+        />
+        <PersonalInfo
+          setPackages={setPackages}
+          packages={packages}
+          carSize={active}
+        />
+      </div>
     </section>
   )
 }

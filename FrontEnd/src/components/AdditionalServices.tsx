@@ -10,43 +10,57 @@ type PackagesProps = {
     React.SetStateAction<{ title: string; price: number }[]>
   >
   carSize: 0 | 1 | 2
+  selectedService: string
+  mainServicesData: {
+    mainServices: MainService[]
+    count: number
+  } | undefined
 }
 
 const AdditionalServices = ({
   packages,
   setPackages,
   carSize,
+  selectedService,
+  mainServicesData
 }: PackagesProps) => {
   const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
 
-  const { data: mainServices, isLoading } = useGetAllMainServicesQuery("")
+  
   useEffect(() => {
-    if (mainServices) {
-      const filtered = mainServices.mainServices.filter(itm => itm.isAdditional === true)
+    if (mainServicesData) {
+      const filtered = mainServicesData.mainServices.filter(itm => itm.isAdditional  === true)
       setAdditionalServices(filtered)
     }
-  }, [mainServices])
+  }, [mainServicesData])
 
-  if (isLoading) return "loading..."
-
+  // if (isLoading) return "loading...  "
+  console.log(additionalServices.length);
   return (
-    <section className="min-h-screen">
-      <h1 className="text-primary font-arabic font-bold text-2xl my-5">
-        الخدمات الاضافية
-      </h1>
-      <div className="flex justify-center gap-4 flex-col">
-        <For each={additionalServices}>
-          {(item, i) => (
-            <AdditionalServiceCard
-            carSize={carSize}
-            packages={packages}
-            setPackages={setPackages}
-            mainService={item}
-            key={i}
-            />
-          )}
-        </For>
-      </div>
+    <section className="">
+     {
+      additionalServices.length < 0 ? (
+        <>
+           <h1 className="text-primary font-arabic font-bold text-2xl my-5">
+              الخدمات الاضافية
+            </h1>
+            <div className="flex justify-center gap-4 flex-col">
+              <For each={additionalServices}>
+                {(item, i) => (
+                  <AdditionalServiceCard
+                  selectedService={selectedService}
+                  carSize={carSize}
+                  packages={packages}
+                  setPackages={setPackages}
+                  mainService={item}
+                  key={i}
+                  />
+                )}
+              </For>
+            </div>
+        </>
+      ): null
+     }
     </section>
   )
 }
