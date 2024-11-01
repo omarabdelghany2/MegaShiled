@@ -31,7 +31,7 @@ const ServicePackageCard = ({
     []
   )
   return (
-    <div className="overflow-hidden relative flex flex-col rounded-lg w-[300px] h-[420px]">
+    <div className="overflow-hidden relative flex flex-col rounded-lg w-[300px] h-[450px]">
       <div
         className="absolute h-[50px] w-52 border-y-2 border-solid border-slate-400 flex items-center justify-center
       -rotate-45 top-5 -left-12 z-[100] bg-slate-400/20 backdrop-blur-lg text-white text-md
@@ -75,7 +75,7 @@ const ServicePackageCard = ({
           </For>
         </div>
         <Button
-          className={` font-arabic text-xl w-full flex items-center mt-auto justify-center ${
+          className={` font-arabic text-xl  flex items-center mt-auto justify-center absolute bottom-2 left-2 right-2  ${
             packages.filter(p => p.title === title).length >
             0
               ? "bg-green-600 hover:bg-green-600"

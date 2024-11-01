@@ -47,7 +47,7 @@ const Packages = ({
           })
         }
       </div>
-      <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-5 ">
+      <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-8 ">
         {
         subServicePackages && subServicePackages.count > 0 && 
           subServicePackages.packages.map((packagely, i) => {

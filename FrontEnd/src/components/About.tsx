@@ -18,6 +18,10 @@ const About = () => {
         modules={[Autoplay, Pagination]}
         spaceBetween={50}
         slidesPerView={1}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{ clickable: true }}
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}

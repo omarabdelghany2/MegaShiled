@@ -9,6 +9,7 @@ import {
 } from "@/components"
 import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
 
+
 const Services = () => {
   const [active, setActive] = useState<0 | 1 | 2>(0)
   const [className, setClassName] = useState("opacity-1")
@@ -18,15 +19,15 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState(mainServicesData?.mainServices[0].name || "")
 
   return (
-    <section className="text-center py-20 bg-neutral-900">
+    <section className="text-center py-20 bg-neutral-950">
       <div className="h-screen text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
         <div className="text-center flex flex-col z-40">
           <Heading content="الخطوة الاولي" />
-          <span className="font-arabic text-xl">
+          <span className="font-arabic text-xl font-bold">
             اختر حجم سيارتك
           </span>
-          <div className="flex items-center gap-3 text-center justify-center my-5 mx-5">
+          <div className="flex items-center gap-3 font-bold text-center justify-center my-5 mx-5">
             <SelectCard
               img={smallCar}
               setActive={setActive}

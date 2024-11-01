@@ -5,6 +5,11 @@ import { useEffect, useState } from "react"
 import { useAddBookingMutation } from "@/app/api/ServicesApiSlice"
 import { toast } from "react-toastify"
 import Calendar from 'react-calendar';
+import styles from "../components/styles/components/PersonalInfo.module.scss"
+import { isFriday } from 'date-fns';
+
+
+import "../styles/calendar/calendar.scss"
 
 type PersonalInfoProps = {
   carSize: 0 | 1 | 2
@@ -33,6 +38,29 @@ const PersonalInfo = ({
   const [date, setDate] = useState("")
   const [value, onChange] = useState<Value>(new Date());
   const [time, setTime] = useState('12:00'); // Default time
+
+  const availableTimeFriday = [
+    "4:00PM",
+    "5:00PM",
+    "6:00PM",
+    "7:00PM",
+    "8:00PM",
+  ]
+  
+  const availableTimeWeek = [
+    "10:00AM",
+    "11:00AM",
+    "12:00PM",
+    "1:00PM",
+    "2:00PM",
+    "3:00PM",
+    "4:00PM",
+    "5:00PM",
+    "6:00PM",
+    "7:00PM",
+    "8:00PM",
+  ]
+  
 
   useEffect(() => {
     setPackagesName([])
@@ -76,11 +104,10 @@ const PersonalInfo = ({
   return (
     <div
       id="personal-info"
-      className=" max-w-5xl mx-auto flex items-center max-lg:flex-col justify-center gap-5 p-5"
+      className={styles.personalinfo}
     >
       <form
-        className="block min-w-[300px] rounded-lg shadow-2xl bg-slate-400/20 backdrop-blur-lg relative
-        z-10 p-5 flex-1"
+        className={styles.form}
       >
         <h1 className="w-fit mx-auto text-primary text-2xl mb-6 font-arabic font-semibold">
           أدخل بياناتك لاكمال الحجز
@@ -126,16 +153,12 @@ const PersonalInfo = ({
             )
           }
         /> */}
-        <Calendar onChange={onChange} value={value} className={"p-4 h-80 text-lg"} />
-        <Button
-          className="text-lg font-arabic w-full bg-transparent border-2 border-primary"
-          onClick={handleAddBooking}
-        >
-          إكمال الحجز
-        </Button>
+        
+        
+      
       </form>
-      <div className="flex-1 grid grid-cols-2 gap-5 z-10">
-        <div className="h-52 shadow-box bg-slate-400/20 backdrop-blur-lg rounded-lg z-10 flex flex-col items-center min-w-[150px] p-5">
+      <div className="flex-1 grid grid-cols-2 gap-3 z-10">
+        <div className={styles.carsize}>
           <h1 className="w-fit mx-auto text-xl text-primary font-arabic">
             حجم السيارة
           </h1>
@@ -154,7 +177,7 @@ const PersonalInfo = ({
               : "كبير"}
           </span>
         </div>
-        <div className="h-52 shadow-box bg-slate-400/20 backdrop-blur-lg rounded-lg z-10 flex flex-col items-center min-w-[150px] p-5">
+        <div className={styles.service}>
           <h1
             className="w-fit mx-auto text-xl font-bold
           text-primary font-arabic"
@@ -165,25 +188,42 @@ const PersonalInfo = ({
             {packagesName.join(" + ")}
           </p>
         </div>
-        <div className="h-52 shadow-box bg-slate-400/20 backdrop-blur-lg rounded-lg z-10 flex flex-col items-center min-w-[150px] p-5">
+        <div className={styles.total}>
           <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
             السعر الاجمالي
           </h1>
           <span className=" font-arabic text-2xl my-auto">
-            {packages.reduce((a, b) => a + +b.price, 0)}$
+            {packages.reduce((a, b) => a + +b.price, 0)}L.E
           </span>
         </div>
-        <div className="h-52 shadow-box bg-slate-400/20 backdrop-blur-lg rounded-lg z-10 flex flex-col items-center min-w-[150px] p-5">
+        <div className={styles.date}>
           <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
             تاريخ و توقيت الحجز
           </h1>
           <p className="flex items-center justify-center gap-3">
             <span className="font-arabic text-2xl my-auto mt-8">
-              {date ? date : "اختر تاريخ الحجز"}
+              {value ? `${value}` : "اختر تاريخ الحجز"}
             </span>
           </p>
         </div>
       </div>
+      <div className={styles.datesection}>
+      <Calendar onChange={onChange} value={value} className={`p-4 h-80 text-lg ${styles.calendar}`} />
+      </div>
+        <div className={styles.timing}>
+        {value && isFriday(value as unknown as Date) ? availableTimeFriday.map((itm, index) => (
+          <div key={index} className={styles.timedate}>{itm}</div>
+        )): availableTimeWeek.map((itm,index) => (
+          <div key={index} className={styles.timedate}>{itm}</div>
+        ))
+        }
+        </div>
+        <Button
+          className={`${styles.send} text-lg font-arabic w-full bg-transparent border-2 border-primary`}
+          onClick={handleAddBooking}
+        >
+          إكمال الحجز
+        </Button>
     </div>
   )
 }
