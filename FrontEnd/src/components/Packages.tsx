@@ -38,14 +38,25 @@ const Packages = ({
       /> */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3 auto-cols-auto ">
-        
-        {
-          mainServicesData?.mainServices.map((itm, idx) => {
+      {
+        mainServicesData?.mainServices.map((itm) => {
+          if (itm.isAdditional === false) {
             return (
-              <div onClick={() => setSelectedService(itm.name)} className={` border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${selectedService === itm.name ? "bg-primary": "bg-transparent"}`}>{itm.name}</div>
-            )
-          })
-        }
+              <div
+                key={itm.name}
+                onClick={() => setSelectedService(itm.name)}
+                className={`border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${
+                  selectedService === itm.name ? "bg-primary" : "bg-transparent"
+                }`}
+              >
+                {itm.name}
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })
+      }
       </div>
       <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-8 ">
         {
@@ -55,6 +66,8 @@ const Packages = ({
             const matchingService = mainServicesData?.mainServices.find(
               (item) => item.name === packagely.belongTo && item.isAdditional == false && item.name === selectedService
             );
+
+           
             
             // If matchingService is found, render the ServicePackageCard
             return matchingService ? (

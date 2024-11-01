@@ -6,7 +6,7 @@ import { useAddBookingMutation } from "@/app/api/ServicesApiSlice"
 import { toast } from "react-toastify"
 import Calendar from 'react-calendar';
 import styles from "../components/styles/components/PersonalInfo.module.scss"
-import { isFriday } from 'date-fns';
+import { isFriday, isSunday , format, isSameDay, addDays } from 'date-fns';
 
 
 import "../styles/calendar/calendar.scss"
@@ -31,13 +31,14 @@ const PersonalInfo = ({
   const [packagesName, setPackagesName] = useState<
     string[]
   >([])
+  const tommorrow = addDays(new Date(), 1)
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [phone, setPhone] = useState("")
   const [city, setCity] = useState("")
   const [date, setDate] = useState("")
-  const [value, onChange] = useState<Value>(new Date());
-  const [time, setTime] = useState('12:00'); // Default time
+  const [value, onChange] = useState<Value>(tommorrow);
+  const [time, setTime] = useState('');
 
   const availableTimeFriday = [
     "4:00PM",
@@ -97,7 +98,6 @@ const PersonalInfo = ({
         toast("تم اتمام حجزك بنجاح", { type: "success" })
       })
       .catch(err => {
-        console.log(err)
         toast(err.data.msg, { type: "error" })
       })
   }
@@ -153,9 +153,6 @@ const PersonalInfo = ({
             )
           }
         /> */}
-        
-        
-      
       </form>
       <div className="flex-1 grid grid-cols-2 gap-3 z-10">
         <div className={styles.carsize}>
@@ -202,19 +199,26 @@ const PersonalInfo = ({
           </h1>
           <p className="flex items-center justify-center gap-3">
             <span className="font-arabic text-2xl my-auto mt-8">
-              {value ? `${value}` : "اختر تاريخ الحجز"}
+              {value ? `${format(value as Date, 'yyyy-MM-dd')}` : "اختر تاريخ الحجز"}
             </span>
           </p>
         </div>
       </div>
       <div className={styles.datesection}>
-      <Calendar onChange={onChange} value={value} className={`p-4 h-80 text-lg ${styles.calendar}`} />
+      <Calendar onChange={onChange} value={value}  className={`p-4 h-80 text-lg ${styles.calendar}`}  tileClassName={({ date,  view }) => { 
+        if( isSameDay (date, value as Date)) {
+          return  styles.highlight
+        }
+      }}
+      minDate={tommorrow}
+      
+      />
       </div>
         <div className={styles.timing}>
         {value && isFriday(value as unknown as Date) ? availableTimeFriday.map((itm, index) => (
-          <div key={index} className={styles.timedate}>{itm}</div>
+          <div key={index} onClick={() => setTime(itm)} className={`${styles.timedate} ${itm === time ? styles.clicked: null}`}>{itm}</div>
         )): availableTimeWeek.map((itm,index) => (
-          <div key={index} className={styles.timedate}>{itm}</div>
+          <div key={index}  onClick={() => setTime(itm)} className={`${styles.timedate} ${itm === time ? styles.clicked: null}`}>{itm}</div>
         ))
         }
         </div>

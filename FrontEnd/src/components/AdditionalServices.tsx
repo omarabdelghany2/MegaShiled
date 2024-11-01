@@ -3,6 +3,7 @@ import { MainService } from "@/types"
 import { For } from "@dev-amr/react-sugartax"
 import { useEffect, useState } from "react"
 import AdditionalServiceCard from "./AdditionalServiceCard"
+import styles from "../components/styles/components/AdditionalServices.module.scss"
 
 type PackagesProps = {
   packages: { title: string; price: number }[]
@@ -10,45 +11,40 @@ type PackagesProps = {
     React.SetStateAction<{ title: string; price: number }[]>
   >
   carSize: 0 | 1 | 2
-  selectedService: string
-  mainServicesData: {
-    mainServices: MainService[]
-    count: number
-  } | undefined
 }
 
 const AdditionalServices = ({
   packages,
   setPackages,
   carSize,
-  selectedService,
-  mainServicesData
 }: PackagesProps) => {
   const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
+  const { data: mainServices, isLoading } = useGetAllMainServicesQuery("")
 
   
   useEffect(() => {
-    if (mainServicesData) {
-      const filtered = mainServicesData.mainServices.filter(itm => itm.isAdditional  === true)
+    if (mainServices) {
+      const filtered = mainServices.mainServices.filter(itm => itm.isAdditional  === true)
       setAdditionalServices(filtered)
     }
-  }, [mainServicesData])
+  }, [mainServices])
 
-  // if (isLoading) return "loading...  "
-  console.log(additionalServices.length);
+  if (isLoading) return "loading...  "
+
   return (
     <section className="">
      {
-      additionalServices.length < 0 ? (
+      additionalServices.length ? (
         <>
-           <h1 className="text-primary font-arabic font-bold text-2xl my-5">
-              الخدمات الاضافية
+            <h1 className={` ${styles.title}`}>
+              <span className={styles.line}></span>
+              <div className={`${styles.text} text-primary font-arabic font-bold text-2xl my-5`}>الخدمات الاضافية</div>
+              <span className={styles.line}></span>
             </h1>
-            <div className="flex justify-center gap-4 flex-col">
+            <div className={`${styles.additional} `}>
               <For each={additionalServices}>
                 {(item, i) => (
                   <AdditionalServiceCard
-                  selectedService={selectedService}
                   carSize={carSize}
                   packages={packages}
                   setPackages={setPackages}

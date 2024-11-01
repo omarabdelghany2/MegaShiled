@@ -11,7 +11,6 @@ const AdditionalServiceCard = ({
   packages,
   setPackages,
   carSize,
-  selectedService
 }: {
   mainService: MainService
   packages: { title: string; price: number }[]
@@ -19,7 +18,6 @@ const AdditionalServiceCard = ({
     React.SetStateAction<{ title: string; price: number }[]>
   >
   carSize: 0 | 1 | 2
-  selectedService: string
 }) => {
   const { data: subservices } = useGetSubServicesQuery({
     id: mainService.id,
@@ -38,11 +36,11 @@ const AdditionalServiceCard = ({
       </h1> */}
 
       <div className="overflow-y-scroll no-scroll">
-        <div className="grid grid-columns p-5">
+        <div className="grid grid-columns">
           {servicePackages?.packages && (
             <For each={servicePackages?.packages}>
               {(item, i) => (
-                  item.belongTo === mainService.name && item.belongTo === selectedService ? (
+                  item.belongTo === mainService.name ? (
                     <AdditionalServicePackageCard
                       price={
                         carSize === 0

@@ -16,7 +16,7 @@ const Services = () => {
   const [packages, setPackages] = useState<{ title: string; price: number }[]>([])
 
   const { data: mainServicesData } = useGetAllMainServicesQuery("")
-  const [selectedService, setSelectedService] = useState(mainServicesData?.mainServices[0].name || "")
+  const [selectedService, setSelectedService] = useState("")
 
   return (
     <section className="text-center py-20 bg-neutral-950">
@@ -84,8 +84,6 @@ const Services = () => {
           carSize={active}
           packages={packages}
           setPackages={setPackages}
-          selectedService={selectedService}
-          mainServicesData={mainServicesData}
         />
         <PersonalInfo
           setPackages={setPackages}
