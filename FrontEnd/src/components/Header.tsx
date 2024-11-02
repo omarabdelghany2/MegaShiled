@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 const Header = () => {
   return (
-    <header className="h-20 bg-[#333]/70 fixed inset-x-0 top-0 z-[10000000]">
+    <header className="h-20 bg-[#111214]/70 fixed inset-x-0 top-0 z-[10000000]">
       <div className="container mx-auto h-20 flex items-center sm:justify-center justify-between">
         <motion.div
           initial={{ y: "-100%" }}

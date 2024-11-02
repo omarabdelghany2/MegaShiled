@@ -52,8 +52,9 @@
     }
 
     .timing {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+        grid-auto-rows: 3rem;
         justify-content: flex-start;
         padding: 1rem;
         gap: 1rem;
@@ -72,14 +73,23 @@
             border-radius: .5rem;
             transition: .5s;
 
+            
+        }
+
+        .clicked {
+            background-color: $primary;
+        }
+
+        .free {
             &:hover {
                 background-color: $primary;
                 cursor: pointer;
             }
         }
 
-        .clicked {
-            background-color: $primary;
+        .busy {
+            opacity: .5;
+            cursor: not-allowed !important;
         }
     }
     

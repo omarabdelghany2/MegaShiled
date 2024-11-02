@@ -108,6 +108,16 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainServices"],
     }),
+    GetAllReservedDates: builder.query<string[], any>({
+      query: () => ({
+        url: `/bookings/dates`,
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }),
+      providesTags: ["mainServices"],
+    }),
     GetAllMainServices: builder.query<
       { mainServices: MainService[]; count: number },
       any
@@ -313,4 +323,5 @@ export const {
   useGetPackageByIDQuery,
   useUpdatePackageMutation,
   useAddBookingMutation,
+  useGetAllReservedDatesQuery
 } = ServicesApiSlice

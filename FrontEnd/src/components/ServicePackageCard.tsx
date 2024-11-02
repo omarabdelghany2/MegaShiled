@@ -41,7 +41,7 @@ const ServicePackageCard = ({
       </div>
       <div className="absolute inset-0 bg-black/40 z-20 " />
       <div className="z-40 p-5 peer h-full">
-        <h1 className="text-right text-3xl text-primary font-bold font-arabic my-5">
+        <h1 className="text-right text-3xl z-101 text-primary font-bold font-arabic my-5">
           {title}
         </h1>
         <div className="flex my-5 w-fit gap-1 text-primary">
