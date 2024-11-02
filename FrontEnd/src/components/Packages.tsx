@@ -31,7 +31,7 @@ const Packages = ({
   
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-14">
       {/* <ServicesSlider
         setSubServiceID={setSubServiceID}
         subServiceID={subServiceID}
@@ -58,7 +58,7 @@ const Packages = ({
         })
       }
       </div>
-      <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-8 ">
+      <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-8  ">
         {
         subServicePackages && subServicePackages.count > 0 && 
           subServicePackages.packages.map((packagely, i) => {
@@ -66,13 +66,9 @@ const Packages = ({
             const matchingService = mainServicesData?.mainServices.find(
               (item) => item.name === packagely.belongTo && item.isAdditional == false && item.name === selectedService
             );
-
-           
-            
-            // If matchingService is found, render the ServicePackageCard
             return matchingService ? (
               <ServicePackageCard
-                key={i} // use i as a unique key here, although a unique id is better if available
+                key={i} 
                 packages={packages}
                 setPackages={setPackages}
                 title={packagely.name}
@@ -85,7 +81,7 @@ const Packages = ({
                     : packagely.bigPrice
                 }
               />
-            ) : null; // return null if no matching service is found
+            ) : null;
           })
         }
       </div>

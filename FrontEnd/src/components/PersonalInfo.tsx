@@ -31,12 +31,8 @@ const PersonalInfo = ({
   const tomorrow = addDays(new Date(), 1)
   const minDate = isSunday(tomorrow) ? addDays(tomorrow, 1) : tomorrow;
 
-  // const busyDates = useGetAllReservedDatesQuery("")
-  const busyDates = [
-    "2024-11-27-12",
-    "2024-11-28-16",
-    "2024-11-29-20"
-  ]
+  const { data: dates } = useGetAllReservedDatesQuery("")
+
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -84,7 +80,7 @@ const PersonalInfo = ({
 
     if (!firstName || !lastName || !phone || !city || !value || !time) {
       toast("يرجى ملء جميع الحقول", { type: "error" });
-      return; // Stop execution if any field is empty
+      return;
     }
 
     book({
@@ -115,13 +111,6 @@ const PersonalInfo = ({
       .catch(err => {
         toast(err.data.msg, { type: "error" })
       })
-  }
-
-  const convert24HourTo12Hour = (hour24: number): string => {
-    // Set the hour and minutes on a new Date object (assuming 0 minutes).
-    const date = setMinutes(setHours(new Date(), hour24), 0);
-    // Format to 12-hour time with AM/PM
-    return format(date, 'h:mm a');
   }
 
   const concatenateDateAndTime = (dateStr: string, timeStr: string): string => {
@@ -263,7 +252,7 @@ const PersonalInfo = ({
         <div className={styles.timing}>
         {value && isFriday(value as Date) ? availableTimeFriday.map((itm, index) => {
           const formattedDate = format(value as Date, 'yyyy-MM-dd');
-          const isBusy = busyDates.includes(concatenateDateAndTime(formattedDate, itm));
+          const isBusy = dates?.dates.includes(concatenateDateAndTime(formattedDate, itm));
 
           return (
             <div 
@@ -276,7 +265,7 @@ const PersonalInfo = ({
           );
         }) : availableTimeWeek.map((itm, index) => {
           const formattedDate = format(value as Date, 'yyyy-MM-dd');
-          const isBusy = busyDates.includes(concatenateDateAndTime(formattedDate, itm));
+          const isBusy = dates?.dates.includes(concatenateDateAndTime(formattedDate, itm));
 
           return (
             <div 

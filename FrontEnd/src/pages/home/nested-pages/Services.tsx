@@ -20,14 +20,14 @@ const Services = () => {
 
   return (
     <section className="text-center py-20 bg-neutral-950">
-      <div className="h-screen text-center bg-room bg-cover bg-center bg-no-repeat relative">
+      <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
-        <div className="text-center flex flex-col z-40">
+        <div className="text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500">
           <Heading content="الخطوة الاولي" />
-          <span className="font-arabic text-xl font-bold">
+          <span className="font-arabic text-xl text-white font-bold">
             اختر حجم سيارتك
           </span>
-          <div className="flex items-center gap-3 font-bold text-center justify-center my-5 mx-5">
+          <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
             <SelectCard
               img={smallCar}
               setActive={setActive}
@@ -57,7 +57,7 @@ const Services = () => {
             </SelectCard>
           </div>
         </div>
-        <div className="w-[50vw] aspect-auto mx-auto">
+        <div className="w-[50vw]  aspect-auto mx-auto">
           <img
             src={
               active === 0
@@ -124,8 +124,8 @@ const SelectCard = ({
   return (
     <button
       type="button"
-      className={`font-arabic text-white text-lg border-solid border-[2px] ${
-        active ? " border-green-600" : "border-transparent"
+      className={`font-arabic text-white text-lg border-solid bg-white border-[5px] shadow-xl ${
+        active ? "border-primary" : "border-transparent"
       } hover:text-primary px-5 py-3 rounded-md transition-colors duration-200
       `}
       onClick={() => {
@@ -136,7 +136,7 @@ const SelectCard = ({
         }, 600)
       }}
     >
-      <h1 className="w-fit mx-auto text-2xl text-primary">
+      <h1 className="w-fit mx-auto text-2xl text-black text-primary">
         {children}
       </h1>
       <img

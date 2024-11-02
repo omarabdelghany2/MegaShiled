@@ -31,28 +31,28 @@ const ServicePackageCard = ({
     []
   )
   return (
-    <div className="overflow-hidden relative flex flex-col rounded-lg w-[300px] h-[450px]">
+    <div className="overflow-hidden relative flex flex-col rounded-lg w-[300px] h-[450px]" style={{ border: "2px solid #2b2c2e" }}>
       <div
         className="absolute h-[50px] w-52 border-y-2 border-solid border-slate-400 flex items-center justify-center
-      -rotate-45 top-5 -left-12 z-[100] bg-slate-400/20 backdrop-blur-lg text-white text-md
+      -rotate-45 top-5 -left-12 z-[25] bg-slate-400/20 backdrop-blur-lg text-white text-md
       tracking-widest"
       >
         MEGA PRICE
       </div>
       <div className="absolute inset-0 bg-black/40 z-20 " />
       <div className="z-40 p-5 peer h-full">
-        <h1 className="text-right text-3xl z-101 text-primary font-bold font-arabic my-5">
+        <h1 className="text-right text-3xl drop-shadow-lg text-white font-bold font-arabic my-5 h-14">
           {title}
         </h1>
         <div className="flex my-5 w-fit gap-1 text-primary">
           <div className=" aspect-square flex items-start text-xl font-bold shadow-sm">
-            $
+            EGP
           </div>
-          <div className="flex-1 items-center justify-center text-slate-200 text-6xl">
+          <div className="flex-1 items-center justify-center text-white font-bold text-6xl">
             {price}
           </div>
           <div className=" aspect-square flex items-end text-xl font-bold shadow-sm font-arabic">
-            ريال
+            جنيه
           </div>
         </div>
         <div className="flex flex-col gap-2 items-start justify-center my-14">

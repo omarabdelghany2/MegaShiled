@@ -30,7 +30,7 @@ const authApi = apiSlice.injectEndpoints({
       RegisterInfo
     >({
       query: info => ({
-        url: "/auth/register",
+        url: "/dash/register",
         method: "POST",
         body: JSON.stringify(info),
         credentials: "include",

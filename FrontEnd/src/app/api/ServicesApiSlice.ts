@@ -108,7 +108,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainServices"],
     }),
-    GetAllReservedDates: builder.query<string[], any>({
+    GetAllReservedDates: builder.query<{ dates: string[] }, any>({
       query: () => ({
         url: `/bookings/dates`,
         credentials: "include",
