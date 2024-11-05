@@ -133,11 +133,11 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       providesTags: ["mainServices"],
     }),
     GetSubServices: builder.query<
-      { services: Service[]; count: number },
+      { packages: Service[]; count: number },
       { id: string }
     >({
       query: args => ({
-        url: `/packages/${args.id}`,
+        url: `/packages/belongto/${args.id}`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -163,7 +163,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
     DeleteSubService: builder.mutation<any, { id: string }>(
       {
         query: args => ({
-          url: `/services/deleteService/${args.id}`,
+          url: `/packages/${args.id}`,
           credentials: "include",
           method: "DELETE",
           headers: {
@@ -251,6 +251,20 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
         "package",
       ],
     }),
+    GetPackageByBelongTo: builder.query<Package, { id: string }>({
+      query: args => ({
+        url: `/packages/belongto/${args.id}`,
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }),
+      providesTags: [
+        "mainServices",
+        "subServices",
+        "package",
+      ],
+    }),
     DeletePackage: builder.mutation<any, { id: string }>({
       query: args => ({
         url: `/packages/deletePackage/${args.id}`,
@@ -324,5 +338,6 @@ export const {
   useGetPackageByIDQuery,
   useUpdatePackageMutation,
   useAddBookingMutation,
-  useGetAllReservedDatesQuery
+  useGetAllReservedDatesQuery,
+  useGetPackageByBelongToQuery
 } = ServicesApiSlice

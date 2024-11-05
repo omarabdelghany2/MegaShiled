@@ -60,14 +60,13 @@ const ContentTable = ({
   const [id, setId] = useState("")
   const [subServiceID, setSubServiceID] = useState("")
   const [deleteMainService] = useDeleteMainServiceMutation()
-  const [toggleState] =
-    useToggleBookingStateToDoneMutation()
+  const [toggleState] = useToggleBookingStateToDoneMutation()
   const [deleteSubService] = useDeleteSubServiceMutation()
   const [deletePackage] = useDeletePackageMutation()
 
   const dispatch = useAppDispatch()
-
   const navigate = useNavigate()
+
   return (
     <>
       {id !== "" && (
@@ -143,7 +142,7 @@ const ContentTable = ({
                         className="font-arabic"
                         onClick={() => {
                           navigate(
-                            `/dash/services/subservices/${item.id}`
+                            `/dash/services/subservices/${item.name}`
                           )
                         }}
                       >
@@ -204,14 +203,14 @@ const ContentTable = ({
                       <p>{item.description}</p>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <img
                       src={item.photo}
                       alt="service-photo"
                       className="w-[250px] m-3"
                     />
                   </TableCell>
-                  <TableCell>{item.__v}</TableCell>
+                  <TableCell>{item.__v}</TableCell> */}
                   <TableCell className="">
                     <div className="flex items-center gap-4 flex-wrap text-primary justify-center">
                       <Button
@@ -270,8 +269,8 @@ const ContentTable = ({
                   <TableCell>{item.smallPrice}$</TableCell>
                   <TableCell>{item.mediumPrice}$</TableCell>
                   <TableCell>{item.bigPrice}$</TableCell>
-                  <TableCell>{item.__v}</TableCell>
-                  <TableCell className="">
+                  {/* <TableCell>{item.__v}</TableCell> */}
+                  {/* <TableCell className="">
                     <div className="flex items-center gap-4 flex-wrap text-primary justify-center">
                       <Button
                         onClick={() => {
@@ -281,7 +280,7 @@ const ContentTable = ({
                         حذف
                       </Button>
                     </div>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))
             : ""}

@@ -19,10 +19,10 @@ const SubServices = () => {
             headers={[
               "اسم الخدمة",
               "الوصف",
-              "الصورة",
-              "الاصدار",
+              // "الصورة",
+              // "الاصدار",
             ]}
-            items={subServices.services}
+            items={subServices.packages}
           />
         )}
       </div>
