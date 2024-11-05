@@ -31,7 +31,7 @@ const AdditionalServicePackageCard = ({
           {servicePackage.name}
         </h1>
         <span className="mx-auto text-primary text-xl font-bold relative z-50">
-          {price + " "}جنيه
+          {price + " "}ريال
         </span>
         <ul className="p-5 text-green-600 font-arabic font-bold text-lg">
           <For each={servicePackage.description}>

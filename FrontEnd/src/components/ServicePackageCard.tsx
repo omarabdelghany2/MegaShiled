@@ -46,13 +46,13 @@ const ServicePackageCard = ({
         </h1>
         <div className="flex my-5 w-fit gap-1 text-primary">
           <div className=" aspect-square flex items-start text-xl font-bold shadow-sm">
-            L.E
+            $
           </div>
           <div className="flex-1 items-center justify-center text-slate-200 text-6xl">
             {price}
           </div>
           <div className=" aspect-square flex items-end text-xl font-bold shadow-sm font-arabic">
-            جنيه
+            ريال
           </div>
         </div>
         <div className="flex flex-col gap-2 items-start justify-center my-14">

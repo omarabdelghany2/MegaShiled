@@ -11,8 +11,8 @@ const useCarousel = ({
 }) => {
   const [page, setPage] = useState(1)
 
-  // const canScrollNext = page < pages
-  // const canScrollPrev = page > 1
+  const canScrollNext = page < pages
+  const canScrollPrev = page > 1
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null

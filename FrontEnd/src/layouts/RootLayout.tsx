@@ -30,12 +30,12 @@ const RootLayout = () => {
         w-32 cursor-pointer hover:scale-110
         transition-transform duration-200
         "
-          href="https://wa.me/201080001058"
+          href="https://wa.me/+966539373016"
           target="_blank"
         >
           <div
             className="w-[20px] aspect-square rounded-full
-        bg-green-500/50 scaler absolute translate-x-1/2 -translate-y-1/2 z-[1] "
+        bg-green-500/50 scaler absolute translate-x-1/2 -translate-y-1/2 z-[1]"
           />
           <img src={whatsapp} alt="whatsapp" />
         </HoverCardTrigger>

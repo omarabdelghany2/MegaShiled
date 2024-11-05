@@ -18,7 +18,7 @@ const Locations = () => {
           viewport={{ once: true }}
           className="overflow-hidden hover:scale-125  transition-transform duration-200"
         >
-          <a href="https://www.google.com/maps/place/Mega+shield/@31.2334896,29.9594562,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c514e95ed835:0x4b90810d59faca2d!8m2!3d31.2334896!4d29.9594562!16s%2Fg%2F11vqrlqxw1?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D">
+          <a href="https://maps.google.com?q=%D9%85%D9%8A%D8%AC%D8%A7%D8%B4%D9%8A%D9%84%D8%AF%20Mega%20shield%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D8%A9%D8%8C%20%D8%A7%D9%84%D8%B1%D8%A7%D9%8A%D8%A9%D8%8C%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9%2042312&ftid=0x15bdbfa38f9e6d15:0xc7a62cd862b59af4&hl=ar-SA&gl=sa&entry=gps&lucs=,47083423,47071704&g_st=iw">
             <MapPin color="#d80032" size={70} />
           </a>
         </motion.div>

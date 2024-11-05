@@ -162,7 +162,7 @@ const PersonalInfo = ({
             السعر الاجمالي
           </h1>
           <span className=" font-arabic text-2xl my-auto">
-            {packages.reduce((a, b) => a + +b.price, 0)} L.E
+            {packages.reduce((a, b) => a + +b.price, 0)}$
           </span>
         </div>
         <div className="h-52 shadow-box bg-slate-400/20 backdrop-blur-lg rounded-lg z-10 flex flex-col items-center min-w-[150px] p-5">

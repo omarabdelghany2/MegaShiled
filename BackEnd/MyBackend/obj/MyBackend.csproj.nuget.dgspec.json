@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {}
+    "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {}
   },
   "projects": {
-    "/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {
+    "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
+        "projectUniqueName": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
         "projectName": "MyBackend",
-        "projectPath": "/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
-        "packagesPath": "/home/megashieldeg/.nuget/packages/",
-        "outputPath": "/home/megashieldeg/MegaShiled/BackEnd/MyBackend/obj/",
+        "projectPath": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/MyBackend.csproj",
+        "packagesPath": "/Users/omarabdelghany/.nuget/packages/",
+        "outputPath": "/Users/omarabdelghany/Documents/MegaShiled/BackEnd/MyBackend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/megashieldeg/.nuget/NuGet/NuGet.Config"
+          "/Users/omarabdelghany/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -43,19 +43,7 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[8.0.10, )"
-            },
-            "Microsoft.AspNetCore.Authorization": {
-              "target": "Package",
-              "version": "[8.0.10, )"
-            },
             "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
@@ -73,10 +61,6 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.IdentityModel.Tokens": {
-              "target": "Package",
-              "version": "[8.1.2, )"
-            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -84,10 +68,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[8.1.2, )"
             }
           },
           "imports": [
@@ -109,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

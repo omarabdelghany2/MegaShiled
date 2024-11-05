@@ -105,12 +105,12 @@ const ContentTable = ({
                   </TableCell>
                   <TableCell>
                     <img
-                      src={item.image}
+                      src={item.photo}
                       alt="service-photo"
                       className="w-[250px] sm:m-3"
                     />
                   </TableCell>
-                  <TableCell>{item.id}</TableCell>
+                  <TableCell>{item.__v}</TableCell>
                   <TableCell>
                     {item.isAdditional
                       ? "خدمة اضافية"
@@ -122,7 +122,7 @@ const ContentTable = ({
                         className="font-arabic me-3"
                         onClick={() => {
                           deleteMainService({
-                            id: item.id,
+                            id: item._id,
                           })
                         }}
                       >
@@ -131,7 +131,7 @@ const ContentTable = ({
                       <Button
                         className="font-arabic me-3"
                         onClick={() => {
-                          setId(item.id)
+                          setId(item._id)
                           dispatch(
                             toggleEditServiceModal(true)
                           )
@@ -143,7 +143,7 @@ const ContentTable = ({
                         className="font-arabic"
                         onClick={() => {
                           navigate(
-                            `/dash/services/subservices/${item.id}`
+                            `/dash/services/subservices/${item._id}`
                           )
                         }}
                       >
@@ -175,7 +175,7 @@ const ContentTable = ({
                   </TableCell>
                   <TableCell>{item.carSize}</TableCell>
                   <TableCell className="flex items-center gap-4 flex-wrap text-primary">
-                    {item.services.map((service, i) => (
+                    {item.service.map((service, i) => (
                       <span key={i}>{service}</span>
                     ))}
                   </TableCell>
