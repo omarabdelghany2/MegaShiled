@@ -118,7 +118,7 @@ const ServiceModal = ({
 
   useEffect(() => {
     if (mode === "edit" && id && mainService) {
-      setImage(mainService.photo)
+      setImage(mainService.image)
       setDescription(mainService.description)
       setIsAdditional(mainService.isAdditional)
     }

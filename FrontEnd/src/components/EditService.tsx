@@ -98,7 +98,7 @@ const EditServiceModal = ({
   useEffect(() => {
     if (id && mainService) {
       setName(mainService.name)
-      setImage(mainService.photo)
+      setImage(mainService.image)
       setDescription(mainService.description)
     }
   }, [id, mainService])

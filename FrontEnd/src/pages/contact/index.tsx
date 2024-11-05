@@ -52,7 +52,7 @@ const ContactTable = () => {
           ref={emailRef}
           className="flex-1  text-lg mx-4 font-bold text-white"
         >
-          info@megashield.com
+          megashieldeg@gmail.com
         </span>
         <span
           className="hover:scale-110 cursor-pointer"
@@ -87,7 +87,7 @@ const ContactTable = () => {
           ref={phoneRef}
           className="flex-1  text-lg mx-4 font-bold text-white"
         >
-          <bdo dir="ltr">+966 53 937 3016</bdo>
+          <bdo dir="ltr">+201080001058</bdo>
         </span>
         <span
           className="hover:scale-110 cursor-pointer"
@@ -159,10 +159,10 @@ const ContactTable = () => {
           onClick={() => {
             if (phoneRef.current) {
               navigator.clipboard.writeText(
-                "https://maps.google.com?q=%D9%85%D9%8A%D8%AC%D8%A7%D8%B4%D9%8A%D9%84%D8%AF%20Mega%20shield%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D8%A9%D8%8C%20%D8%A7%D9%84%D8%B1%D8%A7%D9%8A%D8%A9%D8%8C%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9%2042312&ftid=0x15bdbfa38f9e6d15:0xc7a62cd862b59af4&hl=ar-SA&gl=sa&entry=gps&lucs=,47083423,47071704&g_st=iw"
+                "https://www.google.com/maps?q=Mega+shield%D8%8C+28+El-Fath,+Fleming,+El+Raml+1,+Alexandria+Governorate+00203&ftid=0x14f5c514e95ed835:0x4b90810d59faca2d&entry=gps&lucs=,94224825,94227247,94227248,47071704,47069508,94218641,94203019,47084304,94208458,94208447&g_ep=CAISDTYuMTM4LjIuOTAyNDAYACDXggMqWiw5NDIyNDgyNSw5NDIyNzI0Nyw5NDIyNzI0OCw0NzA3MTcwNCw0NzA2OTUwOCw5NDIxODY0MSw5NDIwMzAxOSw0NzA4NDMwNCw5NDIwODQ1OCw5NDIwODQ0N0ICRUc%3D&g_st=com.google.maps.preview.copy"
               )
               open(
-                "https://maps.google.com?q=%D9%85%D9%8A%D8%AC%D8%A7%D8%B4%D9%8A%D9%84%D8%AF%20Mega%20shield%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D8%A9%D8%8C%20%D8%A7%D9%84%D8%B1%D8%A7%D9%8A%D8%A9%D8%8C%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9%2042312&ftid=0x15bdbfa38f9e6d15:0xc7a62cd862b59af4&hl=ar-SA&gl=sa&entry=gps&lucs=,47083423,47071704&g_st=iw",
+                "https://www.google.com/maps?q=Mega+shield%D8%8C+28+El-Fath,+Fleming,+El+Raml+1,+Alexandria+Governorate+00203&ftid=0x14f5c514e95ed835:0x4b90810d59faca2d&entry=gps&lucs=,94224825,94227247,94227248,47071704,47069508,94218641,94203019,47084304,94208458,94208447&g_ep=CAISDTYuMTM4LjIuOTAyNDAYACDXggMqWiw5NDIyNDgyNSw5NDIyNzI0Nyw5NDIyNzI0OCw0NzA3MTcwNCw0NzA2OTUwOCw5NDIxODY0MSw5NDIwMzAxOSw0NzA4NDMwNCw5NDIwODQ1OCw5NDIwODQ0N0ICRUc%3D&g_st=com.google.maps.preview.copy",
                 "_blank"
               )
             }

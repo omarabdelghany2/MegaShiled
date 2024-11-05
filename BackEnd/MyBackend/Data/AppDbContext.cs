@@ -10,6 +10,9 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
         public DbSet<Slide> Slides { get; set; }  // DbSet for Slide entity
         public DbSet<Package> Packages { get; set; }  // DbSet for Package entity
         public DbSet<Book> Bookings { get; set; }  // DbSet for Book entity
+        public DbSet<Admin> Admins { get; set; }  // Add this line
+        public DbSet<Product> Products { get; set; } // New DbSet for Product
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,9 +23,9 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
                 .Property(s => s.Name)
                 .IsRequired();
 
-            modelBuilder.Entity<Slide>()
-                .Property(s => s.Image)
-                .IsRequired();
+            // modelBuilder.Entity<Slide>()
+            //     .Property(s => s.Image)
+            //     .IsRequired();
 
             modelBuilder.Entity<Slide>()
                 .HasIndex(s => s.Name)
@@ -108,6 +111,23 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
             modelBuilder.Entity<Book>()
                 .Property(b => b.CarSize)
                 .IsRequired();
+            modelBuilder.Entity<Product>()
+                .HasKey(p => p._id); // Set _id as the primary key                
+
+            modelBuilder.Entity<Product>()
+                .Property(c => c.Name)
+                .IsRequired();
+
+            modelBuilder.Entity<Product>()
+                .Property(c => c.Price)
+                .IsRequired();
+            modelBuilder.Entity<Product>()
+                .Property(c => c.Description)
+                .IsRequired();
+            modelBuilder.Entity<Product>()
+                .Property(c => c.Colors)
+                .HasColumnType("text[]"); // Specify that Colors should be a PostgreSQL text array        
+
         }
     }
 }

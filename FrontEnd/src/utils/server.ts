@@ -1,4 +1,4 @@
-const BACKEND = "http://10.10.10.139:5176"
+const BACKEND = "https://megashieldeg.com"
 
 
 export const API = {

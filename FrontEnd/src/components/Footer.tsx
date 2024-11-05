@@ -18,20 +18,20 @@ const Footer = () => {
         <span className="flex items-center gap-2 my-3">
           <Phone size={30} color="#d80032" />
           <h1 className="text-xl text-right ltr">
-            +966 53 937 3016
+            +201080001058
           </h1>
         </span>
         <span className="flex items-center gap-2 my-3">
           <MapPin size={30} color="#d80032" />
           <p className="text-sm font-arabic font-semibold">
-            طريق سلطانة, الراية , المدينة المنورة
+          ٢٨ شارع الفتح , فلمنج , الرمل ١ - الاسكندرية - مصر
           </p>
         </span>
         <span className="flex items-center gap-2">
           <MailOpen size={30} color="#d80032" />
 
           <p className="text-sm font-arabic font-semibold">
-            info@megashield.com
+            megashieldeg@gmail.com
           </p>
         </span>
       </div>
