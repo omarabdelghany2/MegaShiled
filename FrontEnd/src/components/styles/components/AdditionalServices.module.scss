@@ -1,0 +1,32 @@
+@use "../../../styles/resuable.all.scss" as *;
+
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;    
+
+    .text {
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+
+    .line {
+        flex-grow: 1;
+        height: .5rem;
+        background-color: red;
+    }
+   
+}
+
+.additional {
+    background-color: $new-primary;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border: 1px solid $new-secondary;
+}

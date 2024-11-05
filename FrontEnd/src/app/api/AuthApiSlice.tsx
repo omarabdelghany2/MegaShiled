@@ -1,4 +1,4 @@
-import { LoginInfo, RegisterInfo, User } from "@/types"
+import { LoginInfo, RegisterInfo, User, Verfiy } from "@/types"
 import { apiSlice } from "./api"
 
 const authApi = apiSlice.injectEndpoints({
@@ -11,7 +11,7 @@ const authApi = apiSlice.injectEndpoints({
     }),
     login: builder.mutation<{ user: User }, LoginInfo>({
       query: info => ({
-        url: "/auth/login",
+        url: "/dash/login",
         method: "POST",
         body: JSON.stringify(info),
         credentials: "include",
@@ -30,7 +30,21 @@ const authApi = apiSlice.injectEndpoints({
       RegisterInfo
     >({
       query: info => ({
-        url: "/auth/register",
+        url: "/dash/register",
+        method: "POST",
+        body: JSON.stringify(info),
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }),
+    }),
+    verfiy: builder.mutation<
+      { message: string },
+      Verfiy
+    >({
+      query: info => ({
+        url: "/homepage/ValidateToken",
         method: "POST",
         body: JSON.stringify(info),
         credentials: "include",
@@ -46,4 +60,5 @@ export const {
   useGetMeQuery,
   useLoginMutation,
   useRegisterMutation,
+  useVerfiyMutation
 } = authApi

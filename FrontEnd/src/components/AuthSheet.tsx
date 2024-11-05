@@ -1,5 +1,6 @@
 import {
   authSelector,
+  setToken,
   toggleAuth,
 } from "@/app/features/AuthSlice"
 import { useAppSelector } from "@/app/hooks"
@@ -88,7 +89,12 @@ const Login = ({ setRegisterType }: LoginProps) => {
     })
       .unwrap()
       .then(data => {
-        if (data.user) dispatch(toggleAuth(false))
+        if (data.user) {
+          const token = data.user as unknown as string
+          dispatch(toggleAuth(false))
+          dispatch(setToken(token))  // Store the token in Redux
+          document.cookie = `jwtToken=${token}; path=/; max-age=${24 * 60 * 60}; samesite=strict`;
+        }
       })
       .catch(error => console.log(error.data.msg))
   }
@@ -140,7 +146,9 @@ const Register = ({ setRegisterType }: RegisterProps) => {
     })
       .unwrap()
       .then(data => {
-        if (data.user) dispatch(toggleAuth(false))
+        if (data.user) {
+          dispatch(toggleAuth(false))
+        }
       })
       .catch(error => console.log(error.status))
   }

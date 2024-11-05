@@ -1,0 +1,5 @@
+@use "../resuable.all.scss" as *;
+
+.swiper-pagination-bullet-active {
+    background-color: $primary !important;
+}

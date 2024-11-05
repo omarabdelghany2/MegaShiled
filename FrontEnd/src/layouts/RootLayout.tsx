@@ -26,17 +26,17 @@ const RootLayout = () => {
 
       <HoverCard>
         <HoverCardTrigger
-          className="fixed -bottom-2 -right-8 z-[10000000000]
+          className="fixed bottom-2 -right-5 z-[10000000000]
         w-32 cursor-pointer hover:scale-110
         transition-transform duration-200
         "
           href="https://wa.me/+966539373016"
           target="_blank"
         >
-          <div
+          {/* <div
             className="w-[20px] aspect-square rounded-full
         bg-green-500/50 scaler absolute translate-x-1/2 -translate-y-1/2 z-[1]"
-          />
+          /> */}
           <img src={whatsapp} alt="whatsapp" />
         </HoverCardTrigger>
         <HoverCardContent className="bg-[#181818] border-black">

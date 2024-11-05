@@ -1,39 +1,44 @@
 import { motion } from "framer-motion"
 
-import { CarIcon } from "lucide-react"
+import { CarIcon, Fingerprint   } from "lucide-react"
+import { useTranslation } from "react-i18next";
 
 const Carousel = () => {
+  const { t } = useTranslation();
+
+
   return (
     <div className="overflow-hidden">
       <motion.div
-        className="relative h-[101vh] bg-carCabin bg-cover bg-no-repeat bg-center flex flex-col items-center font-arabic justify-center"
+        className="relative h-[100vh] bg-carCabin bg-cover bg-no-repeat bg-center flex flex-col items-center font-arabic justify-center"
         initial={{ scale: 1.5, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
         <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-        <CarIcon
-          size={55}
-          color="#d80032"
-          className="z-10"
-        />
+        <div className="z-10 bg-white rounded-full p-3 mb-2">
+          <CarIcon  
+            size={55}
+            color="#d80032"
+            className="z-10"
+          />
+        </div>
         <motion.span
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.1 }}
           className="text-2xl mb-2 text-primary z-10 font-semibold"
         >
-          أفضل
+          {t('home.icon')}
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.3 }}
-          className="z-10 text-5xl font-bold text-center mb-2 leading-[70px]"
+          className="z-10 text-5xl font-bold text-center mb-2 text-white leading-[70px]"
+          dangerouslySetInnerHTML={{ __html: t('home.title') }}
         >
-          محترفي خدمات
-          <br />
-          السيارات في المملكة
+         
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -46,10 +51,9 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
-          className="max-w-[220px] text-lg z-10 text-slate-300 text-center"
+          className="max-w-[220px] text-lg z-10 text-white text-center"
         >
-          أمن شكل جديد و حماية فائقة لسيارتك مع باقة من أقوي
-          الخدمات و المنتجات
+         {t('home.description')}
         </motion.p>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-14 cursor-pointer flex flex-col justify-center items-center gap-4">
           <a href={"#welcome"}>

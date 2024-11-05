@@ -9,7 +9,7 @@ const productsSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     addProduct: builder.mutation<Product, ProductProps>({
       query: arg => ({
-        url: "/products/addOne",
+        url: "/products/create",
         method: "POST",
         credentials: "include",
         body: JSON.stringify(arg),
@@ -34,10 +34,10 @@ const productsSlice = apiSlice.injectEndpoints({
     }),
     uploadImage: builder.mutation<
       CloudinaryImage,
-      FormData
+      { FormData: FormData, id: string }
     >({
       query: arg => ({
-        url: `/products/uploadImage`,
+        url: `/products/${arg.id}/upload-image`,
         method: "POST",
         credentials: "include",
         body: arg,

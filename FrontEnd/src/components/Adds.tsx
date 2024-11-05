@@ -2,9 +2,14 @@ import { SearchCheck } from "lucide-react"
 import mobileCar from "/reservation-mobile.png"
 import { motion } from "framer-motion"
 import { Link, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 const Adds = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation();
+
+
+
   return (
     <section
       id="adds"
@@ -23,7 +28,7 @@ const Adds = () => {
         <div className="absolute inset-0 bg-black/25" />
         <div className="z-10 text-center">
           <h1 className="text-white sm:text-5xl text-4xl mb-4 font-bold font-arabic">
-            تسوق الأن
+            {t('sectionRight.shopping')}
           </h1>
 
           <ul
@@ -33,19 +38,19 @@ const Adds = () => {
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
               <span className="text-xl font-bold font-arabic">
-                افضل العروض
+                {t('sectionRight.titleone')}
               </span>
             </li>
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
               <span className="text-xl font-bold font-arabic">
-                جودة عالية
+              {t('sectionRight.titletwo')}
               </span>
             </li>
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
               <span className="text-xl font-bold font-arabic">
-                اسعار تنافسية
+              {t('sectionRight.titlethree')}
               </span>
             </li>
           </ul>
@@ -53,9 +58,9 @@ const Adds = () => {
             <button
               className="flex items-center justify-center text-3xl font-bold font-arabic h-20 w-[220px] bg-primary mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors hover:bg-transparent hover:border-primary"
+          transition-colors"
             >
-              التسوق
+              {t('sectionRight.button')}
             </button>
           </Link>
         </div>
@@ -72,7 +77,7 @@ const Adds = () => {
         <div className="z-10 text-center flex flex-col">
           <div className="absolute inset-0 bg-black/25" />
           <h1 className="text-white sm:text-5xl text-4xl z-50 font-bold font-arabic mb-4">
-            أحجز معادك
+          {t('sectionLeft.book')}
           </h1>
 
           <img
@@ -84,10 +89,10 @@ const Adds = () => {
           <button
             className="flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors hover:bg-transparent hover:border-black"
+          transition-colors"
             onClick={() => navigate("/service")}
           >
-            إحجز الان
+            {t('sectionLeft.button')}
           </button>
         </div>
       </motion.div>

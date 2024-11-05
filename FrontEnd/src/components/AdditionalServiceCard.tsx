@@ -5,7 +5,6 @@ import {
 import { MainService } from "@/types"
 import AdditionalServicePackageCard from "./AdditionalServicePackageCard"
 import { For } from "@dev-amr/react-sugartax"
-import { API } from "@/utils/server"
 
 const AdditionalServiceCard = ({
   mainService,
@@ -27,17 +26,17 @@ const AdditionalServiceCard = ({
 
   return (
     <div
-      className="flex-1 bg-cover bg-center bg-no-repeat min-h-[70vh] p-5 hover:border-primary border border-solid border-transparent"
-      style={{
-        backgroundImage: `url("${API.media}slides/${mainService.image}")`,
-      }}
+      className="flex-1 bg-cover bg-center bg-no-repeat  p-5  border border-solid border-transparent"
+      // style={{
+      //   backgroundImage: `url("/carbonfiber.jpg")`,
+      // }}
     >
-      <h1 className="mx-auto w-fit text-3xl font-arabic text-primary">
+      {/* <h1 className="mx-auto w-fit text-3xl font-arabic text-primary">
         {mainService.name}
-      </h1>
+      </h1> */}
 
       <div className="overflow-y-scroll no-scroll">
-        <div className="grid grid-columns p-5">
+        <div className="grid grid-columns">
           {servicePackages?.packages && (
             <For each={servicePackages?.packages}>
               {(item, i) => (

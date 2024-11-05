@@ -1,0 +1,66 @@
+{
+    "locale": {
+        "lang": "en"
+    },
+    "header": {
+        "home": "Home",
+        "insurance": "Ensurance",
+        "about": "About",
+        "contact": "Contact",
+        "shopping": "Shopping",
+        "reserve": "Reservation"
+    },
+    "home": {
+        "icon": "Best",
+        "title": "Car Care Experts <br/> in the Middle East",
+        "description": "Keep your car shining and protected from scratches with top-notch quality and effectiveness."
+    },
+    "sectionRight" : {
+        "shopping": "Shop Now",
+        "titleone": "Best Offers",
+        "titletwo": "High Quality",
+        "titlethree": "Competitive Prices",
+        "button": "Shop"
+        
+
+    },
+    "sectionLeft" : {
+        "book": "Book Appointment",
+        "button": "Book Now"
+    },
+    "location": {
+        "title": "Location"
+    },
+    "footer": {
+        "address": "Abo Bakr Al Siddiq, Al Rayah, Madinah 42312, Saudi Arabia"
+    },
+    "reserve": {
+        "sectionOne": {
+            "title": "Step One",
+            "description": "Choose your car size",
+            "small": "Small",
+            "medium": "Medium",
+            "large": "Large"
+        },
+        "sectionTwo": {
+            "title": "Additional Service"
+        },
+        "sectionThree": {
+            "title": "Enter Your Contact Information",
+            "fname": "First Name",
+            "lname": "Last Name",
+            "city": "City",
+            "phone": "Phone Number"
+        },
+        "sectionFour": {
+            "carSize": "Car Size",
+            "service": "Service",
+            "total": "Total",
+            "date": "Date",
+            "choosedate": "Pick a date"
+        },
+        "sectionFive": {
+            "button": "Book"
+        }
+    }
+}

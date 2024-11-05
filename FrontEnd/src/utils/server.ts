@@ -1,4 +1,4 @@
-const BACKEND = "http://10.10.10.139:5176"
+const BACKEND = "http://92.205.236.219:5176"
 
 
 export const API = {

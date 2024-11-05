@@ -1,30 +1,35 @@
 import { ReactNode, useState } from "react"
-import bigCar from "/big.png"
-import mediumCar from "/medium.png"
-import smallCar from "/small.png"
+import bigCar from "/bigCar.png"
+import mediumCar from "/mediumCar.png"
+import smallCar from "/smallCar.png"
 import {
   AdditionalServices,
   Packages,
   PersonalInfo,
 } from "@/components"
+import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
+import { useTranslation } from "react-i18next"
+
 
 const Services = () => {
   const [active, setActive] = useState<0 | 1 | 2>(0)
   const [className, setClassName] = useState("opacity-1")
-  const [packages, setPackages] = useState<
-    { title: string; price: number }[]
-  >([])
+  const [packages, setPackages] = useState<{ title: string; price: number }[]>([])
+
+  const { data: mainServicesData } = useGetAllMainServicesQuery("")
+  const [selectedService, setSelectedService] = useState("")
+  const { t } = useTranslation();
 
   return (
-    <section className="text-center py-20 bg-neutral-900">
+    <section className="text-center py-20 bg-neutral-950">
       <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
-        <div className="text-center flex flex-col z-40">
-          <Heading content="الخطوة الاولي" />
-          <span className="font-arabic text-xl">
-            اختر حجم سيارتك
+        <div className="text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500">
+          <Heading content={t('reserve.sectionOne.title')} />
+          <span className="font-arabic text-xl text-white font-bold">
+            {t('reserve.sectionOne.description')}
           </span>
-          <div className="flex items-center gap-3 text-center justify-center my-5 mx-5">
+          <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
             <SelectCard
               img={smallCar}
               setActive={setActive}
@@ -32,7 +37,7 @@ const Services = () => {
               active={active === 0}
               setClassName={setClassName}
             >
-              صغير
+              {t('reserve.sectionOne.small')}
             </SelectCard>
             <SelectCard
               img={mediumCar}
@@ -41,7 +46,7 @@ const Services = () => {
               active={active === 1}
               setClassName={setClassName}
             >
-              وسط
+              {t('reserve.sectionOne.medium')}
             </SelectCard>
             <SelectCard
               img={bigCar}
@@ -50,11 +55,11 @@ const Services = () => {
               active={active === 2}
               setClassName={setClassName}
             >
-              كبير
+              {t('reserve.sectionOne.large')}
             </SelectCard>
           </div>
         </div>
-        <div className="w-[50vw] aspect-auto mx-auto">
+        <div className="w-[50vw]  aspect-auto mx-auto">
           <img
             src={
               active === 0
@@ -68,21 +73,26 @@ const Services = () => {
           />
         </div>
       </div>
-      <Packages
-        packages={packages}
-        setPackages={setPackages}
-        carSize={active}
-      />
-      <AdditionalServices
-        carSize={active}
-        packages={packages}
-        setPackages={setPackages}
-      />
-      <PersonalInfo
-        setPackages={setPackages}
-        packages={packages}
-        carSize={active}
-      />
+      <div className="container p-5">
+        <Packages
+          packages={packages}
+          setPackages={setPackages}
+          carSize={active}
+          selectedService={selectedService}
+          setSelectedService={setSelectedService}
+          mainServicesData={mainServicesData}
+        />
+        <AdditionalServices
+          carSize={active}
+          packages={packages}
+          setPackages={setPackages}
+        />
+        <PersonalInfo
+          setPackages={setPackages}
+          packages={packages}
+          carSize={active}
+        />
+      </div>
     </section>
   )
 }
@@ -116,8 +126,8 @@ const SelectCard = ({
   return (
     <button
       type="button"
-      className={`font-arabic text-white text-lg border-solid border-[2px] ${
-        active ? " border-green-600" : "border-transparent"
+      className={`font-arabic text-white text-lg border-solid bg-white border-[5px] shadow-xl ${
+        active ? "border-primary" : "border-transparent"
       } hover:text-primary px-5 py-3 rounded-md transition-colors duration-200
       `}
       onClick={() => {
@@ -128,7 +138,7 @@ const SelectCard = ({
         }, 600)
       }}
     >
-      <h1 className="w-fit mx-auto text-2xl text-primary">
+      <h1 className="w-fit mx-auto text-2xl text-black text-primary">
         {children}
       </h1>
       <img

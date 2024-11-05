@@ -10,6 +10,7 @@ import {
 } from "@/types"
 import { apiSlice } from "./api"
 
+
 const ServicesApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     AddMainService: builder.mutation<
@@ -17,7 +18,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       MainServiceProps
     >({
       query: arg => ({
-        url: "/mainservices/addMainService",
+        url: "/homepage",
         method: "POST",
         body: JSON.stringify(arg),
         credentials: "include",
@@ -49,8 +50,8 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { arg: Partial<MainServiceProps>; id: string }
     >({
       query: arg => ({
-        url: `/mainservices/updateMainService/${arg.id}`,
-        method: "PATCH",
+        url: `/homepage/${arg.id}`,
+        method: "PUT",
         body: JSON.stringify(arg.arg),
         credentials: "include",
         headers: {
@@ -64,7 +65,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string }
     >({
       query: arg => ({
-        url: `/mainservices/deleteMainService/${arg.id}`,
+        url: `/homepage/${arg.id}`,
         method: "DELETE",
         credentials: "include",
       }),
@@ -87,7 +88,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       any
     >({
       query: () => ({
-        url: `/bookings/allAppointments`,
+        url: `/bookings`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -100,7 +101,17 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       any
     >({
       query: () => ({
-        url: `/bookings/pendingAppointments`,
+        url: `/bookings`,
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }),
+      providesTags: ["mainServices"],
+    }),
+    GetAllReservedDates: builder.query<{ dates: string[] }, any>({
+      query: () => ({
+        url: `/bookings/dates`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -126,7 +137,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string }
     >({
       query: args => ({
-        url: `/services/mainService/${args.id}`,
+        url: `/packages/${args.id}`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -313,4 +324,5 @@ export const {
   useGetPackageByIDQuery,
   useUpdatePackageMutation,
   useAddBookingMutation,
+  useGetAllReservedDatesQuery
 } = ServicesApiSlice

@@ -36,6 +36,7 @@ const EditServiceModal = ({
     useState("اختر صورة")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
+  const [isAdditional, setIsAdditional] = useState(false)
   const [image, setImage] = useState("")
 
   const isOpen = useAppSelector(
@@ -57,9 +58,10 @@ const EditServiceModal = ({
     if (mode === "main") {
       updateMainService({
         arg: {
-          name,
-          photo: image,
-          description,
+          slide: {
+            name: name,
+            isAdditional: isAdditional
+          }
         },
         id,
       })
@@ -70,36 +72,11 @@ const EditServiceModal = ({
     }
   }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (e.target.files) {
-      const formData = new FormData()
-
-      formData.append(
-        "image",
-        e.target.files[0],
-        e.target.files[0].name
-      )
-
-      uploadImage(formData)
-        .unwrap()
-        .then(data => {
-          setImage(data.image)
-
-          if (e.target.files) {
-            setLabelContent(e.target.files[0]?.name)
-          }
-        })
-        .catch(err => console.log(err))
-    }
-  }
 
   useEffect(() => {
     if (id && mainService) {
       setName(mainService.name)
-      setImage(mainService.photo)
-      setDescription(mainService.description)
+      setIsAdditional(mainService.isAdditional)
     }
   }, [id, mainService])
 
@@ -133,28 +110,45 @@ const EditServiceModal = ({
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
-              <Label
+              {/* <Label
                 htmlFor="image"
                 className="w-full h-9 border border-solid text-right flex items-center px-3 border-primary-gray rounded-lg
                 font-arabic"
               >
                 {labelContent}
-              </Label>
-              <Input
+              </Label> */}
+              {/* <Input
                 type="file"
                 placeholder="الصورة"
                 id="image"
                 className="hidden"
                 onChange={handleInputChange}
-              />
-              <textarea
+              /> */}
+              {/* <textarea
                 placeholder="الوصف"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
                 value={description}
                 onChange={e =>
                   setDescription(e.target.value)
                 }
-              ></textarea>
+              ></textarea> */}
+               <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  className="cursor-pointer w-4 h-4 accent-primary"
+                  checked={isAdditional}
+                  onChange={e =>
+                    setIsAdditional(e.target.checked)
+                  }
+                />
+                <Label
+                  htmlFor="image"
+                  className=" 
+                font-arabic"
+                >
+                  خدمة اضافية
+                </Label>
+              </div>
               <Button type="submit" onClick={handleSubmit}>
                 تعديل
               </Button>
