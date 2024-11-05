@@ -9,6 +9,7 @@ import styles from "../components/styles/components/PersonalInfo.module.scss"
 import { isFriday, isSunday , format, isSameDay, addDays, setHours, setMinutes, parse } from 'date-fns';
 
 import "../styles/calendar/calendar.scss"
+import { useTranslation } from "react-i18next"
 
 type PersonalInfoProps = {
   carSize: 0 | 1 | 2
@@ -30,7 +31,7 @@ const PersonalInfo = ({
   const [packagesName, setPackagesName] = useState<string[]>([])
   const tomorrow = addDays(new Date(), 1)
   const minDate = isSunday(tomorrow) ? addDays(tomorrow, 1) : tomorrow;
-
+  const { t } = useTranslation();
   const { data: dates } = useGetAllReservedDatesQuery("")
 
 
@@ -136,6 +137,7 @@ const PersonalInfo = ({
     setTime('');
   };
 
+
   return (
     <div
       id="personal-info"
@@ -145,30 +147,30 @@ const PersonalInfo = ({
         className={styles.form}
       >
         <h1 className="w-fit mx-auto text-primary text-2xl mb-6 font-arabic font-semibold">
-          أدخل بياناتك لاكمال الحجز
+          {t('reserve.sectionThree.title')}
         </h1>
         <Input
           className="my-4 font-arabic text-lg placeholder:text-white text-white"
-          placeholder="الاسم الاول"
+          placeholder={t('reserve.sectionThree.fname')}
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
         <Input
           className="my-4 font-arabic text-lg placeholder:text-white text-white"
-          placeholder="الاسم الثاني"
+          placeholder={t('reserve.sectionThree.lname')}
           value={lastName}
           onChange={e => setLastName(e.target.value)}
         />
         <Input
           className="my-4 font-arabic text-lg placeholder:text-white text-white"
-          placeholder="المدينة"
+          placeholder={t('reserve.sectionThree.city')}
           value={city}
           onChange={e => setCity(e.target.value)}
         />
         <Input
           type="tel"
           className="my-4 font-arabic text-lg  ltr text- placeholder:text-white placeholder:text-right text-white"
-          placeholder="رقم الهاتف"
+          placeholder={t('reserve.sectionThree.phone')}
           value={phone}
           onChange={e => setPhone(e.target.value)}
         />
@@ -192,7 +194,7 @@ const PersonalInfo = ({
       <div className="flex-1 grid grid-cols-2 gap-3 z-10">
         <div className={styles.carsize}>
           <h1 className="w-fit mx-auto text-xl text-primary font-arabic">
-            حجم السيارة
+          {t('reserve.sectionFour.carSize')}
           </h1>
           <div className="my-5">
             <CarFront
@@ -214,7 +216,7 @@ const PersonalInfo = ({
             className="w-fit mx-auto text-xl font-bold
           text-primary font-arabic"
           >
-            الخدمات
+            {t('reserve.sectionFour.service')}
           </h1>
           <p className="flex items-center justify-center font-arabic flex-wrap gap-4 text-lg">
             {packagesName.join(" + ")}
@@ -222,7 +224,7 @@ const PersonalInfo = ({
         </div>
         <div className={styles.total}>
           <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
-            السعر الاجمالي
+          {t('reserve.sectionFour.total')}
           </h1>
           <span className=" font-arabic text-2xl my-auto">
             {packages.reduce((a, b) => a + +b.price, 0)}L.E
@@ -230,7 +232,7 @@ const PersonalInfo = ({
         </div>
         <div className={styles.date}>
           <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
-            تاريخ و توقيت الحجز
+          {t('reserve.sectionFour.date')}
           </h1>
           <p className="flex items-center justify-center gap-3">
             <span className="font-arabic text-2xl my-auto mt-8">
@@ -240,7 +242,7 @@ const PersonalInfo = ({
         </div>
       </div>
       <div className={styles.datesection}>
-      <Calendar onChange={handleResetTime} value={value}  className={`p-4 h-80 text-lg ${styles.calendar}`}  tileClassName={({ date,  view }) => { 
+      <Calendar onChange={handleResetTime} value={value}  className={`p-4 h-80 text-lg ${styles.calendar}`} locale={t('locale.lang')} tileClassName={({ date,  view }) => { 
         if( isSameDay (date, value as Date)) {
           return  styles.highlight
         }
@@ -282,7 +284,7 @@ const PersonalInfo = ({
           className={`${styles.send} text-lg font-arabic w-full bg-transparent border-2 border-primary`}
           onClick={handleAddBooking}
         >
-          إكمال الحجز
+          {t('reserve.sectionFive.button')}
         </Button>
     </div>
   )

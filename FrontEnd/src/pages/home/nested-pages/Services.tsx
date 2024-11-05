@@ -8,6 +8,7 @@ import {
   PersonalInfo,
 } from "@/components"
 import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
+import { useTranslation } from "react-i18next"
 
 
 const Services = () => {
@@ -17,15 +18,16 @@ const Services = () => {
 
   const { data: mainServicesData } = useGetAllMainServicesQuery("")
   const [selectedService, setSelectedService] = useState("")
+  const { t } = useTranslation();
 
   return (
     <section className="text-center py-20 bg-neutral-950">
       <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
         <div className="text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500">
-          <Heading content="الخطوة الاولي" />
+          <Heading content={t('reserve.sectionOne.title')} />
           <span className="font-arabic text-xl text-white font-bold">
-            اختر حجم سيارتك
+            {t('reserve.sectionOne.description')}
           </span>
           <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
             <SelectCard
@@ -35,7 +37,7 @@ const Services = () => {
               active={active === 0}
               setClassName={setClassName}
             >
-              صغير
+              {t('reserve.sectionOne.small')}
             </SelectCard>
             <SelectCard
               img={mediumCar}
@@ -44,7 +46,7 @@ const Services = () => {
               active={active === 1}
               setClassName={setClassName}
             >
-              وسط
+              {t('reserve.sectionOne.medium')}
             </SelectCard>
             <SelectCard
               img={bigCar}
@@ -53,7 +55,7 @@ const Services = () => {
               active={active === 2}
               setClassName={setClassName}
             >
-              كبير
+              {t('reserve.sectionOne.large')}
             </SelectCard>
           </div>
         </div>

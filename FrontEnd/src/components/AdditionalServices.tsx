@@ -4,6 +4,7 @@ import { For } from "@dev-amr/react-sugartax"
 import { useEffect, useState } from "react"
 import AdditionalServiceCard from "./AdditionalServiceCard"
 import styles from "../components/styles/components/AdditionalServices.module.scss"
+import { useTranslation } from "react-i18next"
 
 type PackagesProps = {
   packages: { title: string; price: number }[]
@@ -20,7 +21,7 @@ const AdditionalServices = ({
 }: PackagesProps) => {
   const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
   const { data: mainServices, isLoading } = useGetAllMainServicesQuery("")
-
+  const { t } = useTranslation();
   
   useEffect(() => {
     if (mainServices) {
@@ -38,7 +39,7 @@ const AdditionalServices = ({
         <>
             <h1 className={` ${styles.title}`}>
               <span className={styles.line}></span>
-              <div className={`${styles.text} text-primary font-arabic font-bold text-2xl my-5`}>الخدمات الاضافية</div>
+              <div className={`${styles.text} text-primary font-arabic font-bold text-2xl my-5`}>{t('reserve.sectionTwo.title')}</div>
               <span className={styles.line}></span>
             </h1>
             <div className={`${styles.additional} `}>

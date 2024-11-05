@@ -15,7 +15,6 @@ import { Input } from "./ui/input"
 import { useEffect, useState } from "react"
 import { Label } from "./ui/label"
 import { Button } from "./ui/button"
-import { useUploadImageMutation } from "@/app/api/ProductsApiSlice"
 import {
   useAddMainServiceMutation,
   useGetServiceByIDQuery,
@@ -35,8 +34,7 @@ const ServiceModal = ({
   setId,
   withButton = false,
 }: ServiceModalProps) => {
-  const [labelContent, setLabelContent] =
-    useState("اختر صورة")
+  const [labelContent, setLabelContent] = useState("اختر صورة")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
@@ -51,7 +49,6 @@ const ServiceModal = ({
 
   const [addMainService] = useAddMainServiceMutation()
   const [updateMainService] = useUpdateMainServiceMutation()
-  const [uploadImage] = useUploadImageMutation()
 
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -59,16 +56,15 @@ const ServiceModal = ({
     e.preventDefault()
     if (mode === "add") {
       addMainService({
-        name,
-        description,
-        photo: image,
-        isAdditional,
+        slide: {
+          name,
+          isAdditional,
+
+        }
       })
         .unwrap()
         .then(() => {
           dispatch(toggleServiceModal(false))
-          setDescription("")
-          setImage("")
           setLabelContent("")
           setName("")
           setIsAdditional(false)
@@ -76,10 +72,10 @@ const ServiceModal = ({
     } else if (mode === "edit" && id) {
       updateMainService({
         arg: {
-          name,
-          photo: image,
-          description,
-          isAdditional,
+          slide: {
+              name,
+              isAdditional,
+          }
         },
         id,
       })
@@ -91,34 +87,34 @@ const ServiceModal = ({
     }
   }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (e.target.files) {
-      const formData = new FormData()
+  // const handleInputChange = (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (e.target.files) {
+  //     const formData = new FormData()
 
-      formData.append(
-        "image",
-        e.target.files[0],
-        e.target.files[0].name
-      )
+  //     formData.append(
+  //       "image",
+  //       e.target.files[0],
+  //       e.target.files[0].name
+  //     )
 
-      uploadImage(formData)
-        .unwrap()
-        .then(data => {
-          setImage(data.image)
+  //     uploadImage(formData)
+  //       .unwrap()
+  //       .then(data => {
+  //         setImage(data.image)
 
-          if (e.target.files) {
-            setLabelContent(e.target.files[0]?.name)
-          }
-        })
-        .catch(err => console.log(err))
-    }
-  }
+  //         if (e.target.files) {
+  //           setLabelContent(e.target.files[0]?.name)
+  //         }
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
 
   useEffect(() => {
     if (mode === "edit" && id && mainService) {
-      setImage(mainService.photo)
+      setImage(mainService.image)
       setDescription(mainService.description)
       setIsAdditional(mainService.isAdditional)
     }
@@ -156,29 +152,29 @@ const ServiceModal = ({
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
-              <Label
+              {/* <Label
                 htmlFor="image"
                 className="w-full h-9 border border-solid text-right flex items-center px-3 border-primary-gray rounded-lg
                 font-arabic"
                 tabIndex={0}
               >
                 {labelContent}
-              </Label>
-              <Input
+              </Label> */}
+              {/* <Input
                 type="file"
                 placeholder="الصورة"
                 id="image"
                 className="hidden"
                 onChange={handleInputChange}
-              />
-              <textarea
+              /> */}
+              {/* <textarea
                 placeholder="الوصف"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
                 value={description}
                 onChange={e =>
                   setDescription(e.target.value)
                 }
-              ></textarea>
+              ></textarea> */}
               <div className="flex items-center gap-3">
                 <input
                   type="checkbox"

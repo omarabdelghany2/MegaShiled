@@ -1,39 +1,60 @@
-import { useGetMeQuery } from "@/app/api/AuthApiSlice"
-import { toggleAuth } from "@/app/features/AuthSlice"
-import { useAppDispatch, useAppSelector } from "@/app/hooks"
-import { DashboardLinkProps } from "@/types"
-import { useEffect } from "react"
+import { useGetMeQuery, useVerfiyMutation } from "@/app/api/AuthApiSlice";
+import { toggleAuth, setToken } from "@/app/features/AuthSlice";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { DashboardLinkProps } from "@/types";
+import { useEffect } from "react";
 import {
   Link,
   Route,
   Routes,
   useLocation,
-} from "react-router-dom"
-import Products from "./nested-pages/Products"
-import Services from "./nested-pages/Services"
-import logo from "/logo.png"
-import { BeatLoader } from "react-spinners"
+} from "react-router-dom";
+import Products from "./nested-pages/Products";
+import Services from "./nested-pages/Services";
+import logo from "/logo.png";
+import { BeatLoader } from "react-spinners";
 import {
   IsSidebarOpenSelector,
   toggleSidebar,
-} from "@/app/features/ProductSlice"
-import { Menu, X } from "lucide-react"
+} from "@/app/features/ProductSlice";
+import { Menu, X } from "lucide-react";
+
+// Utility function to get a cookie by name
+const getCookie = (name: string) => {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+};
 
 const Dashboard = () => {
-  const { data, error, isLoading } = useGetMeQuery("")
-  const dispatch = useAppDispatch()
+  const { data, error, isLoading } = useGetMeQuery("");
+  const [verfiyToken] = useVerfiyMutation()
+  const dispatch = useAppDispatch();
 
-  const isSidebarOpen = useAppSelector(
-    IsSidebarOpenSelector
-  )
+  const isSidebarOpen = useAppSelector(IsSidebarOpenSelector);
 
   useEffect(() => {
-    if (error) {
-      dispatch(toggleAuth(true))
-    } else if (data?.user) {
-      dispatch(toggleAuth(false))
+    // Check for JWT token in cookies on component mount
+    const token = getCookie("jwtToken");
+    if (token) {
+      verfiyToken({
+        token
+      })
+      .unwrap()
+      .then((data) => {
+        if (data.message === "Token is valid") {
+          dispatch(setToken(token));
+          dispatch(toggleAuth(false));
+        }
+      })
+      .catch(error => {
+        dispatch(toggleAuth(true))
+      })
+
+    } else if (error) {
+      dispatch(toggleAuth(true));
     }
-  }, [error, data])
+  }, [dispatch, error, data]);
+
   return (
     <div className="flex min-h-screen relative items-stretch">
       {isLoading && (
@@ -94,15 +115,15 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const DashboardLink = ({
   to,
   children,
   activeKey,
 }: DashboardLinkProps) => {
-  const pathname = useLocation().pathname
+  const pathname = useLocation().pathname;
   return (
     <Link
       to={to}
@@ -114,7 +135,7 @@ const DashboardLink = ({
     >
       {children}
     </Link>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -57,10 +57,10 @@ export type CloudinaryImage = {
 }
 
 export type MainServiceProps = {
-  name: string
-  photo: string
-  description: string
-  isAdditional: boolean
+  slide: {
+    name: string
+    isAdditional: boolean
+  }
 }
 
 export type MainService = {
@@ -115,4 +115,9 @@ export type AddPackageProps = {
 export interface Package extends AddPackageProps {
   _id: string
   __v: number
+}
+
+
+export interface Verfiy {
+  token: string
 }

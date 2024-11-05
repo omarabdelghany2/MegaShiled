@@ -1,0 +1,64 @@
+{
+    "locale": {
+        "lang": "ar"
+    },
+    "header": {
+        "home": "الرئيسية",
+        "insurance": "الضمان",
+        "about": "من نحن",
+        "contact": "التواصل",
+        "shopping": "التسوق",
+        "reserve": "الحجز"
+    },
+    "home": {
+        "icon": "افضل",
+        "title": "خبراء العناية <br /> بالسيارات في الشرق الأوسط",
+        "description": "حافظ على لمعان سيارتك وحمايتها من الخدوش بأفضل جودة وفعالية"
+    },
+    "sectionRight" : {
+        "shopping": "تسوق الأن",
+        "titleone": "افضل العروض",
+        "titletwo": "جودة عالية",
+        "titlethree": "اسعار تنافسية",
+        "button": "التسوق"
+    },
+    "sectionLeft" : {
+        "book": "أحجز معادك",
+        "button": "إحجز الان"
+    },
+    "location": {
+        "title": "موقعنا"
+    },
+    "footer": {
+        "address": "طريق سلطانة, الراية , المدينة المنورة"
+    },
+    "reserve": {
+        "sectionOne": {
+            "title": "الخطوة الاولي",
+            "description": "اختر حجم سيارتك",
+            "small": "صغير",
+            "medium": "وسط",
+            "large": "كبير"
+        },
+        "sectionTwo": {
+            "title": "الخدمات الاضافية"
+        },
+        "sectionThree": {
+            "title": "أدخل بياناتك لاكمال الحجز",
+            "fname": "الاسم الاول",
+            "lname": "الاسم الثاني",
+            "city": "المدينة",
+            "phone": "رقم الهاتف"
+        },
+        "sectionFour": {
+            "carSize": "حجم السيارة",
+            "service": "الخدمات",
+            "total": "السعر الاجمالي",
+            "date": "تاريج و توقيت الحجز",
+            "choosedate": "اختر تاريخ الحجز"
+        },
+        "sectionFive": {
+            "button": "إكمال الحجز"
+        }
+    }
+}

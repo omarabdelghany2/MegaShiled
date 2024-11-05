@@ -8,6 +8,8 @@ import router from "./router"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./styles/base.all.scss"
+import "./i18n/i18n"
+
 
 ReactDOM.createRoot(
   document.getElementById("root")!

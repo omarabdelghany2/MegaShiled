@@ -1,8 +1,12 @@
 import { motion } from "framer-motion"
 
 import { CarIcon, Fingerprint   } from "lucide-react"
+import { useTranslation } from "react-i18next";
 
 const Carousel = () => {
+  const { t } = useTranslation();
+
+
   return (
     <div className="overflow-hidden">
       <motion.div
@@ -25,17 +29,16 @@ const Carousel = () => {
           transition={{ duration: 0.3, delay: 0.5 + 0.1 }}
           className="text-2xl mb-2 text-primary z-10 font-semibold"
         >
-          أفضل
+          {t('home.icon')}
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.3 }}
           className="z-10 text-5xl font-bold text-center mb-2 text-white leading-[70px]"
+          dangerouslySetInnerHTML={{ __html: t('home.title') }}
         >
-          خبراء العناية
-          <br />
-          بالسيارات في الشرق الأوسط
+         
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -50,7 +53,7 @@ const Carousel = () => {
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
           className="max-w-[220px] text-lg z-10 text-white text-center"
         >
-         حافظ على لمعان سيارتك وحمايتها من الخدوش بأفضل جودة وفعالية.
+         {t('home.description')}
         </motion.p>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-14 cursor-pointer flex flex-col justify-center items-center gap-4">
           <a href={"#welcome"}>

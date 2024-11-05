@@ -33,8 +33,8 @@ const Services = () => {
                     mode="main-services"
                     headers={[
                       "الاسم",
-                      "الوصف",
-                      "الصورة",
+                      // "الوصف",
+                      // "الصورة",
                       "الاصدار",
                     ]}
                     items={mainServices.mainServices}

@@ -1,7 +1,10 @@
 import { MapPin } from "lucide-react"
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next";
 
 const Locations = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="h-52 overflow-hidden bg-map bg-cover bg-center flex items-center justify-center relative">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
@@ -9,7 +12,7 @@ const Locations = () => {
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
       <div className=" flex flex-col absolute z-[60] items-center justify-center gap-5">
         <div className=" text-3xl font-arabic text-primary font-bold">
-          موقعنا
+          {t('location.title')}
         </div>
         <motion.div
           initial={{ opacity: 0 }}
