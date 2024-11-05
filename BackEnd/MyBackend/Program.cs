@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using MyBackend.Data;  // Make sure to use the correct namespace for AppDbContext
 using Microsoft.Extensions.FileProviders;
+using MyBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// Change AuthService to be scoped instead of singleton
+builder.Services.AddScoped<AuthService>();
 
 // Allow specific origins (replace with your frontend origin)
 builder.Services.AddCors(options =>
@@ -12,12 +14,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173","http://172.20.10.13:5173","http://10.10.10.190")
+            policy.WithOrigins("http://localhost:5173", "http://172.20.10.13:5173", "http://10.10.10.190")
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials(); // This allows credentials
         });
 });
+
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,7 +35,6 @@ builder.WebHost.UseKestrel(options =>
     options.ListenAnyIP(5176);  // Replace with your app's port number
 });
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,7 +45,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowSpecificOrigin");
-// app.UseHttpsRedirection();
 
 app.UseRouting();
 app.UseAuthorization();
@@ -62,7 +63,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -81,5 +82,3 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
-
-

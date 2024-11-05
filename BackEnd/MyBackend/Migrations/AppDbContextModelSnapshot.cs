@@ -21,6 +21,34 @@ namespace MyBackend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MyBackend.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("JwtToken")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("MyBackend.Models.Book", b =>
                 {
                     b.Property<string>("_id")
@@ -105,6 +133,44 @@ namespace MyBackend.Migrations
                     b.ToTable("Packages");
                 });
 
+            modelBuilder.Entity("MyBackend.Models.Product", b =>
+                {
+                    b.Property<string>("_id")
+                        .HasColumnType("text");
+
+                    b.Property<string[]>("Colors")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Featured")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("FreeShipping")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ImageFileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Inventory")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.HasKey("_id");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("MyBackend.Models.Slide", b =>
                 {
                     b.Property<int>("Id")
@@ -112,10 +178,6 @@ namespace MyBackend.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<bool>("IsAdditional")
                         .HasColumnType("boolean");
