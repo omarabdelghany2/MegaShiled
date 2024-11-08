@@ -99,13 +99,13 @@ const AddSubServiceModal = ({
           }
         >
           <div className="absolute w-full h-full -z-10 bg-primary inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-          اضف خدمة
+          اضف طرد
         </DialogTrigger>
       )}
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
         <DialogHeader>
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
-            اضافة خدمة جديد
+            اضافة طرد جديد
           </DialogTitle>
           <DialogDescription>
             <form

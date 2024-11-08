@@ -19,22 +19,28 @@ const Footer = () => {
       </div>
       <div className="sm:px-8 px-4 border-solid border-primary flex items-center justify-center sm:gap-8 gap-3 flex-wrap max-sm:mb-10">
         <span className="flex items-center gap-2 my-3">
-          <Phone size={30} color="#d80032" />
+          <a href="tel: +201080001058">
+            <Phone size={30} color="#d80032" />
+          </a>
           <h1 className="text-xl text-right ltr">
-            +966 53 937 3016
+            +2010 80001058
           </h1>
         </span>
         <span className="flex items-center gap-2 my-3">
-          <MapPin size={30} color="#d80032" />
+          <a target="_blank" href="https://www.google.com/maps/place/Mega+shield/@31.2334896,29.9568813,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c514e95ed835:0x4b90810d59faca2d!8m2!3d31.2334896!4d29.9594562!16s%2Fg%2F11vqrlqxw1?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D">
+            <MapPin size={30} color="#d80032" />
+          </a>
           <p className="text-sm font-arabic font-semibold">
             {t('footer.address')}
           </p>
         </span>
         <span className="flex items-center gap-2">
-          <MailOpen size={30} color="#d80032" />
+          <a href="mailto:megashieldeg@gmail.com">
+            <MailOpen size={30} color="#d80032" />
+          </a>
 
           <p className="text-sm font-arabic font-semibold">
-            info@megashield.com
+            megashieldeg@gmail.com
           </p>
         </span>
       </div>

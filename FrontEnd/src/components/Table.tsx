@@ -1,6 +1,6 @@
 import {
   useDeleteMainServiceMutation,
-  useDeletePackageMutation,
+  // useDeletePackageMutation,
   useDeleteSubServiceMutation,
   useToggleBookingStateToDoneMutation,
 } from "@/app/api/ServicesApiSlice"
@@ -29,6 +29,7 @@ import {
 } from "@/app/features/ProductSlice"
 import EditServiceModal from "./EditService"
 import { EditSubServiceModal } from "."
+import { format, parse } from "date-fns"
 
 type ContentTableProps =
   | {
@@ -60,14 +61,21 @@ const ContentTable = ({
   const [id, setId] = useState("")
   const [subServiceID, setSubServiceID] = useState("")
   const [deleteMainService] = useDeleteMainServiceMutation()
-  const [toggleState] =
-    useToggleBookingStateToDoneMutation()
+  const [toggleState] = useToggleBookingStateToDoneMutation()
   const [deleteSubService] = useDeleteSubServiceMutation()
-  const [deletePackage] = useDeletePackageMutation()
+  // const [deletePackage] = useDeletePackageMutation()
 
   const dispatch = useAppDispatch()
-
   const navigate = useNavigate()
+
+  const formatToHumanReadable = (dateString: string) => {
+    // Parse the date string
+    const date = parse(dateString, "yyyy-MM-dd-HH", new Date());
+  
+    // Format to human-readable format
+    return format(date, "MMMM d, yyyy, h:mm a");
+  }
+
   return (
     <>
       {id !== "" && (
@@ -143,7 +151,7 @@ const ContentTable = ({
                         className="font-arabic"
                         onClick={() => {
                           navigate(
-                            `/dash/services/subservices/${item.id}`
+                            `/dash/services/subservices/${item.name}`
                           )
                         }}
                       >
@@ -165,13 +173,7 @@ const ContentTable = ({
                     {item.customerPhone}
                   </TableCell>
                   <TableCell>
-                    {new Date(
-                      item.date
-                    ).toLocaleDateString() +
-                      " " +
-                      new Date(
-                        item.date
-                      ).toLocaleTimeString()}
+                    {formatToHumanReadable(item.date)}
                   </TableCell>
                   <TableCell>{item.carSize}</TableCell>
                   <TableCell className="flex items-center gap-4 flex-wrap text-primary">
@@ -182,14 +184,16 @@ const ContentTable = ({
                   <TableCell>
                     <Button
                       onClick={() => {
-                        toggleState({ id: item._id })
+                        toggleState({ id: item._id, isCompleted: !item.isCompleted })
                       }}
                     >
-                      تمييز كمنجز
+                      {!item.isCompleted
+                      ? "تغيير كمنجز"
+                      : "تغيير كغير منجز"}
                     </Button>
                   </TableCell>
                   <TableCell>
-                    {item.status === "done"
+                    {item.isCompleted
                       ? "منجز"
                       : "غير منجز"}
                   </TableCell>
@@ -204,14 +208,14 @@ const ContentTable = ({
                       <p>{item.description}</p>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <img
                       src={item.photo}
                       alt="service-photo"
                       className="w-[250px] m-3"
                     />
                   </TableCell>
-                  <TableCell>{item.__v}</TableCell>
+                  <TableCell>{item.__v}</TableCell> */}
                   <TableCell className="">
                     <div className="flex items-center gap-4 flex-wrap text-primary justify-center">
                       <Button
@@ -256,7 +260,7 @@ const ContentTable = ({
                             key={i}
                             className={
                               i !==
-                              item.description.length - 1
+                              item.description?.length - 1 
                                 ? "border-b border-solid border-primary pb-3"
                                 : ""
                             }
@@ -270,8 +274,8 @@ const ContentTable = ({
                   <TableCell>{item.smallPrice}$</TableCell>
                   <TableCell>{item.mediumPrice}$</TableCell>
                   <TableCell>{item.bigPrice}$</TableCell>
-                  <TableCell>{item.__v}</TableCell>
-                  <TableCell className="">
+                  {/* <TableCell>{item.__v}</TableCell> */}
+                  {/* <TableCell className="">
                     <div className="flex items-center gap-4 flex-wrap text-primary justify-center">
                       <Button
                         onClick={() => {
@@ -281,7 +285,7 @@ const ContentTable = ({
                         حذف
                       </Button>
                     </div>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))
             : ""}

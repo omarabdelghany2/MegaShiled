@@ -2,6 +2,7 @@ import { Package } from "@/types"
 import { For } from "@dev-amr/react-sugartax"
 import { Check } from "lucide-react"
 import { Button } from "./ui/button"
+import { useTranslation } from "react-i18next"
 
 const AdditionalServicePackageCard = ({
   servicePackage,
@@ -16,6 +17,7 @@ const AdditionalServicePackageCard = ({
   >
   price: number
 }) => {
+  const { t } = useTranslation();
   return (
     <div
       style={{
@@ -28,13 +30,13 @@ const AdditionalServicePackageCard = ({
       <div className="absolute z-10 bg-black/50 inset-0 " />
       <div className="relative z-30">
         <h1 className="font-arabic text-white text-xl my-3">
-          {servicePackage.name}
+          {t('locale.lang') === "ar" ? servicePackage.arabicName : servicePackage.name}
         </h1>
         <span className="mx-auto text-primary text-xl font-bold relative z-50">
           {price + " "}ريال
         </span>
         <ul className="p-5 text-green-600 font-arabic font-bold text-lg">
-          <For each={servicePackage.description}>
+          <For each={t("locale.lang") === "ar" ? servicePackage.arabicDescription : servicePackage.description}>
             {(item, i) => (
               <li
                 key={i}

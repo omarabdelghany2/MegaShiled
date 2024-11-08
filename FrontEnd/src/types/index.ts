@@ -24,7 +24,7 @@ export type DashboardLinkProps = {
 export interface ProductProps {
   name: string
   price: string
-  image: string
+  imageFileName: string
   description: string
 }
 
@@ -52,13 +52,14 @@ export interface Product {
 }
 
 export type CloudinaryImage = {
-  image: string
-  size: string
+  imageName: string
+  message: string
 }
 
 export type MainServiceProps = {
   slide: {
     name: string
+    arabicName: string
     isAdditional: boolean
   }
 }
@@ -66,6 +67,7 @@ export type MainServiceProps = {
 export type MainService = {
   id: string
   name: string
+  arabicName: string
   description: "test here please change me"
   image: string
   isAdditional: boolean
@@ -74,6 +76,7 @@ export type MainService = {
 export type Service = {
   belongsTo: string
   description: string
+  arabicName: string
   name: string
   photo: string
   __v: number
@@ -87,7 +90,7 @@ export type BookingProps = {
   services: string[]
   city: string
   date: string
-  status?: string
+  isCompleted?: string
   carSize: string
 }
 
@@ -104,12 +107,14 @@ export type AddSubServiceProps = {
 }
 
 export type AddPackageProps = {
-  name: string
-  belongTo: string
+  name?: string
+  arabicName?: string
+  belongTo?: string
   description: string[]
-  smallPrice: number
-  bigPrice: number
-  mediumPrice: number
+  arabicDescription: string[]
+  smallPrice?: number
+  bigPrice?: number
+  mediumPrice?: number
 }
 
 export interface Package extends AddPackageProps {

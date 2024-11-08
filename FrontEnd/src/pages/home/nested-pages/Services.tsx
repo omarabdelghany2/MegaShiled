@@ -69,7 +69,7 @@ const Services = () => {
                 : bigCar
             }
             alt={`car-size-${active}`}
-            className={`${className} transition-all duration-300`}
+            className={`${className} mx-auto transition-all duration-300`}
           />
         </div>
       </div>

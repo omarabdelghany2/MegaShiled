@@ -38,6 +38,7 @@ module.exports = {
     },
     fontFamily: {
       arabic: '"Almarai", sans-serif',
+      landing: "Bebas Neue, sans-serif"
     },
     container: {
       center: true,

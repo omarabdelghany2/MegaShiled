@@ -34,7 +34,8 @@ const EditServiceModal = ({
 }: EditServiceModalProps) => {
   const [labelContent, setLabelContent] =
     useState("اختر صورة")
-  const [name, setName] = useState("")
+  const [englishName, setEnglishName] = useState("")
+  const [arabicName, setArabicName] = useState("")
   const [description, setDescription] = useState("")
   const [isAdditional, setIsAdditional] = useState(false)
   const [image, setImage] = useState("")
@@ -59,7 +60,8 @@ const EditServiceModal = ({
       updateMainService({
         arg: {
           slide: {
-            name: name,
+            name: englishName,
+            arabicName: arabicName,
             isAdditional: isAdditional
           }
         },
@@ -72,10 +74,10 @@ const EditServiceModal = ({
     }
   }
 
-
   useEffect(() => {
     if (id && mainService) {
-      setName(mainService.name)
+      setEnglishName(mainService.name)
+      setArabicName(mainService.arabicName)
       setIsAdditional(mainService.isAdditional)
     }
   }, [id, mainService])
@@ -106,9 +108,15 @@ const EditServiceModal = ({
             >
               <Input
                 type="text"
-                placeholder="اسم الخدمة"
-                value={name}
-                onChange={e => setName(e.target.value)}
+                placeholder="اسم الخدمة بالانجليزية"
+                value={englishName}
+                onChange={e => setEnglishName(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="اسم الخدمة بالعربية"
+                value={arabicName}
+                onChange={e => setArabicName(e.target.value)}
               />
               {/* <Label
                 htmlFor="image"

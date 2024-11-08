@@ -32,8 +32,7 @@ const ProductModal = ({
   id,
   withButton = false,
 }: ProductModalProps) => {
-  const [labelContent, setLabelContent] =
-    useState("اختر صورة")
+  const [labelContent, setLabelContent] = useState("اختر صورة")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
@@ -46,6 +45,7 @@ const ProductModal = ({
   const [] = useUpdateProductMutation()
   const [uploadImage] = useUploadImageMutation()
 
+  // Handle form submission
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -54,50 +54,64 @@ const ProductModal = ({
       addProduct({
         name,
         description,
-        image,
+        imageFileName: image,
         price,
       })
         .unwrap()
         .then(() => {
           setDescription("")
           setImage("")
-          setLabelContent("")
+          setLabelContent("اختر صورة")  // Reset the label content
           setName("")
           setPrice("")
           dispatch(toggleIsProductOpen(false))
         })
+        .catch((err) => {
+          console.error("Error adding product:", err)
+        })
     }
   }
 
+  // Handle file input change and image upload
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    if (e.target.files) {
-      const formData = new FormData()
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const formData = new FormData();
+      const file = files[0];
+      formData.append("ImageFileName", file);  // Append the selected image file
 
-      formData.append(
-        "image",
-        e.target.files[0],
-        e.target.files[0].name
-      )
+      // Log form data for debugging (optional)
+      // formData.forEach((value, key) => {
+      //   console.log(key, value);
+      // });
 
+      // Update label content to show the selected file name
+      setLabelContent(file.name);
+
+      // Upload the image to the server
       uploadImage(formData)
         .unwrap()
-        .then(data => {
-          setImage(data.image)
-
-          if (e.target.files) {
-            setLabelContent(e.target.files[0]?.name)
+        .then((data) => {
+          if (data?.imageName) {
+            setImage(data.imageName);  // Set the image URL returned from the API
+            setLabelContent("Uploaded");
           }
         })
-        .catch(err => console.log(err))
+        .catch((err) => {
+          console.error("Upload failed:", err);
+        });
+    } else {
+      console.warn("No file selected for upload.");
     }
-  }
+  };
 
   useEffect(() => {
     if (mode === "edit" && id) {
+      // Logic for editing product (fetch product details and populate fields)
     }
-  }, [id])
+  }, [id, mode]);
 
   return (
     <Dialog open={isOpen}>
@@ -116,14 +130,12 @@ const ProductModal = ({
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
         <DialogHeader>
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
-            {mode === "add"
-              ? "اضافة منتج جديد"
-              : "تعديل المنتج"}
+            {mode === "add" ? "اضافة منتج جديد" : "تعديل المنتج"}
           </DialogTitle>
           <DialogDescription>
             <form
               className="flex flex-col gap-4 text-white"
-              encType="multipart/from-data"
+              encType="multipart/form-data"  // Correct encoding type for file upload
             >
               <Input
                 type="text"
@@ -155,9 +167,7 @@ const ProductModal = ({
                 placeholder="الوصف"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
                 value={description}
-                onChange={e =>
-                  setDescription(e.target.value)
-                }
+                onChange={e => setDescription(e.target.value)}
               ></textarea>
               <Button type="submit" onClick={handleSubmit}>
                 {mode === "add" ? "اضافة" : "تعديل"}
@@ -169,4 +179,5 @@ const ProductModal = ({
     </Dialog>
   )
 }
+
 export default ProductModal

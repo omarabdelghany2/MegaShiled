@@ -16,7 +16,7 @@ export const apiSlice = createApi({
       }
       
       // Set default content type
-      headers.set("Content-type", "application/json");
+      // headers.set("Content-type", "application/json");
       
       return headers;
     },

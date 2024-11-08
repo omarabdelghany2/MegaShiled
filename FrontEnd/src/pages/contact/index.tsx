@@ -5,15 +5,22 @@ import {
   MapPin,
   Phone,
 } from "lucide-react"
-import illustration from "/contact.png"
+import illustration from "/mobile-car.png"
 import { useRef } from "react"
 import { toast } from "react-toastify"
 
 const Contact = () => {
   return (
-    <div className="min-h-screen mt-20 p-5">
-      <section className="sm:h-[50vh] bg-[#090200] -m-5 flex">
-        <div className="flex-1 p-5 text-white max-sm:text-center">
+    <div className="min-h-screen container mt-20 p-5 flex flex-col items-center justify-center">
+      <section className="-m-5">
+        <div className="flex-1 p-5 text-white text-center">
+        {/* <div className="flex-1 flex items-end justify-center max-md:hidden">
+          <img
+            src={illustration}
+            alt="illustration"
+            className="sm:w-[400px] mb-5"
+          />
+        </div> */}
           <h1 className="sm:text-5xl text-3xl font-arabic text-primary">
             تواصل معنا.
           </h1>
@@ -21,13 +28,6 @@ const Contact = () => {
             نسعي لاجابة كل اسئلة و استفسارات عملائنا من خلال
             وسائل التواصل الخاصة بنا.
           </p>
-        </div>
-        <div className="flex-1 flex items-end justify-center max-md:hidden">
-          <img
-            src={illustration}
-            alt="illustration"
-            className="sm:w-[400px] mb-5"
-          />
         </div>
       </section>
       <ContactTable />
@@ -41,7 +41,7 @@ const ContactTable = () => {
   const phoneRef = useRef<HTMLSpanElement>(null)
   const locationRef = useRef<HTMLSpanElement>(null)
   return (
-    <div className="shadow-box rounded-md bg-black relative z-20">
+    <div className="rounded-md  w-full bg-[#111214] relative z-20">
       <div className="flex items-center py-5 px-3 border-b border-solid border-primary-gray text-white">
         <Mail
           size={35}
@@ -52,30 +52,18 @@ const ContactTable = () => {
           ref={emailRef}
           className="flex-1  text-lg mx-4 font-bold text-white"
         >
-          info@megashield.com
+          Megashieldeg@gmail.com
         </span>
-        <span
+        <a
+          href="mailto:Megashieldeg@gmail.com"
           className="hover:scale-110 cursor-pointer"
-          onClick={() => {
-            if (emailRef.current) {
-              navigator.clipboard.writeText(
-                emailRef.current?.innerText
-              )
-              toast(
-                "تم نسخ البريد الالكتروني الي الحافظة",
-                {
-                  type: "success",
-                }
-              )
-            }
-          }}
         >
           <Link
             size={35}
             className="text-primary"
             color="#d80032"
           />
-        </span>
+        </a>
       </div>
       <div className="flex items-center py-5 px-3  border-b border-solid border-primary-gray text-white">
         <Phone
@@ -87,27 +75,18 @@ const ContactTable = () => {
           ref={phoneRef}
           className="flex-1  text-lg mx-4 font-bold text-white"
         >
-          <bdo dir="ltr">+966 53 937 3016</bdo>
+          <bdo dir="ltr">+2010 80001058</bdo>
         </span>
-        <span
+        <a
           className="hover:scale-110 cursor-pointer"
-          onClick={() => {
-            if (phoneRef.current) {
-              navigator.clipboard.writeText(
-                phoneRef.current?.innerText
-              )
-              toast("تم نسخ الهاتف ف الحافظة", {
-                type: "success",
-              })
-            }
-          }}
+          href="tel:+201080001058"
         >
           <Link
             size={35}
             className="text-primary"
             color="#d80032"
           />
-        </span>
+        </a>
       </div>
       <div className="flex items-center py-5 px-3 text-white border-b border-solid border-primary-gray">
         <Instagram
@@ -159,10 +138,10 @@ const ContactTable = () => {
           onClick={() => {
             if (phoneRef.current) {
               navigator.clipboard.writeText(
-                "https://maps.google.com?q=%D9%85%D9%8A%D8%AC%D8%A7%D8%B4%D9%8A%D9%84%D8%AF%20Mega%20shield%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D8%A9%D8%8C%20%D8%A7%D9%84%D8%B1%D8%A7%D9%8A%D8%A9%D8%8C%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9%2042312&ftid=0x15bdbfa38f9e6d15:0xc7a62cd862b59af4&hl=ar-SA&gl=sa&entry=gps&lucs=,47083423,47071704&g_st=iw"
+                "https://www.google.com/maps/place/Mega+shield/@31.2334896,29.9568813,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c514e95ed835:0x4b90810d59faca2d!8m2!3d31.2334896!4d29.9594562!16s%2Fg%2F11vqrlqxw1?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D"
               )
               open(
-                "https://maps.google.com?q=%D9%85%D9%8A%D8%AC%D8%A7%D8%B4%D9%8A%D9%84%D8%AF%20Mega%20shield%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82%20%D8%B3%D9%84%D8%B7%D8%A7%D9%86%D8%A9%D8%8C%20%D8%A7%D9%84%D8%B1%D8%A7%D9%8A%D8%A9%D8%8C%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D9%88%D8%B1%D8%A9%2042312&ftid=0x15bdbfa38f9e6d15:0xc7a62cd862b59af4&hl=ar-SA&gl=sa&entry=gps&lucs=,47083423,47071704&g_st=iw",
+                "https://www.google.com/maps/place/Mega+shield/@31.2334896,29.9568813,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c514e95ed835:0x4b90810d59faca2d!8m2!3d31.2334896!4d29.9594562!16s%2Fg%2F11vqrlqxw1?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D",
                 "_blank"
               )
             }

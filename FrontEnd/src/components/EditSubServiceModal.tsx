@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "./ui/input"
 import { useEffect, useState } from "react"
-import { Label } from "./ui/label"
+// import { Label } from "./ui/label"
 import { Button } from "./ui/button"
-import { useUploadImageMutation } from "@/app/api/ProductsApiSlice"
+// import { useUploadImageMutation } from "@/app/api/ProductsApiSlice"
 import {
-  useGetSubServiceByIDQuery,
+  useGetSubServiceByIDWithoutCountQuery,
   useUpdateSubServiceMutation,
 } from "@/app/api/ServicesApiSlice"
 
@@ -31,9 +31,9 @@ const EditSubServiceModal = ({
   withButton = false,
 }: EditServiceModalProps) => {
   const [mainServiceID, setMainServiceId] = useState("")
-  const [labelContent, setLabelContent] =
-    useState("اختر صورة")
-  const [name, setName] = useState("")
+  // const [labelContent, setLabelContent] = useState("اختر صورة")
+  const [englishName, setEnglishName] = useState("")
+  const [arabicName, setArabicName] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
 
@@ -42,11 +42,11 @@ const EditSubServiceModal = ({
   )
   const dispatch = useAppDispatch()
 
-  const { data: mainService } = useGetSubServiceByIDQuery({
+  const { data: mainService } = useGetSubServiceByIDWithoutCountQuery({
     id: id,
   })
   const [updateMainService] = useUpdateSubServiceMutation()
-  const [uploadImage] = useUploadImageMutation()
+  // const [uploadImage] = useUploadImageMutation()
 
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -55,9 +55,10 @@ const EditSubServiceModal = ({
 
     updateMainService({
       props: {
-        name,
-        photo: image,
-        description,
+        name: englishName,
+        arabicName: arabicName,
+        // photo: image,
+        // description,
         belongsTo: mainServiceID,
       },
       id,
@@ -68,36 +69,37 @@ const EditSubServiceModal = ({
       })
   }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (e.target.files) {
-      const formData = new FormData()
+  // const handleInputChange = (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (e.target.files) {
+  //     const formData = new FormData()
 
-      formData.append(
-        "image",
-        e.target.files[0],
-        e.target.files[0].name
-      )
+  //     formData.append(
+  //       "image",
+  //       e.target.files[0],
+  //       e.target.files[0].name
+  //     )
 
-      uploadImage(formData)
-        .unwrap()
-        .then(data => {
-          setImage(data.image)
+  //     uploadImage(formData)
+  //       .unwrap()
+  //       .then(data => {
+  //         setImage(data.image)
 
-          if (e.target.files) {
-            setLabelContent(e.target.files[0]?.name)
-          }
-        })
-        .catch(err => console.log(err))
-    }
-  }
+  //         if (e.target.files) {
+  //           setLabelContent(e.target.files[0]?.name)
+  //         }
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }
 
   useEffect(() => {
     if (id && mainService) {
-      setName(mainService.name)
-      setImage(mainService.photo)
-      setDescription(mainService.description)
+      setEnglishName(mainService.name)
+      setArabicName(mainService.arabicName)
+      // setImage(mainService.photo)
+      // setDescription(mainService.description)
       setMainServiceId(mainService.belongsTo)
     }
   }, [id, mainService])
@@ -128,32 +130,38 @@ const EditSubServiceModal = ({
             >
               <Input
                 type="text"
-                placeholder="اسم الخدمة"
-                value={name}
-                onChange={e => setName(e.target.value)}
+                placeholder="اسم الخدمة بالانجليزية"
+                value={englishName}
+                onChange={e => setEnglishName(e.target.value)}
               />
-              <Label
+              <Input
+                type="text"
+                placeholder="اسم الخدمة بالعربية"
+                value={arabicName}
+                onChange={e => setArabicName(e.target.value)}
+              />
+              {/* <Label
                 htmlFor="image"
                 className="w-full h-9 border border-solid text-right flex items-center px-3 border-primary-gray rounded-lg
                 font-arabic"
               >
                 {labelContent}
-              </Label>
-              <Input
+              </Label> */}
+              {/* <Input
                 type="file"
                 placeholder="الصورة"
                 id="image"
                 className="hidden"
                 onChange={handleInputChange}
-              />
-              <textarea
+              /> */}
+              {/* <textarea
                 placeholder="الوصف"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
                 value={description}
                 onChange={e =>
                   setDescription(e.target.value)
                 }
-              ></textarea>
+              ></textarea> */}
               <Button type="submit" onClick={handleSubmit}>
                 تعديل
               </Button>

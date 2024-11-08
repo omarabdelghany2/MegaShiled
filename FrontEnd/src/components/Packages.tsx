@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import ServicePackageCard from "./ServicePackageCard"
 import { useGetAllMainServicesQuery, useGetSubServicePackagesQuery } from "@/app/api/ServicesApiSlice"
 import { MainService } from "@/types"
+import { useTranslation } from "react-i18next"
 
 type PackagesProps = {
   packages: { title: string; price: number }[]
@@ -27,7 +28,7 @@ const Packages = ({
 }: PackagesProps) => {
   const [subServiceID, setSubServiceID] = useState("")
   const { data: subServicePackages } = useGetSubServicePackagesQuery({ id: subServiceID })
-
+  const { t } = useTranslation();
   
 
   return (
@@ -43,13 +44,13 @@ const Packages = ({
           if (itm.isAdditional === false) {
             return (
               <div
-                key={itm.name}
-                onClick={() => setSelectedService(itm.name)}
+                key={itm.id}
+                onClick={() => setSelectedService(itm.id)}
                 className={`border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${
-                  selectedService === itm.name ? "bg-primary" : "bg-transparent"
+                  selectedService === itm.id ? "bg-primary" : "bg-transparent"
                 }`}
               >
-                {itm.name}
+                {t('locale.lang') === "ar" ? itm.arabicName : itm.name}
               </div>
             );
           } else {
@@ -64,15 +65,15 @@ const Packages = ({
           subServicePackages.packages.map((packagely, i) => {
             // Use find to get the matching item from mainServices
             const matchingService = mainServicesData?.mainServices.find(
-              (item) => item.name === packagely.belongTo && item.isAdditional == false && item.name === selectedService
+              (item) => item.name === packagely.belongTo && item.isAdditional == false && item.id === selectedService
             );
             return matchingService ? (
               <ServicePackageCard
                 key={i} 
                 packages={packages}
                 setPackages={setPackages}
-                title={packagely.name}
-                features={packagely.description}
+                title={t('locale.lang') === "ar" ? packagely.arabicName : packagely.name}
+                features={t('locale.lang') === "ar" ? packagely.arabicDescription : packagely.description}
                 price={
                   carSize === 0
                     ? packagely.smallPrice
