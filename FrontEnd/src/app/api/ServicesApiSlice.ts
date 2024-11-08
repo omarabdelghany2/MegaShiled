@@ -30,14 +30,12 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
     }),
     ToggleBookingStateToDone: builder.mutation<
       void,
-      { id: string }
+      { id: string, isCompleted: boolean }
     >({
       query: arg => ({
-        url: `/bookings/changeStatus/${arg.id}`,
-        method: "PATCH",
-        body: JSON.stringify({
-          status: "done",
-        }),
+        url: `/bookings/complete/${arg.id}`,
+        method: "POST",
+        body: JSON.stringify(arg),
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -76,7 +74,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string }
     >({
       query: arg => ({
-        url: `/mainservices/${arg.id}`,
+        url: `/homepage/${arg.id}`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -178,7 +176,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string; props: Partial<Service> }
     >({
       query: args => ({
-        url: `/services/updateService/${args.id}`,
+        url: `/packages/${args.id}`,
         credentials: "include",
         method: "PATCH",
         body: JSON.stringify(args.props),
@@ -193,9 +191,9 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string; props: AddPackageProps }
     >({
       query: args => ({
-        url: `/packages/${args.id}/addPackage`,
+        url: `/packages/${args.id}`,
         credentials: "include",
-        method: "POST",
+        method: "PATCH",
         body: JSON.stringify(args.props),
         headers: {
           "Content-type": "application/json",
@@ -212,7 +210,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { id: string }
     >({
       query: args => ({
-        url: `/services/${args.id}`,
+        url: `/packages/${args.id}`,
         credentials: "include",
         headers: {
           "Content-type": "application/json",
@@ -220,6 +218,19 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainServices", "subServices"],
     }),
+    GetSubServiceByIDWithoutCount: builder.query<
+    Service,
+    { id: string }
+  >({
+    query: args => ({
+      url: `/packages/2/${args.id}`,
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }),
+    providesTags: ["mainServices", "subServices"],
+  }),
     GetSubServicePackages: builder.query<
       { packages: Package[]; count: number },
       { id: string }
@@ -322,6 +333,7 @@ export const {
   useAddMainServiceMutation,
   useUpdateMainServiceMutation,
   useGetServiceByIDQuery,
+  useGetSubServiceByIDWithoutCountQuery,
   useGetAllMainServicesQuery,
   useDeleteMainServiceMutation,
   useGetAllBookingsQuery,

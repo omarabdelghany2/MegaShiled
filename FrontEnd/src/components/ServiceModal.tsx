@@ -35,7 +35,8 @@ const ServiceModal = ({
   withButton = false,
 }: ServiceModalProps) => {
   const [labelContent, setLabelContent] = useState("اختر صورة")
-  const [name, setName] = useState("")
+  const [englishName, setEnglishName] = useState("")
+  const [arabicName, setArabicName] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState("")
   const [isAdditional, setIsAdditional] = useState(false)
@@ -57,7 +58,8 @@ const ServiceModal = ({
     if (mode === "add") {
       addMainService({
         slide: {
-          name,
+          name: englishName,
+          arabicName: arabicName,
           isAdditional,
 
         }
@@ -66,14 +68,16 @@ const ServiceModal = ({
         .then(() => {
           dispatch(toggleServiceModal(false))
           setLabelContent("")
-          setName("")
+          setEnglishName("")
+          setArabicName("")
           setIsAdditional(false)
         })
     } else if (mode === "edit" && id) {
       updateMainService({
         arg: {
           slide: {
-              name,
+              name: englishName,
+              arabicName: arabicName,
               isAdditional,
           }
         },
@@ -136,6 +140,8 @@ const ServiceModal = ({
       )}
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
         <DialogHeader>
+        <div className="flex items-center cursor-pointer w-full" onClick={() => dispatch(toggleServiceModal(false))}>x</div>
+
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
             {mode === "add"
               ? "اضافة خدمة جديد"
@@ -148,9 +154,15 @@ const ServiceModal = ({
             >
               <Input
                 type="text"
-                placeholder="اسم الخدمة"
-                value={name}
-                onChange={e => setName(e.target.value)}
+                placeholder="اسم الخدمة بالانجليزية"
+                value={englishName}
+                onChange={e => setEnglishName(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="اسم الخدمة بالعربية"
+                value={arabicName}
+                onChange={e => setArabicName(e.target.value)}
               />
               {/* <Label
                 htmlFor="image"

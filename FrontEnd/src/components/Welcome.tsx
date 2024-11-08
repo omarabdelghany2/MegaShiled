@@ -17,7 +17,7 @@ const Welcome = () => {
   return (
     <section
       id="welcome"
-      className="cut-viewport md:py-8 flex justify-center md:flex-row flex-col gap-5 relative overflow-hidden bg-black backdrop-blur-lg"
+      className="h-[100vh] md:py-8 flex justify-center md:flex-row flex-col gap-5 relative overflow-hidden bg-black backdrop-blur-lg"
       ref={ref}
     >
       <motion.img
@@ -33,7 +33,7 @@ const Welcome = () => {
           duration: 0.7,
         }}
         src={cutCar}
-        className="max-md:hidden md:ms-8 rounded-md overflow-hidden w-[250px] flex-1 relative"
+        className="max-md:hidden md:ms-8 object-cover rounded-md overflow-hidden w-[250px] flex-1 relative"
       />
       <div className="z-10 text-center flex-1 flex justify-center flex-col relative">
         <div className="absolute inset-0 bg-gray-800/20 sm:hidden" />

@@ -8,8 +8,7 @@ import { useState } from "react"
 const Bookings = () => {
   const [pending, setPending] = useState(false)
 
-  const { data: items, isLoading } =
-    useGetAllBookingsQuery("")
+  const { data: items, isLoading } = useGetAllBookingsQuery("")
 
   const { data: pendingItems } =
     useGetAllBendingBookingsQuery("")

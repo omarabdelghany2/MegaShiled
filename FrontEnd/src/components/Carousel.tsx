@@ -2,6 +2,8 @@ import { motion } from "framer-motion"
 
 import { CarIcon, Fingerprint   } from "lucide-react"
 import { useTranslation } from "react-i18next";
+import videoFile from '/vid.webm';
+
 
 const Carousel = () => {
   const { t } = useTranslation();
@@ -15,6 +17,7 @@ const Carousel = () => {
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
+        <video src={videoFile} className="h-[100vh]" autoPlay muted loop></video>
         <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
         <div className="z-10 bg-white rounded-full p-3 mb-2">
           <CarIcon  
@@ -35,23 +38,23 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.3 }}
-          className="z-10 text-5xl font-bold text-center mb-2 text-white leading-[70px]"
+          className={`z-10 text-6xl ${ t("locale.lang") === "en" ? "tracking-wider font-bold font-landing": "font-arabic" } text-center mb-2 text-white leading-[70px]`}
           dangerouslySetInnerHTML={{ __html: t('home.title') }}
         >
          
         </motion.h1>
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.5 }}
           className="w-[100px] h-1 bg-primary z-10 my-6"
-        />
+        /> */}
 
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
-          className="max-w-[220px] text-lg z-10 text-white text-center"
+          className="max-w-[420px] font-bold text-lg z-10 text-white text-center"
         >
          {t('home.description')}
         </motion.p>

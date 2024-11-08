@@ -205,10 +205,11 @@ const PersonalInfo = ({
           </div>
           <span className="font-arabic text-xl font-bold">
             {carSize === 0
-              ? "صغير"
+              ? (t('locale.lang') === "ar" ? "صغير": "small")
               : carSize === 1
-              ? "وسط"
-              : "كبير"}
+              ? (t('locale.lang') === "ar" ? "وصط": "medium")
+              : (t('locale.lang') === "ar" ? "كبير": "big")
+              }
           </span>
         </div>
         <div className={styles.service}>
@@ -227,7 +228,7 @@ const PersonalInfo = ({
           {t('reserve.sectionFour.total')}
           </h1>
           <span className=" font-arabic text-2xl my-auto">
-            {packages.reduce((a, b) => a + +b.price, 0)}L.E
+            {`${packages.reduce((a, b) => a + +b.price, 0)} EGP`}
           </span>
         </div>
         <div className={styles.date}>
