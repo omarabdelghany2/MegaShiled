@@ -12,9 +12,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "./ui/input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
-import { useAddPackageMutation } from "@/app/api/ServicesApiSlice"
+import { useAddPackageMutation, useGetPackageByIDQuery } from "@/app/api/ServicesApiSlice"
 
 type ServiceModalProps = {
   mode: "add" | "edit"
@@ -29,7 +29,6 @@ const AddPackageModal = ({
 }: ServiceModalProps) => {
   const [englishFeatures, setEnglishFeatures] = useState("")
   const [arabicFeatures, setArabicFeatures] = useState("")
-  const [name, setName] = useState("")
   const [smallPrice, setSmallPrice] = useState<number | undefined>()
   const [mediumPrice, setMediumPrice] = useState<number | undefined>()
   const [bigPrice, setBigPrice] = useState<number | number>()
@@ -38,27 +37,21 @@ const AddPackageModal = ({
   const dispatch = useAppDispatch()
 
   const [addPackage] = useAddPackageMutation()
+  const { data: packages } = useGetPackageByIDQuery({ id: id })
+
 
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault()
-    // console.log({
-    //     description: englishFeatures,
-    //     smallPrice,
-    //     bigPrice,
-    //     mediumPrice,
-    // });
     addPackage({
       id,
       props: {
-        // name,
         description: englishFeatures.split(","),
         arabicDescription: arabicFeatures.split(","),
         smallPrice,
         bigPrice,
         mediumPrice,
-        // belongTo: id,
       },
     })
       .unwrap()
@@ -71,6 +64,19 @@ const AddPackageModal = ({
         setBigPrice(undefined)
       })
   }
+
+  useEffect(() => {
+    const singlePackage = packages?.packages[0]
+
+    if (singlePackage) {
+      setEnglishFeatures(singlePackage?.description.join(","))
+      setArabicFeatures(singlePackage?.arabicDescription.join(","))
+      setSmallPrice(singlePackage?.smallPrice)
+      setMediumPrice(singlePackage?.mediumPrice)
+      setBigPrice(singlePackage?.bigPrice)
+    }
+
+  }, [packages])
 
   return (
     <Dialog open={isOpen}>
@@ -87,6 +93,7 @@ const AddPackageModal = ({
         </DialogTrigger>
       )}
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
+        <div className="w-full flex cursor-pointer" onClick={() => dispatch(toggleServiceModal(false))}>x</div>
         <DialogHeader>
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
             تعديل الباقة
@@ -96,13 +103,6 @@ const AddPackageModal = ({
               className="flex flex-col gap-4 text-white"
               encType="multipart/from-data"
             >
-              {/* <Input
-                type="text"
-                placeholder="اسم الباقة"
-                value={name}
-                onChange={e => setName(e.target.value)}
-              /> */}
-
               <Input
                 type="number"
                 placeholder="السعر للسيارات الصغيرة"
@@ -129,6 +129,7 @@ const AddPackageModal = ({
               <textarea
                 placeholder="اضف مزايا الباقة بالانجليزية"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
+                value={englishFeatures}
                 onChange={e => {
                   setEnglishFeatures(e.target.value)
                 }}
@@ -136,32 +137,11 @@ const AddPackageModal = ({
               <textarea
                 placeholder="اضف مزايا الباقة بالعربية"
                 className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
+                value={arabicFeatures}
                 onChange={e => {
                   setArabicFeatures(e.target.value)
                 }}
               />
-              {/* <Input
-                type="text"
-                placeholder="الميزة الثانية"
-                onChange={e => {
-                  setFeatures(prev => {
-                    prev[1] = e.target.value
-
-                    return [...prev]
-                  })
-                }}
-              />
-              <Input
-                type="text"
-                placeholder="الميزة الثالثة"
-                onChange={e => {
-                  setFeatures(prev => {
-                    prev[2] = e.target.value
-
-                    return [...prev]
-                  })
-                }}
-              /> */}
               <Button type="submit" onClick={handleSubmit}>
                 اضافة
               </Button>

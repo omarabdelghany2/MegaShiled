@@ -7,8 +7,7 @@ import Bookings from "./Bookings"
 import Package from "./Package"
 
 const Services = () => {
-  const { data: mainServices, isLoading } =
-    useGetAllMainServicesQuery("")
+  const { data: mainServices, isLoading } =  useGetAllMainServicesQuery("")
 
   if (isLoading) return "loading..."
 
@@ -16,10 +15,7 @@ const Services = () => {
     <div>
       <header className="flex items-center justify-start my-6 gap-4">
         <NavLink children="الخدمات" to="/dash/services" />
-        <NavLink
-          children="الحجوزات"
-          to="/dash/services/bookings"
-        />
+        <NavLink children="الحجوزات" to="/dash/services/bookings"  />
       </header>
       <Routes>
         <Route

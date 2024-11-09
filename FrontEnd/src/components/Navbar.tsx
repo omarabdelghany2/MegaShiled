@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`sm:flex hidden items-center justify-center gap-6 `}>
+      <nav className={`sm:flex hidden items-center justify-center gap-6 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} `}>
         <div className="h-14 grid place-content-center">
           <NavLink to="/">{t('header.home')}</NavLink>
         </div>
@@ -21,7 +21,7 @@ const Navbar = () => {
           <NavLink
             to="/insurance"
             className="relative text-slate-200 transition-colors duration-500 font-bold text-lg hover:text-primary before:content-[''] before:absolute
-      before:w-full before:h-1 before:bg-primary before:-bottom-2 before:duration-500 before:transition-transform before:scale-y-0 hover:before:scale-y-100 before:origin-top"
+            before:w-full before:h-1 before:bg-primary before:-bottom-2 before:duration-500 before:transition-transform before:scale-y-0 hover:before:scale-y-100 before:origin-top"
           >
             {t('header.insurance')}
           </NavLink>
@@ -54,9 +54,13 @@ const Navbar = () => {
           <NavLink to="/service" children={t('header.reserve')} />
         </div>
       </nav>
+        <div className="flex">
+          {/* <button onClick={() => changeLanguage('ar')}>Arabic</button> */}
+          <img src={`${t('locale.lang') === "ar" ? "/arabic-flag.png": "/english-flag.png"}`} onClick={() => changeLanguage(t('locale.lang') === "ar" ? "en": "ar")} alt="arabic flag" className="w-5" />
+        </div>
       <MenuSheet />
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('ar')}>Arabic</button>
+      {/* <button onClick={() => changeLanguage('en')}>English</button>
+      <button onClick={() => changeLanguage('ar')}>Arabic</button> */}
     </>
   )
 }

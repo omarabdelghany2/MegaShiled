@@ -121,23 +121,23 @@ const ContentTable = ({
                   {/* <TableCell>{item.__v}</TableCell> */}
                   <TableCell>
                     {item.isAdditional
-                      ? "خدمة اضافية"
-                      : "خدمة اساسية"}
+                      ? "تصنيف اضافي"
+                      : "تصنيف اساسي"}
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center justify-center gap-4">
+                    <div className="flex items-center justify-center gap-2">
                       <Button
-                        className="font-arabic me-3"
+                        className="font-arabic"
                         onClick={() => {
-                          deleteMainService({
-                            id: item.id,
-                          })
+                          navigate(
+                            `/dash/services/subservices/${item.name}`
+                          )
                         }}
                       >
-                        حذف الخدمة
+                        التصنيفات الفرعية
                       </Button>
                       <Button
-                        className="font-arabic me-3"
+                        className="font-arabic"
                         onClick={() => {
                           setId(item.id)
                           dispatch(
@@ -150,12 +150,12 @@ const ContentTable = ({
                       <Button
                         className="font-arabic"
                         onClick={() => {
-                          navigate(
-                            `/dash/services/subservices/${item.name}`
-                          )
+                          deleteMainService({
+                            id: item.id,
+                          })
                         }}
                       >
-                        الخدمات الفرعية
+                        حذف
                       </Button>
                     </div>
                   </TableCell>
@@ -203,11 +203,11 @@ const ContentTable = ({
             ? items.map((item, i) => (
                 <TableRow key={i}>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <div className="w-[150px] h-[100px] overflow-y-scroll">
                       <p>{item.description}</p>
                     </div>
-                  </TableCell>
+                  </TableCell> */}
                   {/* <TableCell>
                     <img
                       src={item.photo}
@@ -217,13 +217,15 @@ const ContentTable = ({
                   </TableCell>
                   <TableCell>{item.__v}</TableCell> */}
                   <TableCell className="">
-                    <div className="flex items-center gap-4 flex-wrap text-primary justify-center">
+                    <div className="flex items-center gap-2 flex-wrap text-primary justify-center">
                       <Button
                         onClick={() => {
-                          deleteSubService({ id: item._id })
+                          navigate(
+                            `/dash/services/packages/${item._id}`
+                          )
                         }}
                       >
-                        حذف
+                        الباقات
                       </Button>
                       <Button
                         onClick={() => {
@@ -237,12 +239,10 @@ const ContentTable = ({
                       </Button>
                       <Button
                         onClick={() => {
-                          navigate(
-                            `/dash/services/packages/${item._id}`
-                          )
+                          deleteSubService({ id: item._id })
                         }}
                       >
-                        الباقات
+                        حذف
                       </Button>
                     </div>
                   </TableCell>
@@ -271,9 +271,9 @@ const ContentTable = ({
                       )}
                     </div>
                   </TableCell>
-                  <TableCell>{item.smallPrice}$</TableCell>
-                  <TableCell>{item.mediumPrice}$</TableCell>
-                  <TableCell>{item.bigPrice}$</TableCell>
+                  <TableCell>{item.smallPrice}EGP</TableCell>
+                  <TableCell>{item.mediumPrice}EGP</TableCell>
+                  <TableCell>{item.bigPrice}EGP</TableCell>
                   {/* <TableCell>{item.__v}</TableCell> */}
                   {/* <TableCell className="">
                     <div className="flex items-center gap-4 flex-wrap text-primary justify-center">

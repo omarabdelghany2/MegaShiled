@@ -28,14 +28,14 @@ const AdditionalServicePackageCard = ({
     >
       <div className="absolute top-0 h-full w-[70px] z-0 bg-primary/70 left-8 -skew-x-12" />
       <div className="absolute z-10 bg-black/50 inset-0 " />
-      <div className="relative z-30">
+      <div className="relative z-30 h-full">
         <h1 className="font-arabic text-white text-xl my-3">
           {t('locale.lang') === "ar" ? servicePackage.arabicName : servicePackage.name}
         </h1>
         <span className="mx-auto text-primary text-xl font-bold relative z-50">
-          {price + " "}ريال
+          {price + " "}جنيه
         </span>
-        <ul className="p-5 text-green-600 font-arabic font-bold text-lg">
+        <ul className="p-5 text-green-600 font-arabic font-bold text-sm">
           <For each={t("locale.lang") === "ar" ? servicePackage.arabicDescription : servicePackage.description}>
             {(item, i) => (
               <li
@@ -76,9 +76,9 @@ const AdditionalServicePackageCard = ({
           {packages.find(
             item => item.title === servicePackage.name
           ) ? (
-            <Check className="text-green-500" />
+            <div className="absolute bottom-5 bg-green-600 p-2 rounded-md	">اضافت</div>
           ) : (
-            "اضافة"
+            <div className="absolute bottom-5 bg-primary p-2 rounded-md	">اضافة</div>
           )}
         </Button>
       </div>

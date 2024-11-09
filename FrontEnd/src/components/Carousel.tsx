@@ -1,24 +1,24 @@
 import { motion } from "framer-motion"
 
-import { CarIcon, Fingerprint   } from "lucide-react"
+import { CarIcon } from "lucide-react"
 import { useTranslation } from "react-i18next";
-import videoFile from '/vid.webm';
-
+import video from "/vid.mp4"
 
 const Carousel = () => {
   const { t } = useTranslation();
 
-
+  //bg-carCabin bg-cover bg-no-repeat bg-center
   return (
     <div className="overflow-hidden">
+
       <motion.div
-        className="relative h-[100vh] bg-carCabin bg-cover bg-no-repeat bg-center flex flex-col items-center font-arabic justify-center"
+        className="relative h-[100vh]  flex flex-col items-center font-arabic justify-center"
         initial={{ scale: 1.5, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
-        <video src={videoFile} className="h-[100vh]" autoPlay muted loop></video>
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
+        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop></video>
+        <div className="absolute z-9 inset-0 bg-black/20 backdrop-blur-sm" />
         <div className="z-10 bg-white rounded-full p-3 mb-2">
           <CarIcon  
             size={55}
@@ -59,7 +59,7 @@ const Carousel = () => {
          {t('home.description')}
         </motion.p>
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-14 cursor-pointer flex flex-col justify-center items-center gap-4">
-          <a href={"#welcome"}>
+          <a href={"#adds"}>
             <svg
               width="40"
               height="15"

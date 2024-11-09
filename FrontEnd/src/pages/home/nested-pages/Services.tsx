@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next"
 
 const Services = () => {
   const [active, setActive] = useState<0 | 1 | 2>(0)
-  const [className, setClassName] = useState("opacity-1")
+  const [className, setClassName] = useState(`opacity-1`)
   const [packages, setPackages] = useState<{ title: string; price: number }[]>([])
 
   const { data: mainServicesData } = useGetAllMainServicesQuery("")
@@ -24,9 +24,9 @@ const Services = () => {
     <section className="text-center py-20 bg-neutral-950">
       <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
-        <div className="text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div className={`text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500`}>
           <Heading content={t('reserve.sectionOne.title')} />
-          <span className="font-arabic text-xl text-white font-bold">
+          <span className={`font-arabic text-xl text-white font-bold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
             {t('reserve.sectionOne.description')}
           </span>
           <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
@@ -59,7 +59,7 @@ const Services = () => {
             </SelectCard>
           </div>
         </div>
-        <div className="w-[50vw]  aspect-auto mx-auto">
+        <div className={`w-[50vw] aspect-auto mx-auto`}>
           <img
             src={
               active === 0
@@ -99,8 +99,9 @@ const Services = () => {
 export default Services
 
 const Heading = ({ content }: { content: string }) => {
+  const { t } = useTranslation();
   return (
-    <h1 className="text-2xl font-semibold font-arabic text-primary w-fit mx-auto py-5">
+    <h1 className={`text-3xl font-semibold text-primary w-fit mx-auto py-5 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing tracking-wider"}`}>
       {content}
     </h1>
   )
@@ -123,17 +124,18 @@ const SelectCard = ({
   id,
   img,
 }: SelectCardProps) => {
+  const { t } = useTranslation();
   return (
     <button
       type="button"
-      className={`font-arabic text-white text-lg border-solid bg-white border-[5px] shadow-xl ${
+      className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing tracking-wider"} text-white text-lg border-solid bg-white border-[5px] shadow-xl ${
         active ? "border-primary" : "border-transparent"
       } hover:text-primary px-5 py-3 rounded-md transition-colors duration-200
       `}
       onClick={() => {
-        setClassName("opacity-0 translate-y-[15px]")
+        setClassName("opacity-0 translate-x-[150px]")
         setTimeout(() => {
-          setClassName("opacity-1 translate-y-0")
+          setClassName("opacity-1 translate-x-0")
           setActive(id)
         }, 600)
       }}

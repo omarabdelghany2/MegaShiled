@@ -98,6 +98,7 @@ const EditServiceModal = ({
       )}
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
         <DialogHeader>
+          <div className="w-full flex cursor-pointer" onClick={() => dispatch(toggleEditServiceModal(false))}>x</div>
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
             تعديل الخدمة
           </DialogTitle>
@@ -118,28 +119,6 @@ const EditServiceModal = ({
                 value={arabicName}
                 onChange={e => setArabicName(e.target.value)}
               />
-              {/* <Label
-                htmlFor="image"
-                className="w-full h-9 border border-solid text-right flex items-center px-3 border-primary-gray rounded-lg
-                font-arabic"
-              >
-                {labelContent}
-              </Label> */}
-              {/* <Input
-                type="file"
-                placeholder="الصورة"
-                id="image"
-                className="hidden"
-                onChange={handleInputChange}
-              /> */}
-              {/* <textarea
-                placeholder="الوصف"
-                className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
-                value={description}
-                onChange={e =>
-                  setDescription(e.target.value)
-                }
-              ></textarea> */}
                <div className="flex items-center gap-3">
                 <input
                   type="checkbox"

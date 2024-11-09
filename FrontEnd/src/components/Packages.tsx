@@ -38,7 +38,7 @@ const Packages = ({
         subServiceID={subServiceID}
       /> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3 auto-cols-auto ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  gap-3 auto-cols-auto ">
       {
         mainServicesData?.mainServices.map((itm) => {
           if (itm.isAdditional === false) {
@@ -46,7 +46,7 @@ const Packages = ({
               <div
                 key={itm.id}
                 onClick={() => setSelectedService(itm.id)}
-                className={`border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${
+                className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${
                   selectedService === itm.id ? "bg-primary" : "bg-transparent"
                 }`}
               >
