@@ -87,12 +87,12 @@ const Dashboard = () => {
           >
             الخدمات
           </DashboardLink>
-          <DashboardLink
+          {/* <DashboardLink
             to={"/dash/products"}
             activeKey={"products"}
           >
             المنتجات
-          </DashboardLink>
+          </DashboardLink> */}
         </div>
       </div>
       <div className="flex-1 p-5 h-screen overflow-y-scroll">
@@ -127,7 +127,7 @@ const DashboardLink = ({
   return (
     <Link
       to={to}
-      className={`block w-full py-3 px-5 font-arabic text-xl ${
+      className={`block w-full  py-3 px-5 font-arabic text-xl ${
         pathname.includes(activeKey)
           ? "bg-slate-400/20 backdrop-blur-lg text-primary"
           : ""

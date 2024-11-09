@@ -34,11 +34,8 @@ const ServiceModal = ({
   setId,
   withButton = false,
 }: ServiceModalProps) => {
-  const [labelContent, setLabelContent] = useState("اختر صورة")
   const [englishName, setEnglishName] = useState("")
   const [arabicName, setArabicName] = useState("")
-  const [description, setDescription] = useState("")
-  const [image, setImage] = useState("")
   const [isAdditional, setIsAdditional] = useState(false)
 
   const isOpen = useAppSelector(IsServiceModalOpenSelector)
@@ -61,13 +58,11 @@ const ServiceModal = ({
           name: englishName,
           arabicName: arabicName,
           isAdditional,
-
         }
       })
         .unwrap()
         .then(() => {
           dispatch(toggleServiceModal(false))
-          setLabelContent("")
           setEnglishName("")
           setArabicName("")
           setIsAdditional(false)
@@ -91,38 +86,6 @@ const ServiceModal = ({
     }
   }
 
-  // const handleInputChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   if (e.target.files) {
-  //     const formData = new FormData()
-
-  //     formData.append(
-  //       "image",
-  //       e.target.files[0],
-  //       e.target.files[0].name
-  //     )
-
-  //     uploadImage(formData)
-  //       .unwrap()
-  //       .then(data => {
-  //         setImage(data.image)
-
-  //         if (e.target.files) {
-  //           setLabelContent(e.target.files[0]?.name)
-  //         }
-  //       })
-  //       .catch(err => console.log(err))
-  //   }
-  // }
-
-  useEffect(() => {
-    if (mode === "edit" && id && mainService) {
-      setImage(mainService.image)
-      setDescription(mainService.description)
-      setIsAdditional(mainService.isAdditional)
-    }
-  }, [id, mainService])
 
   return (
     <Dialog open={isOpen}>
@@ -135,7 +98,7 @@ const ServiceModal = ({
           }
         >
           <div className="absolute w-full h-full -z-10 bg-primary inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-          {mode === "add" ? "اضف خدمة" : "تعديل"}
+          {mode === "add" ? "اضف تصنيف" : "تعديل"}
         </DialogTrigger>
       )}
       <DialogContent className="font-arabic bg-[#333] border-none text-center text-white text-[1.5rem]">
@@ -144,8 +107,8 @@ const ServiceModal = ({
 
           <DialogTitle className="w-fit mx-auto text-primary mb-4 text-2xl">
             {mode === "add"
-              ? "اضافة خدمة جديد"
-              : "تعديل الخدمة"}
+              ? "اضافة تصنيف جديد"
+              : "تعديل التصنيف"}
           </DialogTitle>
           <DialogDescription>
             <form
@@ -154,39 +117,16 @@ const ServiceModal = ({
             >
               <Input
                 type="text"
-                placeholder="اسم الخدمة بالانجليزية"
+                placeholder="اسم التصنيف بالانجليزية"
                 value={englishName}
                 onChange={e => setEnglishName(e.target.value)}
               />
               <Input
                 type="text"
-                placeholder="اسم الخدمة بالعربية"
+                placeholder="اسم التصنيف بالعربية"
                 value={arabicName}
                 onChange={e => setArabicName(e.target.value)}
               />
-              {/* <Label
-                htmlFor="image"
-                className="w-full h-9 border border-solid text-right flex items-center px-3 border-primary-gray rounded-lg
-                font-arabic"
-                tabIndex={0}
-              >
-                {labelContent}
-              </Label> */}
-              {/* <Input
-                type="file"
-                placeholder="الصورة"
-                id="image"
-                className="hidden"
-                onChange={handleInputChange}
-              /> */}
-              {/* <textarea
-                placeholder="الوصف"
-                className="block w-full min-h-[80px] resize-none rounded-md p-3 text-lg"
-                value={description}
-                onChange={e =>
-                  setDescription(e.target.value)
-                }
-              ></textarea> */}
               <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
@@ -202,7 +142,7 @@ const ServiceModal = ({
                 font-arabic"
                 >
                   خدمة اضافية
-                </Label>
+                </Label> 
               </div>
               <Button type="submit" onClick={handleSubmit}>
                 {mode === "add" ? "اضافة" : "تعديل"}

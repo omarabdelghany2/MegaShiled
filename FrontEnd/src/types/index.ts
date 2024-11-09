@@ -101,9 +101,13 @@ export interface Booking extends BookingProps {
 
 export type AddSubServiceProps = {
   name: string
-  description: string
-  photo: string
-  belongsTo: string
+  arabicName: string
+  description: string[]
+  arabicDescription: string[]
+  belongTo: string
+  smallPrice: number | undefined;
+  mediumPrice: number | undefined;
+  bigPrice: number | undefined;
 }
 
 export type AddPackageProps = {

@@ -148,7 +148,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       { service: AddSubServiceProps }
     >({
       query: args => ({
-        url: `/services/addService`,
+        url: `/packages`,
         credentials: "include",
         method: "POST",
         body: JSON.stringify(args.service),
@@ -206,7 +206,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       ],
     }),
     GetSubServiceByID: builder.query<
-      Service,
+      { packages: Service[], count: number},
       { id: string }
     >({
       query: args => ({
@@ -218,19 +218,6 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainServices", "subServices"],
     }),
-    GetSubServiceByIDWithoutCount: builder.query<
-    Service,
-    { id: string }
-  >({
-    query: args => ({
-      url: `/packages/2/${args.id}`,
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-    }),
-    providesTags: ["mainServices", "subServices"],
-  }),
     GetSubServicePackages: builder.query<
       { packages: Package[]; count: number },
       { id: string }
@@ -248,7 +235,7 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
         "package",
       ],
     }),
-    GetPackageByID: builder.query<Package, { id: string }>({
+    GetPackageByID: builder.query<{ packages:Package[]; count: number}, { id: string }>({
       query: args => ({
         url: `/packages/${args.id}`,
         credentials: "include",
@@ -333,7 +320,6 @@ export const {
   useAddMainServiceMutation,
   useUpdateMainServiceMutation,
   useGetServiceByIDQuery,
-  useGetSubServiceByIDWithoutCountQuery,
   useGetAllMainServicesQuery,
   useDeleteMainServiceMutation,
   useGetAllBookingsQuery,

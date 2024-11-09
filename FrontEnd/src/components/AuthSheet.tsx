@@ -20,6 +20,7 @@ import {
   useRegisterMutation,
 } from "@/app/api/AuthApiSlice"
 import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
 
 type AuthProps = {
   withButton?: boolean
@@ -39,21 +40,23 @@ const AuthSheet = ({
         <SheetTrigger>{buttonContent}</SheetTrigger>
       )}
       <SheetContent
-        side={"bottom"}
-        className="text-white bg-slate-900 font-arabic"
+        side={"right"}
+        className="text-white bg-[#111214] font-arabic"
       >
         <SheetHeader>
           <SheetTitle className="text-white w-fit mx-auto">
-            {registerType === "login"
+          سجل الدخول
+            {/* {registerType === "login"
               ? "سجل الدخول"
-              : "تسجيل حساب جديد"}
+              : "تسجيل حساب جديد"} */}
           </SheetTitle>
           <SheetDescription>
-            {registerType === "login" ? (
+            <Login setRegisterType={setRegisterType} />
+            {/* {registerType === "login" ? (
               <Login setRegisterType={setRegisterType} />
             ) : (
               <Register setRegisterType={setRegisterType} />
-            )}
+            )} */}
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
@@ -96,10 +99,13 @@ const Login = ({ setRegisterType }: LoginProps) => {
           document.cookie = `jwtToken=${token}; path=/; max-age=${24 * 60 * 60}; samesite=strict`;
         }
       })
-      .catch(error => console.log(error.data.msg))
+      .catch(error => {
+        toast(error, { type: "error" })
+      }
+      )
   }
   return (
-    <form className="flex flex-col gap-4 items-center">
+    <form className="flex flex-col text-white gap-4 items-center">
       <Input
         placeholder="البريد الألكتروني"
         type="email"
@@ -110,17 +116,18 @@ const Login = ({ setRegisterType }: LoginProps) => {
         placeholder="كلمة المرور"
         type="password"
         value={password}
+        className="text-white"
         onChange={e => setPassword(e.target.value)}
       />
       <Button onClick={handleLogin}>دخول</Button>
-      <button
+      {/* <button
         className="text-white hover:text-primary w-fit mx-auto block"
         onClick={() => setRegisterType("register")}
         type="button"
       >
         ليس لديك حساب؟{"  "}
         <span className="underline">تسجيل</span>
-      </button>
+      </button> */}
     </form>
   )
 }
