@@ -23,6 +23,11 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
                 .Property(s => s.Name)
                 .IsRequired();
 
+
+            modelBuilder.Entity<Slide>()
+                .Property(s => s.arabicName)
+                .IsRequired();    
+
             // modelBuilder.Entity<Slide>()
             //     .Property(s => s.Image)
             //     .IsRequired();
@@ -52,6 +57,10 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
                 .IsRequired();  // Name cannot be null or empty
 
             modelBuilder.Entity<Package>()
+                .Property(p => p.arabicName)
+                .IsRequired();  // Name cannot be null or empty    
+
+            modelBuilder.Entity<Package>()
                 .Property(p => p.belongTo)
                 .IsRequired();  // belongTo cannot be null or empty
 
@@ -67,6 +76,9 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
                 .Property(p => p.description)
                 .HasColumnType("text[]"); // Specify that this should be a PostgreSQL text array
 
+            modelBuilder.Entity<Package>()
+                .Property(p => p.arabicDescription)
+                .HasColumnType("text[]"); // Specify that this should be a PostgreSQL text array
             // Configure the Book entity
             modelBuilder.Entity<Book>()
                 .HasKey(b => b._id);  // Set _id as the primary key
@@ -112,7 +124,7 @@ namespace MyBackend.Data  // Namespace should reflect your project's structure
                 .Property(b => b.CarSize)
                 .IsRequired();
             modelBuilder.Entity<Product>()
-                .HasKey(p => p._id); // Set _id as the primary key                
+                .HasKey(p => p.id); // Set _id as the primary key                
 
             modelBuilder.Entity<Product>()
                 .Property(c => c.Name)

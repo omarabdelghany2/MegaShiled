@@ -85,6 +85,9 @@ namespace MyBackend.Migrations
                     b.Property<int>("__v")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("isCompleted")
+                        .HasColumnType("boolean");
+
                     b.HasKey("_id");
 
                     b.HasIndex("_id")
@@ -100,6 +103,14 @@ namespace MyBackend.Migrations
 
                     b.Property<int>("__v")
                         .HasColumnType("integer");
+
+                    b.Property<string[]>("arabicDescription")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("arabicName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("belongTo")
                         .IsRequired()
@@ -135,7 +146,7 @@ namespace MyBackend.Migrations
 
             modelBuilder.Entity("MyBackend.Models.Product", b =>
                 {
-                    b.Property<string>("_id")
+                    b.Property<string>("id")
                         .HasColumnType("text");
 
                     b.Property<string[]>("Colors")
@@ -166,7 +177,7 @@ namespace MyBackend.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.HasKey("_id");
+                    b.HasKey("id");
 
                     b.ToTable("Products");
                 });
@@ -183,6 +194,10 @@ namespace MyBackend.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("arabicName")
                         .IsRequired()
                         .HasColumnType("text");
 

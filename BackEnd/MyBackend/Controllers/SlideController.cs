@@ -71,6 +71,8 @@ public class SlidesController : ControllerBase
         var slide = new Slide
         {
             Name = slideDto.Name,
+            arabicName = slideDto.arabicName, // Set ArabicName here
+
             IsAdditional = slideDto.IsAdditional
         };
 
@@ -89,6 +91,19 @@ public class SlidesController : ControllerBase
     }
 
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Slide>> GetSlideById(int id)
+    {
+        // Find the slide with the given ID
+        var slide = await _context.Slides.FindAsync(id);
+
+        if (slide == null)
+        {
+            return NotFound(new { Message = "Slide not found." });
+        }
+
+        return Ok(slide); // Return the found slide
+    }
 
 
 
@@ -143,6 +158,7 @@ public class SlidesController : ControllerBase
 
         // Update slide properties
         slide.Name = requestDto.Slide.Name;
+        slide.arabicName = requestDto.Slide.arabicName; // Update ArabicName here
         slide.IsAdditional = requestDto.Slide.IsAdditional;
 
         // Save changes to the database

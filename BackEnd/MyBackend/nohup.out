@@ -1,0 +1,176 @@
+Building...
+/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: System.IdentityModel.Tokens.Jwt 8.1.2, System.IdentityModel.Tokens.Jwt 6.x.x.
+/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj : warning NU1504: Duplicate 'PackageReference' items found. Remove the duplicate items or use the Update functionality to ensure a consistent restore behavior. The duplicate 'PackageReference' items are: System.IdentityModel.Tokens.Jwt 8.1.2, System.IdentityModel.Tokens.Jwt 6.x.x.
+/usr/share/dotnet/sdk/8.0.403/Sdks/Microsoft.NET.Sdk.Razor/targets/Sdk.Razor.CurrentVersion.targets(449,5): warning RAZORSDK1006: Detected Razor language version downgrade. This is typically caused by a reference to the Microsoft.AspNetCore.Razor.Design package. Consider removing this package reference. [/home/megashieldeg/MegaShiled/BackEnd/MyBackend/MyBackend.csproj]
+warn: Microsoft.AspNetCore.Server.Kestrel[0]
+      Overriding address(es) 'http://0.0.0.0:5176'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:5176
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/megashieldeg/MegaShiled/BackEnd/MyBackend
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@__email_0='?', @__password_1='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."Email", a."JwtToken", a."Name", a."Password"
+      FROM "Admins" AS a
+      WHERE a."Email" = @__email_0 AND a."Password" = @__password_1
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__email_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT a."Id", a."Email", a."JwtToken", a."Name", a."Password"
+      FROM "Admins" AS a
+      WHERE a."Email" = @__email_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p._id = @__p_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT s."Id", s."IsAdditional", s."Name"
+      FROM "Slides" AS s
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT b._id, b."CarSize", b."City", b."CustomerFname", b."CustomerLname", b."CustomerPhone", b."Date", b."Services", b.__v, b."isCompleted"
+      FROM "Bookings" AS b
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__belongTo_0='?'], CommandType='Text', CommandTimeout='30']
+      SELECT p._id, p.__v, p."belongTo", p."bigPrice", p.description, p."mediumPrice", p.name, p."smallPrice"
+      FROM "Packages" AS p
+      WHERE p."belongTo" = @__belongTo_0
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...

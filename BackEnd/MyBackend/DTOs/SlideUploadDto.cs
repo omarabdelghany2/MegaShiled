@@ -7,6 +7,8 @@ namespace MyBackend.DTOs // Ensure the namespace matches your project structure
         public string Name { get; set; } // Slide name
         // public IFormFile Image { get; set; } // Image file
         public bool IsAdditional { get; set; } // New field to indicate if slide is additional
+        public string arabicName { get; set; } = "No Arabic Name"; 
+
     }
 
 
