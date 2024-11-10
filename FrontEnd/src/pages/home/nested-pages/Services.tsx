@@ -27,7 +27,7 @@ const Services = () => {
         <div className={`text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500`}>
           <Heading content={""} />
           <Heading content={""} />
-          <span className={`font-arabic text-xl text-white font-bold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
+          <span className={`font-arabic text-5xl text-white font-bold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
             {t('reserve.sectionOne.description')}
           </span>
           <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
@@ -123,7 +123,7 @@ const SelectCard = ({
   return (
     <button
       type="button"
-      className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing tracking-wider"} text-white text-lg border-solid bg-white border-[5px] shadow-xl ${
+      className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing tracking-wider"} text-white text-lg border-solid bg-white/50 border-[5px] shadow-xl ${
         active ? "border-primary" : "border-transparent"
       } hover:text-primary px-5 py-3 rounded-md transition-colors duration-200
       `}

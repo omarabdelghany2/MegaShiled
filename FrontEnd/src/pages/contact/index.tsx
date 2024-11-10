@@ -1,4 +1,5 @@
 import {
+  Facebook,
   Instagram,
   Link,
   Mail,
@@ -7,6 +8,8 @@ import {
 } from "lucide-react"
 import { useRef } from "react"
 import { useTranslation } from "react-i18next"
+import { FaTiktok } from "react-icons/fa";
+
 
 const Contact = () => {
   const { t } = useTranslation()
@@ -40,7 +43,7 @@ const ContactTable = () => {
   const phoneRef = useRef<HTMLSpanElement>(null)
   const locationRef = useRef<HTMLSpanElement>(null)
   return (
-    <div className="rounded-md  w-full bg-[#111214] relative z-20">
+    <div className=" w-full bg-[#111214] relative z-20">
       <div className="flex items-center py-5 px-3 border-b border-solid border-primary-gray text-white">
         <Mail
           size={35}
@@ -51,43 +54,21 @@ const ContactTable = () => {
           ref={emailRef}
           className="flex-1  text-lg mx-4 font-bold text-white"
         >
-          Megashieldeg@gmail.com
+          info@megashieldeg.com
         </span>
         <a
-          href="mailto:Megashieldeg@gmail.com"
+          href="mailto:info@megashieldeg.com"
           className="hover:scale-110 cursor-pointer"
         >
-          <Link
+          {/* <Link
             size={35}
             className="text-primary"
             color="#d80032"
-          />
+          /> */}
         </a>
       </div>
-      <div className="flex items-center py-5 px-3  border-b border-solid border-primary-gray text-white">
-        <Phone
-          size={35}
-          className="text-primary"
-          color="#d80032"
-        />
-        <span
-          ref={phoneRef}
-          className="flex-1  text-lg mx-4 font-bold text-white"
-        >
-          <bdo dir="ltr">+2010 80001058</bdo>
-        </span>
-        <a
-          className="hover:scale-110 cursor-pointer"
-          href="tel:+201080001058"
-        >
-          <Link
-            size={35}
-            className="text-primary"
-            color="#d80032"
-          />
-        </a>
-      </div>
-      <div className="flex items-center py-5 px-3 text-white border-b border-solid border-primary-gray">
+      
+      <a target="_blank" href="https://www.instagram.com/megashieldd/" className="flex items-center py-5 px-3 text-white border-b border-solid border-primary-gray">
         <Instagram
           size={35}
           className="text-primary"
@@ -101,26 +82,59 @@ const ContactTable = () => {
         </span>
         <span
           className="hover:scale-110 cursor-pointer"
-          onClick={() => {
-            if (phoneRef.current) {
-              navigator.clipboard.writeText(
-                "https://instagram.com/megashieldd?igshid=MzMyNGUyNmU2YQ=="
-              )
-              open(
-                "https://instagram.com/megashieldd?igshid=MzMyNGUyNmU2YQ==",
-                "_blank"
-              )
-            }
-          }}
         >
-          <Link
+          {/* <Link
             size={35}
             className="text-primary"
             color="#d80032"
-          />
+          /> */}
         </span>
-      </div>
-      <div className="flex items-center py-5 px-3 text-white">
+      </a>
+      <a target="_blank" href="https://www.facebook.com/MegashEg?mibextid=LQQJ4d" className="flex items-center py-5 px-3 text-white border-b border-solid border-primary-gray">
+        <Facebook
+          size={35}
+          className="text-primary"
+          color="#d80032"
+        />
+        <span
+          ref={phoneRef}
+          className="flex-1  text-lg mx-4 font-bold text-white"
+        >
+          Facebook
+        </span>
+        <span
+          className="hover:scale-110 cursor-pointer"
+        >
+          {/* <Link
+            size={35}
+            className="text-primary"
+            color="#d80032"
+          /> */}
+        </span>
+      </a>
+      <a target="_blank" href="https://www.tiktok.com/@mega.shield.egypt" className="flex items-center py-5 px-3 text-white border-b border-solid border-primary-gray">
+        <FaTiktok
+          size={35}
+          className="text-primary"
+          color="#d80032"
+        />
+        <span
+          ref={phoneRef}
+          className="flex-1  text-lg mx-4 font-bold text-white"
+        >
+          TikTok
+        </span>
+        <span
+          className="hover:scale-110 cursor-pointer"
+        >
+          {/* <Link
+            size={35}
+            className="text-primary"
+            color="#d80032"
+          /> */}
+        </span>
+      </a>
+      {/* <div className="flex items-center py-5 px-3 text-white">
         <MapPin
           size={35}
           className="text-primary"
@@ -146,13 +160,13 @@ const ContactTable = () => {
             }
           }}
         >
-          <Link
-            size={35}
-            className="text-primary"
-            color="#d80032"
-          />
+          // <Link
+          //   size={35}
+          //   className="text-primary"
+          //   color="#d80032"
+          // />
         </span>
-      </div>
+      </div> */}
     </div>
   )
 }

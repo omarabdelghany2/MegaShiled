@@ -8,7 +8,7 @@
     },
     "header": {
         "home": "Home",
-        "insurance": "Ensurance",
+        "insurance": "Warranty",
         "about": "About",
         "contact": "Contact",
         "shopping": "Shopping",
@@ -17,7 +17,7 @@
     "home": {
         "icon": "Best",
         "title": "Car Care Experts <br/> in the Middle East",
-        "description": "Keep your car shining and protected from scratches with top-notch quality and effectiveness."
+        "description": "Keep your car shining and protected from scratches with top-notch quality and effectiveness"
     },
     "sectionRight" : {
         "shopping": "Shop Now",
@@ -35,8 +35,11 @@
     "location": {
         "title": "Location"
     },
-    "footer": {
-        "address": "28 El-Fath, Fleming, El Raml 1, Alexandria, Egypt"
+   "footer": {
+        "address1": "Alexandria, Fleming",
+        "address2": "Giza, Sheikh Zayed",
+        "address3": "Cairo, Maadi",
+        "address4": "New Damietta City"
     },
     "reserve": {
         "sectionOne": {

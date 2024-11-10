@@ -35,11 +35,12 @@ const Packages = ({
               <div
                 key={itm.id}
                 onClick={() => setSelectedService(itm.id)}
-                className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 ${
+                className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} border border-primary font-bold text-2xl text-white p-2 hover:bg-primary cursor-pointer transition duration-500 flex items-center justify-center gap-4 ${
                   selectedService === itm.id ? "bg-primary" : "bg-transparent"
                 }`}
               >
-                {t('locale.lang') === "ar" ? itm.arabicName : itm.name}
+                <div>{t('locale.lang') === "ar" ? itm.arabicName : itm.name}</div>
+                <img className="w-14" src={ itm.name.toLowerCase() === "thermal tint" ? "./thermaltint.svg": itm.name.toLowerCase() === "paint protection film" ? "./protectionfilm.svg": itm.name.toLowerCase() === "polishing" ? "./polishing.svg" : itm.name.toLowerCase() === "nano ceramic" ? "./nanoceramic.svg" : ""} alt="" />
               </div>
             );
           } else {

@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="pb-20 pt-5 relative w-full bg-carbon z-50 bottom-0">
       <div className="sm:px-8 px-4 text-center flex justify-center items-center">
-        <div className="text-center px-4 flex gap-4 flex-col items-center w-[200px]">
+        <div className="text-center px-4 flex gap-4 flex-col items-center w-[250px]">
           <img
             src={logo}
             alt="logo"
@@ -17,30 +17,39 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="sm:px-8 px-4 border-solid border-primary flex items-center justify-center sm:gap-8 gap-3 flex-wrap max-sm:mb-10">
-        <span className="flex items-center gap-2 my-3">
-          <a href="tel: +201080001058">
-            <Phone size={30} color="#d80032" />
+      <div className="sm:px-8 sm:grid-cols-3 container px-4 border-solid border-primary grid grid-cols-1  sm:gap-8 gap-3 flex-wrap max-sm:mb-10">
+        <span className="flex items-center sm:justify-center justify-start  gap-5 my-3">
+          <a className="bg-primary p-3 rounded-full">
+            <Phone size={30} color="#fff" />
           </a>
-          <h1 className="text-xl text-right ltr">
-            +2010 80001058
+          <h1 className="text-xl text-right flex flex-col ">
+            <a href="tel:201080001059">201080001059 - Cairo </a>
+            <a href="tel:201080001058">201080001058 - Alexandria</a>
+            <a href="tel:201080001052">201080001052 - Giza</a>
+            <a href="tel:201080001057">201080001057 - New Demietta</a>
           </h1>
         </span>
-        <span className="flex items-center gap-2 my-3">
-          <a target="_blank" href="https://www.google.com/maps/place/Mega+shield/@31.2334896,29.9568813,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c514e95ed835:0x4b90810d59faca2d!8m2!3d31.2334896!4d29.9594562!16s%2Fg%2F11vqrlqxw1?entry=ttu&g_ep=EgoyMDI0MTAyOS4wIKXMDSoASAFQAw%3D%3D">
-            <MapPin size={30} color="#d80032" />
+        <span className="flex sm:justify-center justify-start  items-center gap-5 my-3">
+          <a className="bg-primary p-3 rounded-full">
+            <MapPin size={30} color="#ffff" />
           </a>
-          <p className="text-sm font-arabic font-semibold">
-            {t('footer.address')}
+          <p className="text-md flex flex-col gap-2 justify-start text-end gap-2  font-arabic font-semibold">
+            <a target="_blank" href="https://maps.app.goo.gl/F57gKBMC72W4FzxMA">{t('footer.address3')}</a>
+            <a target="_blank" href="https://maps.app.goo.gl/RG1hD1E2qAdJhrM26">{t('footer.address1')}</a>
+            <a target="_blank" href="https://maps.app.goo.gl/2kouaYR9dMB1QKKA8" >{t('footer.address2')}</a>
+            <a target="_blank" href="https://maps.app.goo.gl/u3kv153izMienHpk8">{t('footer.address4')}</a>
           </p>
         </span>
-        <span className="flex items-center gap-2">
-          <a href="mailto:megashieldeg@gmail.com">
-            <MailOpen size={30} color="#d80032" />
+        <span className="flex justify-start items-center gap-5">
+          <a className="bg-primary p-3 rounded-full" href="mailto:info@megashieldeg.com">
+            <MailOpen size={30} color="#fff" />
           </a>
 
-          <p className="text-sm font-arabic font-semibold">
-            megashieldeg@gmail.com
+          <p className="text-md flex flex-col sm:justify-center justify-start text-end gap-2  font-arabic font-semibold">
+            <a>info@megashieldeg.com</a>
+            <a>sales@megashieldeg.com</a>
+            <a>hr@megashieldeg.com</a>
+
           </p>
         </span>
       </div>
