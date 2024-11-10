@@ -11,7 +11,7 @@ const Locations = () => {
       <motion.div className="block m-auto  w-full   relative" />
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
       <div className=" flex flex-col absolute z-[60] items-center justify-center gap-5">
-        <div className=" text-3xl font-arabic text-primary font-bold">
+        <div className={` text-3xl text-primary font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('location.title')}
         </div>
         <motion.div

@@ -1,4 +1,5 @@
 import {
+  useDeleteBookingMutation,
   useDeleteMainServiceMutation,
   // useDeletePackageMutation,
   useDeleteSubServiceMutation,
@@ -63,6 +64,7 @@ const ContentTable = ({
   const [deleteMainService] = useDeleteMainServiceMutation()
   const [toggleState] = useToggleBookingStateToDoneMutation()
   const [deleteSubService] = useDeleteSubServiceMutation()
+  const [deleteBooking] = useDeleteBookingMutation()
   // const [deletePackage] = useDeletePackageMutation()
 
   const dispatch = useAppDispatch()
@@ -180,6 +182,11 @@ const ContentTable = ({
                     {item.services.map((service, i) => (
                       <span key={i}>{service}</span>
                     ))}
+                  </TableCell>
+                  <TableCell>
+                    <Button  onClick={() => {  deleteBooking({ id: item._id }) }} >
+                      مسح
+                    </Button>
                   </TableCell>
                   <TableCell>
                     <Button

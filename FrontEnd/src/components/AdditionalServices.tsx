@@ -7,16 +7,10 @@ import styles from "../components/styles/components/AdditionalServices.module.sc
 import { useTranslation } from "react-i18next"
 
 type PackagesProps = {
-  packages: { title: string; price: number }[]
-  setPackages: React.Dispatch<
-    React.SetStateAction<{ title: string; price: number }[]>
-  >
   carSize: 0 | 1 | 2
 }
 
 const AdditionalServices = ({
-  packages,
-  setPackages,
   carSize,
 }: PackagesProps) => {
   const [additionalServices, setAdditionalServices] = useState<MainService[]>([])
@@ -39,7 +33,7 @@ const AdditionalServices = ({
         <>
             <h1 className={` ${styles.title}`}>
               <span className={styles.line}></span>
-              <div className={`${styles.text} text-primary font-arabic font-bold text-2xl my-5`}>{t('reserve.sectionTwo.title')}</div>
+              <div className={`${styles.text} text-primary font-bold text-2xl my-5 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('reserve.sectionTwo.title')}</div>
               <span className={styles.line}></span>
             </h1>
             <div className={`${styles.additional} `}>
@@ -47,8 +41,6 @@ const AdditionalServices = ({
                 {(item, i) => (
                   <AdditionalServiceCard
                   carSize={carSize}
-                  packages={packages}
-                  setPackages={setPackages}
                   mainService={item}
                   key={i}
                   />

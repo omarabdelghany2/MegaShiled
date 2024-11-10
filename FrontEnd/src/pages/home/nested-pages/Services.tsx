@@ -25,7 +25,8 @@ const Services = () => {
       <div className="text-center bg-room bg-cover bg-center bg-no-repeat relative">
         <div className="absolute inset-0 bg-black/20 z-[-1]" />
         <div className={`text-center flex flex-col z-40 bg-gradient-to-r from-cyan-500 to-blue-500`}>
-          <Heading content={t('reserve.sectionOne.title')} />
+          <Heading content={""} />
+          <Heading content={""} />
           <span className={`font-arabic text-xl text-white font-bold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
             {t('reserve.sectionOne.description')}
           </span>
@@ -75,18 +76,12 @@ const Services = () => {
       </div>
       <div className="container p-5">
         <Packages
-          packages={packages}
-          setPackages={setPackages}
           carSize={active}
           selectedService={selectedService}
           setSelectedService={setSelectedService}
           mainServicesData={mainServicesData}
         />
-        <AdditionalServices
-          carSize={active}
-          packages={packages}
-          setPackages={setPackages}
-        />
+        <AdditionalServices carSize={active} />
         <PersonalInfo
           setPackages={setPackages}
           packages={packages}

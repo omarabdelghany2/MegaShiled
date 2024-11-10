@@ -30,7 +30,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.1 }}
-          className="text-2xl mb-2 text-primary z-10 font-semibold"
+          className={`text-2xl mb-2 text-primary z-10 font-semibold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
         >
           {t('home.icon')}
         </motion.span>
@@ -54,7 +54,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
-          className="max-w-[420px] font-bold text-lg z-10 text-white text-center"
+          className={`max-w-[350px] font-bold text-lg z-10 text-white text-center ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
         >
          {t('home.description')}
         </motion.p>

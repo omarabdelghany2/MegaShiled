@@ -2,6 +2,10 @@
     "locale": {
         "lang": "en"
     },
+    "currency": {
+        "currency": "Pound",
+        "short": "EGP"
+    },
     "header": {
         "home": "Home",
         "insurance": "Ensurance",
@@ -43,7 +47,9 @@
             "large": "Large"
         },
         "sectionTwo": {
-            "title": "Additional Service"
+            "title": "Additional Service",
+            "add": "add",
+            "remove": "remove"
         },
         "sectionThree": {
             "title": "Enter Your Contact Information",

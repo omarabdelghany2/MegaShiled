@@ -27,7 +27,7 @@ const Adds = () => {
       >
         <div className="absolute inset-0 bg-black/25" />
         <div className="z-10 text-center">
-          <h1 className="text-white sm:text-5xl text-4xl mb-4 font-bold font-arabic">
+          <h1 className={`text-white sm:text-5xl text-4xl mb-4 font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
             {t('sectionRight.shopping')}
           </h1>
 
@@ -37,27 +37,26 @@ const Adds = () => {
           >
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
-              <span className="text-xl font-bold font-arabic">
+              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
                 {t('sectionRight.titleone')}
               </span>
             </li>
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
-              <span className="text-xl font-bold font-arabic">
+              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
               {t('sectionRight.titletwo')}
               </span>
             </li>
             <li className="flex items-center gap-2">
               <SearchCheck color="#d80032" />
-              <span className="text-xl font-bold font-arabic">
+              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
               {t('sectionRight.titlethree')}
               </span>
             </li>
           </ul>
           <Link to={"/shopping"}>
             <button
-              className="flex items-center justify-center text-3xl font-bold font-arabic h-20 w-[220px] bg-primary hover:scale-90 mx-auto my-5
-          border-4 border-solid border-transparent transition-colors"
+              className={`flex items-center justify-center text-3xl font-bold h-20 w-[220px] bg-primary hover:scale-90 mx-auto my-5 border-4 border-solid border-transparent transition-colors ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
             >
               {t('sectionRight.button')}
             </button>
@@ -75,7 +74,7 @@ const Adds = () => {
       >
         <div className="z-10 text-center flex flex-col">
           <div className="absolute inset-0 bg-black/25" />
-          <h1 className="text-white sm:text-5xl text-4xl z-50 font-bold font-arabic mb-4">
+          <h1 className={`text-white sm:text-5xl text-4xl z-50 font-bold mb-4 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('sectionLeft.book')}
           </h1>
 
@@ -86,9 +85,9 @@ const Adds = () => {
           />
 
           <button
-            className="flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
+            className={`flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors hover:scale-90"
+          transition-colors hover:scale-90 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
             onClick={() => navigate("/service")}
           >
             {t('sectionLeft.button')}
