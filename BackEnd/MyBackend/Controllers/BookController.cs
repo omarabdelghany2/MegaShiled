@@ -59,7 +59,6 @@ public class BookingsController : ControllerBase
             return Ok(booking); // Return the found booking
         }
 
-        // POST: api/bookings
         [HttpPost]
         public async Task<ActionResult<Book>> CreateBooking([FromBody] Book booking)
         {
@@ -68,30 +67,52 @@ public class BookingsController : ControllerBase
                 return BadRequest("Booking data is required.");
             }
 
-            // Log the received booking data
-            // Console.WriteLine($"Received booking: {System.Text.Json.JsonSerializer.Serialize(booking)}");
-            string messageContent = $"Megashield: تم تأكيد حجزك في {FormatBookingDateWithTime(booking.Date)}.";
+            // Check if there is an existing incomplete booking with the same phone number
+            var existingBooking = await _context.Bookings
+                .FirstOrDefaultAsync(b => b.CustomerPhone == booking.CustomerPhone && !b.isCompleted);
 
+            if (existingBooking != null)
+            {
+                return BadRequest("There is already an existing reservation with this phone number that is not completed.");
+            }
 
-            // string adminMessageContent = $"Megashield: حجز جديد. تاريخ: {FormatBookingDateWithTime(booking.Date)}.";
-            // string adminMessageContent = $"Megashield: حجز جديد للعميل {booking.CustomerFname}.";
+            // Replace each service ID with the corresponding arabicName
+            var updatedServices = new List<string>();
+            foreach (var serviceId in booking.Services)
+            {
+                // Fetch the package by ID
+                var package = await _context.Packages.FindAsync(serviceId);
+                if (package != null)
+                {
+                    // Replace the ID with the arabicName of the package
+                    updatedServices.Add(package.arabicName);
+                }
+                else
+                {
+                    // If the package ID is invalid or not found, add a default or skip
+                    updatedServices.Add("Unknown Service");
+                }
+            }
 
-
-
-
-            Console.WriteLine(messageContent);
+            // Update the Services property with the Arabic names
+            booking.Services = updatedServices.ToArray();
 
             // Save the new booking (with auto-generated _id and __v)
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
-            // Send SMS notification to the customer
-            SendSms("+15162724216", booking.CustomerPhone, messageContent); // Replace with your Twilio number and customer's phone
-            // SendSms("+15162724216", "+201557348682", adminMessageContent); // This is admin message
+            // Prepare SMS message contents
+            // string messageContent = $"Megashield: تم تأكيد حجزك في {FormatBookingDateWithTime(booking.Date)}.";
+            // string adminMessageContent = $"Megashield: حجز جديد. تاريخ: {FormatBookingDateWithTime(booking.Date)}.";
+            // string adminMessageContent = $"Megashield: حجز جديد للعميل {booking.CustomerFname}.";
 
+            // Send SMS notification to the customer and admin
+            // SendSms("+15162724216", booking.CustomerPhone, messageContent); // Replace with your Twilio number and customer's phone
+            // SendSms("+15162724216", "+201557348682", adminMessageContent); // This is admin message
 
             return CreatedAtAction(nameof(GetBookingById), new { id = booking._id }, booking);
         }
+
 
 
 
