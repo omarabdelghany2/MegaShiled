@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`sm:flex hidden items-center justify-center gap-6 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} `}>
+      <nav className={`sm:flex hidden items-center justify-center gap-6 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing flex-row-reverse"} `}>
         <div className="h-14 grid place-content-center">
           <NavLink to="/" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('header.home')}</NavLink>
         </div>

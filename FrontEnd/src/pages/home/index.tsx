@@ -23,7 +23,7 @@ const Page = () => (
     {/* <About /> */}
     {/* <Welcome /> */}
     <Adds />
-    <Locations />
+    {/* <Locations /> */}
   </main>
 )
 

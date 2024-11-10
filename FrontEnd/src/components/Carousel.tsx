@@ -19,7 +19,7 @@ const Carousel = () => {
       >
         <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop playsInline></video>
         <div className="absolute z-9 inset-0 bg-black/20 backdrop-blur-sm" />
-        <div className="z-10 bg-white rounded-full p-3 mb-2">
+        <div className="z-10 bg-white/20 rounded-full p-3 mb-2">
           <CarIcon  
             size={55}
             color="#d80032"
@@ -38,7 +38,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.3 }}
-          className={`z-10 text-6xl ${ t("locale.lang") === "en" ? "tracking-wider font-bold font-landing": "font-arabic" } text-center mb-2 text-white leading-[70px]`}
+          className={`z-10 text-6xl ${ t("locale.lang") === "en" ? "tracking-wider text-7xl font-bold font-landing": "font-arabic" } text-center mb-2 text-white leading-[70px]`}
           dangerouslySetInnerHTML={{ __html: t('home.title') }}
         >
          
@@ -54,7 +54,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
-          className={`max-w-[350px] font-bold text-lg z-10 text-white text-center ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
+          className={`max-w-[450px] font-bold text-2xl z-10 text-white text-center ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
         >
          {t('home.description')}
         </motion.p>

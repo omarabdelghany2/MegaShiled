@@ -22,12 +22,12 @@ const Adds = () => {
           transition: { delay: 1, duration: 2 },
         }}
         viewport={{ once: true }}
-        className="flex-1 flex justify-center items-center bg-wheel bg-cover bg-no-repeat bg-blend-overlay
+        className="flex-1 flex justify-center pt-10 bg-wheel bg-cover bg-no-repeat bg-blend-overlay
       relative"
       >
         <div className="absolute inset-0 bg-black/25" />
         <div className="z-10 text-center">
-          <h1 className={`text-white sm:text-5xl text-4xl mb-4 font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+          <h1 className={`text-white sm:text-8xl text-5xl mb-4 font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
             {t('sectionRight.shopping')}
           </h1>
 
@@ -35,19 +35,19 @@ const Adds = () => {
             className="flex flex-col justify-center items-start gap-4 list-none
           mb-6"
           >
-            <li className="flex items-center gap-2">
+            <li className="flex items-center justify-center w-full gap-2">
               <SearchCheck color="#d80032" />
-              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+              <span className={`text-xl  font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
                 {t('sectionRight.titleone')}
               </span>
             </li>
-            <li className="flex items-center gap-2">
+            <li className="flex items-center justify-center w-full gap-2">
               <SearchCheck color="#d80032" />
               <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
               {t('sectionRight.titletwo')}
               </span>
             </li>
-            <li className="flex items-center gap-2">
+            <li className="flex items-center justify-center w-full gap-2">
               <SearchCheck color="#d80032" />
               <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
               {t('sectionRight.titlethree')}
@@ -56,7 +56,7 @@ const Adds = () => {
           </ul>
           <Link to={"/shopping"}>
             <button
-              className={`flex items-center justify-center text-3xl font-bold h-20 w-[220px] bg-primary hover:scale-90 mx-auto my-5 border-4 border-solid border-transparent transition-colors ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
+              className={`flex items-center  justify-center text-3xl font-bold h-20 w-[220px] absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-primary hover:scale-90 mx-auto my-5 border-4 border-solid border-transparent transition-colors ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
             >
               {t('sectionRight.button')}
             </button>
@@ -70,11 +70,11 @@ const Adds = () => {
           transition: { delay: 1, duration: 2 },
         }}
         viewport={{ once: true }}
-        className="flex-1 flex justify-center items-center bg-shopping bg-cover bg-no-repeat bg-blend-overlay relative"
+        className="flex-1 flex justify-center pt-10 bg-shopping bg-cover bg-no-repeat bg-blend-overlay relative"
       >
         <div className="z-10 text-center flex flex-col">
           <div className="absolute inset-0 bg-black/25" />
-          <h1 className={`text-white sm:text-5xl text-4xl z-50 font-bold mb-4 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+          <h1 className={`text-white sm:text-8xl text-4xl z-50 font-bold mb-4 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('sectionLeft.book')}
           </h1>
 
@@ -85,7 +85,7 @@ const Adds = () => {
           />
 
           <button
-            className={`flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
+            className={`flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 bottom-0  z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
           border-4 border-solid border-transparent
           transition-colors hover:scale-90 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
             onClick={() => navigate("/service")}
