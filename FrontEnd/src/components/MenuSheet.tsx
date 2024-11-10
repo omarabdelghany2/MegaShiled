@@ -10,11 +10,13 @@ import { NavLink } from "."
 import { useEffect, useRef } from "react"
 import { useLocation } from "react-router-dom"
 import { useInView } from "framer-motion"
+import { useTranslation } from "react-i18next"
 
 const MenuSheet = () => {
   const ref = useRef<HTMLButtonElement>(null)
   const location = useLocation()
   const isInView = useInView(ref)
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (isInView) ref?.current?.click()
@@ -29,12 +31,12 @@ const MenuSheet = () => {
         <SheetHeader>
           <SheetDescription>
             <nav className="flex flex-col items-center justify-center gap-6">
-              <NavLink to="/">الرئيسية</NavLink>
-              <NavLink to="/insurance">الضمان</NavLink>
-              <NavLink to="/who">من نحن</NavLink>
-              <NavLink to="/contact">تواصل معنا</NavLink>
-              <NavLink to="/shopping">التسوق</NavLink>
-              <NavLink to="/service">الحجز</NavLink>
+              <NavLink to="/">{ t("header.home") }</NavLink>
+              <NavLink to="/insurance">{ t("header.insurance") }</NavLink>
+              <NavLink to="/who">{ t("header.about") }</NavLink>
+              <NavLink to="/contact">{ t("header.contact") }</NavLink>
+              <NavLink to="/shopping">{ t("header.shopping") }</NavLink>
+              <NavLink to="/service">{ t("header.reserve") }</NavLink>
             </nav>
           </SheetDescription>
         </SheetHeader>

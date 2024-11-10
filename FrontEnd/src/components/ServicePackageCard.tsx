@@ -76,8 +76,7 @@ const ServicePackageCard = ({
         </div>
         <Button
           className={` font-arabic text-xl  flex items-center mt-auto justify-center absolute bottom-2 left-2 right-2  ${
-            packages.filter(p => p.title === title).length >
-            0
+            packages.filter(p => p. === title).length > 0
               ? "bg-green-600 hover:bg-green-600"
               : ""
           } bg-transparent border-2 border-solid border-primary`}

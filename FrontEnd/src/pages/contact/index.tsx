@@ -5,11 +5,11 @@ import {
   MapPin,
   Phone,
 } from "lucide-react"
-import illustration from "/mobile-car.png"
 import { useRef } from "react"
-import { toast } from "react-toastify"
+import { useTranslation } from "react-i18next"
 
 const Contact = () => {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen container mt-20 p-5 flex flex-col items-center justify-center">
       <section className="-m-5">
@@ -21,12 +21,11 @@ const Contact = () => {
             className="sm:w-[400px] mb-5"
           />
         </div> */}
-          <h1 className="sm:text-5xl text-3xl font-arabic text-primary">
-            تواصل معنا.
+          <h1 className={`sm:text-5xl text-3xl text-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landling"} `}>
+            { t("contact.title") }
           </h1>
-          <p className="sm:text-lg text-base font-arabic my-5 text-primary">
-            نسعي لاجابة كل اسئلة و استفسارات عملائنا من خلال
-            وسائل التواصل الخاصة بنا.
+          <p className={`sm:text-lg text-base my-5 text-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landling"} `}>
+            { t("contact.description") }
           </p>
         </div>
       </section>

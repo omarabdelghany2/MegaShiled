@@ -48,7 +48,7 @@ const AddPackageModal = ({
       id,
       props: {
         description: englishFeatures.split(","),
-        arabicDescription: arabicFeatures.split(","),
+        arabicDescription: arabicFeatures.split("،"),
         smallPrice,
         bigPrice,
         mediumPrice,
@@ -70,7 +70,7 @@ const AddPackageModal = ({
 
     if (singlePackage) {
       setEnglishFeatures(singlePackage?.description.join(","))
-      setArabicFeatures(singlePackage?.arabicDescription.join(","))
+      setArabicFeatures(singlePackage?.arabicDescription.join("،"))
       setSmallPrice(singlePackage?.smallPrice)
       setMediumPrice(singlePackage?.mediumPrice)
       setBigPrice(singlePackage?.bigPrice)

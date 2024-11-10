@@ -8,7 +8,7 @@
         "about": "About",
         "contact": "Contact",
         "shopping": "Shopping",
-        "reserve": "Reservation"
+        "reserve": "Booking"
     },
     "home": {
         "icon": "Best",
@@ -62,5 +62,9 @@
         "sectionFive": {
             "button": "Book"
         }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "We strive to answer all our customers' questions and inquiries through our means of communication"
     }
 }

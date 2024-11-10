@@ -17,7 +17,7 @@ const Carousel = () => {
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
-        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop></video>
+        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop playsInline></video>
         <div className="absolute z-9 inset-0 bg-black/20 backdrop-blur-sm" />
         <div className="z-10 bg-white rounded-full p-3 mb-2">
           <CarIcon  

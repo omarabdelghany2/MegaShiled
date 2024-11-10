@@ -56,9 +56,8 @@ const Adds = () => {
           </ul>
           <Link to={"/shopping"}>
             <button
-              className="flex items-center justify-center text-3xl font-bold font-arabic h-20 w-[220px] bg-primary mx-auto my-5
-          border-4 border-solid border-transparent
-          transition-colors"
+              className="flex items-center justify-center text-3xl font-bold font-arabic h-20 w-[220px] bg-primary hover:scale-90 mx-auto my-5
+          border-4 border-solid border-transparent transition-colors"
             >
               {t('sectionRight.button')}
             </button>
@@ -89,7 +88,7 @@ const Adds = () => {
           <button
             className="flex items-center justify-center z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
           border-4 border-solid border-transparent
-          transition-colors"
+          transition-colors hover:scale-90"
             onClick={() => navigate("/service")}
           >
             {t('sectionLeft.button')}
