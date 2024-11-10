@@ -330,3 +330,4 @@
 /home/megashieldeg/MegaShiled/BackEnd/MyBackend/obj/Debug/net8.0/MyBackend.pdb
 /home/megashieldeg/MegaShiled/BackEnd/MyBackend/obj/Debug/net8.0/MyBackend.genruntimeconfig.cache
 /home/megashieldeg/MegaShiled/BackEnd/MyBackend/obj/Debug/net8.0/ref/MyBackend.dll
+/home/megashieldeg/MegaShiled/BackEnd/MyBackend/bin/Debug/net8.0/Twilio.dll
