@@ -117,6 +117,17 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["mainServices"],
     }),
+    DeleteBooking: builder.mutation<
+      void,
+      { id: string }
+    >({
+      query: arg => ({
+        url: `/bookings/${arg.id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["mainServices"],
+    }),
     GetAllMainServices: builder.query<
       { mainServices: MainService[]; count: number },
       any
@@ -325,6 +336,7 @@ export const {
   useGetAllBookingsQuery,
   useToggleBookingStateToDoneMutation,
   useGetAllBendingBookingsQuery,
+  useDeleteBookingMutation,
   useGetSubServicesQuery,
   useAddSubServiceMutation,
   useDeleteSubServiceMutation,

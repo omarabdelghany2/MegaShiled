@@ -1,7 +1,7 @@
 import {  CarFront } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useAddBookingMutation, useGetAllReservedDatesQuery } from "@/app/api/ServicesApiSlice"
 import { toast } from "react-toastify"
 import Calendar from 'react-calendar';
@@ -10,6 +10,9 @@ import { isFriday, isSunday , format, isSameDay, addDays, setHours, setMinutes, 
 
 import "../styles/calendar/calendar.scss"
 import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { clearCart } from "@/app/features/BookingCartSlice"
 
 type PersonalInfoProps = {
   carSize: 0 | 1 | 2
@@ -26,14 +29,13 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const PersonalInfo = ({
   carSize,
-  packages,
 }: PersonalInfoProps) => {
-  const [packagesName, setPackagesName] = useState<string[]>([])
   const tomorrow = addDays(new Date(), 1)
   const minDate = isSunday(tomorrow) ? addDays(tomorrow, 1) : tomorrow;
   const { t } = useTranslation();
   const { data: dates } = useGetAllReservedDatesQuery("")
-
+  const cart = useSelector((state: RootState) => state.bookingCart);
+  const dispatch = useDispatch();
 
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
@@ -64,14 +66,6 @@ const PersonalInfo = ({
     "8:00 PM",
   ]
   
-
-  useEffect(() => {
-    setPackagesName([])
-    packages.forEach(item => {
-      setPackagesName(prev => [...prev, item.title])
-    })
-  }, [packages])
-
   const [book] = useAddBookingMutation()
 
   const handleAddBooking = (
@@ -98,7 +92,7 @@ const PersonalInfo = ({
       customerLname: lastName,
       customerPhone: phone,
       date: `${concatenateDateAndTime(format(value as Date, 'yyyy-MM-dd'), time)}`,
-      services: packagesName,
+      services: cart.items.map(itm => itm.id),
     })
       .unwrap()
       .then(() => {
@@ -108,6 +102,7 @@ const PersonalInfo = ({
         setPhone('')
         setCity('')
         setTime('')
+        dispatch(clearCart())
       })
       .catch(err => {
         toast(err.data.msg, { type: "error" })
@@ -146,54 +141,38 @@ const PersonalInfo = ({
       <form
         className={styles.form}
       >
-        <h1 className="w-fit mx-auto text-primary text-2xl mb-6 font-arabic font-semibold">
+        <h1 className={`w-fit mx-auto text-primary text-2xl mb-6 font-semibold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
           {t('reserve.sectionThree.title')}
         </h1>
         <Input
-          className="my-4 font-arabic text-lg placeholder:text-white text-white"
+          className={`my-4 font-arabic text-lg placeholder:text-white text-white ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
           placeholder={t('reserve.sectionThree.fname')}
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
         <Input
-          className="my-4 font-arabic text-lg placeholder:text-white text-white"
+          className={`my-4 font-arabic text-lg placeholder:text-white text-white ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
           placeholder={t('reserve.sectionThree.lname')}
           value={lastName}
           onChange={e => setLastName(e.target.value)}
         />
         <Input
-          className="my-4 font-arabic text-lg placeholder:text-white text-white"
+          className={`my-4 font-arabic text-lg placeholder:text-white text-white ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
           placeholder={t('reserve.sectionThree.city')}
           value={city}
           onChange={e => setCity(e.target.value)}
         />
         <Input
           type="tel"
-          className="my-4 font-arabic text-lg  ltr text- placeholder:text-white placeholder:text-right text-white"
+          className={`my-4 font-arabic text-lg  ltr text- placeholder:text-white placeholder:text-right text-white ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
           placeholder={t('reserve.sectionThree.phone')}
           value={phone}
           onChange={e => setPhone(e.target.value)}
         />
-        {/* <Input
-          className="my- placeholder:text-white text-white mb-4"
-          type="datetime-local"
-          onChange={e =>
-            setDate(
-              new Date(e.target.value).toLocaleString([], {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              })
-            )
-          }
-        /> */}
       </form>
       <div className="flex-1 grid grid-cols-2 gap-3 z-10">
         <div className={styles.carsize}>
-          <h1 className="w-fit mx-auto text-xl text-primary font-arabic">
+          <h1 className={`w-fit mx-auto text-xl text-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('reserve.sectionFour.carSize')}
           </h1>
           <div className="my-5">
@@ -203,40 +182,42 @@ const PersonalInfo = ({
               size={50}
             />
           </div>
-          <span className="font-arabic text-xl font-bold">
+          <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
             {carSize === 0
-              ? (t('locale.lang') === "ar" ? "صغير": "small")
+              ? (t('locale.lang') === "ar" ? "صغير": "Small")
               : carSize === 1
-              ? (t('locale.lang') === "ar" ? "وصط": "medium")
-              : (t('locale.lang') === "ar" ? "كبير": "big")
+              ? (t('locale.lang') === "ar" ? "وسط": "Medium")
+              : (t('locale.lang') === "ar" ? "كبير": "Large")
               }
           </span>
         </div>
         <div className={styles.service}>
-          <h1
-            className="w-fit mx-auto text-xl font-bold
-          text-primary font-arabic"
-          >
+          <h1 className={`w-fit mx-auto text-xl font-bold text-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`} >
             {t('reserve.sectionFour.service')}
           </h1>
-          <p className="flex items-center justify-center font-arabic flex-wrap gap-4 text-lg">
-            {packagesName.join(" + ")}
+          <p className="flex flex-col items-end gap-4">
+            {
+              cart.items.map(itm => (
+                <div key={itm.id} className={`text-lg text-white ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>{itm.name}</div>
+              ))
+            }
           </p>
         </div>
         <div className={styles.total}>
-          <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
+          <h1 className={`w-fit mx-auto text-xl font-bold text-primary ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
           {t('reserve.sectionFour.total')}
           </h1>
-          <span className=" font-arabic text-2xl my-auto">
-            {`${packages.reduce((a, b) => a + +b.price, 0)} EGP`}
+          <span className={`text-2xl my-auto flex flex-row-reverse gap-2  ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+            <div>{cart.totalAmount}</div>
+            <div>{ t("currency.short") }</div>
           </span>
         </div>
         <div className={styles.date}>
-          <h1 className="w-fit mx-auto text-xl font-bold text-primary font-arabic">
+          <h1 className={`w-fit mx-auto text-xl font-bold text-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('reserve.sectionFour.date')}
           </h1>
-          <p className="flex items-center justify-center gap-3">
-            <span className="font-arabic text-2xl my-auto mt-8">
+          <p className="flex items-center h-full justify-center gap-3">
+            <span className={`font-arabic text-2xl my-auto  ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
               {value ? `${format(value as Date, 'yyyy-MM-dd')}` : "اختر تاريخ الحجز"}
             </span>
           </p>
@@ -282,7 +263,7 @@ const PersonalInfo = ({
         })}
         </div>
         <Button
-          className={`${styles.send} text-lg font-arabic w-full bg-transparent border-2 border-primary`}
+          className={`${styles.send} text-lg w-full bg-transparent border-2 border-primary ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
           onClick={handleAddBooking}
         >
           {t('reserve.sectionFive.button')}

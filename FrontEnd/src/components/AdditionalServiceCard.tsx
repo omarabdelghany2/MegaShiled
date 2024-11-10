@@ -8,51 +8,29 @@ import { For } from "@dev-amr/react-sugartax"
 
 const AdditionalServiceCard = ({
   mainService,
-  packages,
-  setPackages,
   carSize,
 }: {
   mainService: MainService
-  packages: { title: string; price: number }[]
-  setPackages: React.Dispatch<
-    React.SetStateAction<{ title: string; price: number }[]>
-  >
   carSize: 0 | 1 | 2
 }) => {
-  const { data: subservices } = useGetSubServicesQuery({
-    id: mainService.id,
-  })
-  const { data: servicePackages } = useGetSubServicePackagesQuery({ id: subservices?.services[0]?._id || ""})
+  const { data: subservices } = useGetSubServicesQuery({ id: mainService.id })
+  const { data: servicePackages } = useGetSubServicePackagesQuery({ id: subservices?.packages[0]._id || ""})
 
   return (
     <div
-      className="flex-1 bg-cover bg-center bg-no-repeat  p-5  border border-solid border-transparent"
-      // style={{
-      //   backgroundImage: `url("/carbonfiber.jpg")`,
-      // }}
-    >
-      {/* <h1 className="mx-auto w-fit text-3xl font-arabic text-primary">
-        {mainService.name}
-      </h1> */}
-
+      className="flex-1 bg-cover bg-center bg-no-repeat  p-5  border border-solid border-transparent" >
       <div className="overflow-y-scroll no-scroll">
-        <div className="grid grid-columns">
+        <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
           {servicePackages?.packages && (
             <For each={servicePackages?.packages}>
               {(item, i) => (
                   item.belongTo === mainService.name ? (
                     <AdditionalServicePackageCard
-                      price={
-                        carSize === 0
-                          ? item.smallPrice
-                          : carSize === 1
-                          ? item.mediumPrice
-                          : item.bigPrice
-                      }
+                      id={item._id}
+                      title={item.name}
+                      price={ carSize === 0 ? item.smallPrice : carSize === 1  ? item.mediumPrice : item.bigPrice }
                       servicePackage={item}
                       key={i}
-                      packages={packages}
-                      setPackages={setPackages}
                     />
                   ) : <></>
               )}

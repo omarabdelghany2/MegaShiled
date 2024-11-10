@@ -5,10 +5,6 @@ import { MainService } from "@/types"
 import { useTranslation } from "react-i18next"
 
 type PackagesProps = {
-  packages: { title: string; price: number }[]
-  setPackages: React.Dispatch<
-    React.SetStateAction<{ title: string; price: number }[]>
-  >
   carSize: 0 | 1 | 2
   selectedService: string
   setSelectedService: React.Dispatch<React.SetStateAction<string>>;
@@ -19,8 +15,6 @@ type PackagesProps = {
 }
 
 const Packages = ({
-  setPackages,
-  packages,
   carSize,
   selectedService,
   setSelectedService,
@@ -33,11 +27,6 @@ const Packages = ({
 
   return (
     <div className="text-center mt-14">
-      {/* <ServicesSlider
-        setSubServiceID={setSubServiceID}
-        subServiceID={subServiceID}
-      /> */}
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  gap-3 auto-cols-auto ">
       {
         mainServicesData?.mainServices.map((itm) => {
@@ -62,25 +51,18 @@ const Packages = ({
       <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start p-8  ">
         {
         subServicePackages && subServicePackages.count > 0 && 
-          subServicePackages.packages.map((packagely, i) => {
-            // Use find to get the matching item from mainServices
+          subServicePackages.packages.map((packagely, _) => {
             const matchingService = mainServicesData?.mainServices.find(
               (item) => item.name === packagely.belongTo && item.isAdditional == false && item.id === selectedService
             );
+            
             return matchingService ? (
               <ServicePackageCard
-                key={i} 
-                packages={packages}
-                setPackages={setPackages}
+                key={packagely._id} 
+                id={packagely._id}
                 title={t('locale.lang') === "ar" ? packagely.arabicName : packagely.name}
                 features={t('locale.lang') === "ar" ? packagely.arabicDescription : packagely.description}
-                price={
-                  carSize === 0
-                    ? packagely.smallPrice
-                    : carSize === 1
-                    ? packagely.mediumPrice
-                    : packagely.bigPrice
-                }
+                price={ carSize === 0 ? (packagely.smallPrice || 0)  : carSize === 1 ? (packagely.mediumPrice || 0) : (packagely.bigPrice || 0) }
               />
             ) : null;
           })

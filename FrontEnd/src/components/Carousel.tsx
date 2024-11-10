@@ -17,7 +17,7 @@ const Carousel = () => {
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
-        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop></video>
+        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop playsInline></video>
         <div className="absolute z-9 inset-0 bg-black/20 backdrop-blur-sm" />
         <div className="z-10 bg-white rounded-full p-3 mb-2">
           <CarIcon  
@@ -30,7 +30,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.1 }}
-          className="text-2xl mb-2 text-primary z-10 font-semibold"
+          className={`text-2xl mb-2 text-primary z-10 font-semibold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
         >
           {t('home.icon')}
         </motion.span>
@@ -54,7 +54,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.7 }}
-          className="max-w-[420px] font-bold text-lg z-10 text-white text-center"
+          className={`max-w-[350px] font-bold text-lg z-10 text-white text-center ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
         >
          {t('home.description')}
         </motion.p>

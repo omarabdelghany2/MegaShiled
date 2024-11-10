@@ -2,13 +2,17 @@
     "locale": {
         "lang": "en"
     },
+    "currency": {
+        "currency": "Pound",
+        "short": "EGP"
+    },
     "header": {
         "home": "Home",
         "insurance": "Ensurance",
         "about": "About",
         "contact": "Contact",
         "shopping": "Shopping",
-        "reserve": "Reservation"
+        "reserve": "Booking"
     },
     "home": {
         "icon": "Best",
@@ -43,7 +47,9 @@
             "large": "Large"
         },
         "sectionTwo": {
-            "title": "Additional Service"
+            "title": "Additional Service",
+            "add": "add",
+            "remove": "remove"
         },
         "sectionThree": {
             "title": "Enter Your Contact Information",
@@ -62,5 +68,9 @@
         "sectionFive": {
             "button": "Book"
         }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "We strive to answer all our customers' questions and inquiries through our means of communication"
     }
 }

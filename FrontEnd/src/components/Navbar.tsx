@@ -14,21 +14,19 @@ const Navbar = () => {
     <>
       <nav className={`sm:flex hidden items-center justify-center gap-6 ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"} `}>
         <div className="h-14 grid place-content-center">
-          <NavLink to="/">{t('header.home')}</NavLink>
+          <NavLink to="/" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('header.home')}</NavLink>
         </div>
 
         <div className="h-14 grid place-content-center">
           <NavLink
             to="/insurance"
-            className="relative text-slate-200 transition-colors duration-500 font-bold text-lg hover:text-primary before:content-[''] before:absolute
-            before:w-full before:h-1 before:bg-primary before:-bottom-2 before:duration-500 before:transition-transform before:scale-y-0 hover:before:scale-y-100 before:origin-top"
-          >
+            className={`relative text-slate-200 transition-colors duration-500 font-bold text-lg hover:text-primary before:content-[''] before:absolute before:w-full before:h-1 before:bg-primary before:-bottom-2 before:duration-500 before:transition-transform before:scale-y-0 hover:before:scale-y-100 before:origin-top ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`} >
             {t('header.insurance')}
           </NavLink>
         </div>
 
         <div className="h-14 grid place-content-center">
-          <NavLink to="/who">{t('header.about')}</NavLink>
+          <NavLink to="/who" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('header.about')}</NavLink>
         </div>
 
         <Link to={"/"}>
@@ -43,15 +41,15 @@ const Navbar = () => {
         </Link>
 
         <div className="h-14 grid place-content-center">
-          <NavLink to="/contact">{t('header.contact')}</NavLink>
+          <NavLink to="/contact" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('header.contact')}</NavLink>
         </div>
 
         <div className="h-14 grid place-content-center">
-          <NavLink to="/shopping">{t('header.shopping')}</NavLink>
+          <NavLink to="/shopping" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>{t('header.shopping')}</NavLink>
         </div>
 
         <div className="h-14 grid place-content-center">
-          <NavLink to="/service" children={t('header.reserve')} />
+          <NavLink to="/service" className={`${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`} children={t('header.reserve')} />
         </div>
       </nav>
         <div className="flex">

@@ -18,7 +18,7 @@ const Bookings = () => {
   return (
     <div>
       <form className="my-5">
-        <div className="flex items-center gap-3 text-sm font-arabic">
+        {/* <div className="flex items-center gap-3 text-sm font-arabic">
           <input
             type="radio"
             name="filter"
@@ -42,7 +42,7 @@ const Bookings = () => {
           <label htmlFor="filter-2">
             عرض الحجوزات المتظرة
           </label>
-        </div>
+        </div> */}
       </form>
       <div className=" overflow-x-scroll max-md:w-[90vw] mx-auto no-scroll">
         {items && pendingItems && (
