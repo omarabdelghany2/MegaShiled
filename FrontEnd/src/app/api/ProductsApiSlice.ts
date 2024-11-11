@@ -58,7 +58,7 @@ const productsSlice = apiSlice.injectEndpoints({
     GetProducts: builder.query<{
       [x: string]: any; products: { id: string; name: string; price: number ; description: string; imageFileName: string; colors: string[]; featured: boolean; freeShipping: boolean; inventory: number; }[] 
 }, any>({
-      query: arg => ({
+      query: _ => ({
         url: `/products`,
         credentials: "include",
         headers: {

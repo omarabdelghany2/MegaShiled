@@ -12,12 +12,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "./ui/input"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Label } from "./ui/label"
 import { Button } from "./ui/button"
 import {
   useAddMainServiceMutation,
-  useGetServiceByIDQuery,
   useUpdateMainServiceMutation,
 } from "@/app/api/ServicesApiSlice"
 
@@ -41,9 +40,9 @@ const ServiceModal = ({
   const isOpen = useAppSelector(IsServiceModalOpenSelector)
   const dispatch = useAppDispatch()
 
-  const { data: mainService } = useGetServiceByIDQuery({
-    id: id,
-  })
+  // const { data: mainService } = useGetServiceByIDQuery({
+  //   id: id,
+  // })
 
   const [addMainService] = useAddMainServiceMutation()
   const [updateMainService] = useUpdateMainServiceMutation()

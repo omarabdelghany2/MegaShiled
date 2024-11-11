@@ -69,7 +69,10 @@ public class BookingsController : ControllerBase
 
             // Check if there is an existing incomplete booking with the same phone number
             var existingBooking = await _context.Bookings
-                .FirstOrDefaultAsync(b => b.CustomerPhone == booking.CustomerPhone && !b.isCompleted);
+                .FirstOrDefaultAsync(b => b.CustomerPhone.StartsWith("+2") && 
+                                        b.CustomerPhone == booking.CustomerPhone && 
+                                        !b.isCompleted);
+
 
             if (existingBooking != null)
             {
@@ -102,12 +105,12 @@ public class BookingsController : ControllerBase
             await _context.SaveChangesAsync();
 
             // Prepare SMS message contents
-            // string messageContent = $"Megashield: تم تأكيد حجزك في {FormatBookingDateWithTime(booking.Date)}.";
+            string messageContent = $"Megashield: تم تأكيد حجزك في {FormatBookingDateWithTime(booking.Date)}.";
             // string adminMessageContent = $"Megashield: حجز جديد. تاريخ: {FormatBookingDateWithTime(booking.Date)}.";
             // string adminMessageContent = $"Megashield: حجز جديد للعميل {booking.CustomerFname}.";
 
             // Send SMS notification to the customer and admin
-            // SendSms("+15162724216", booking.CustomerPhone, messageContent); // Replace with your Twilio number and customer's phone
+            SendSms("+15162724216", booking.CustomerPhone, messageContent); // Replace with your Twilio number and customer's phone
             // SendSms("+15162724216", "+201557348682", adminMessageContent); // This is admin message
 
             return CreatedAtAction(nameof(GetBookingById), new { id = booking._id }, booking);

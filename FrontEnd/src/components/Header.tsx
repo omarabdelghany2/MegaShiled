@@ -1,11 +1,9 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Navbar } from "."
 import logo from "/logo.png"
-import { motion, useInView } from "framer-motion"
-import { useEffect, useRef } from "react"
+import { motion } from "framer-motion"
 
 const Header = () => {
-  const navigate = useNavigate()
 
   return (
     <header className="h-20 bg-[#111214]/70 fixed inset-x-0 top-0 z-[10000000]">

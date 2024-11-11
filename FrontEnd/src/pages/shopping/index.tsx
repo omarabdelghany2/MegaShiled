@@ -1,10 +1,7 @@
-import { useGetProductsQuery } from "@/app/api/ProductsApiSlice"
 import { Cart, ProductCard } from "@/components"
 import { CATEGORIES } from "@/constants"
-import { API } from "@/utils/server"
 
 const Shopping = () => {
-  const { data: products } = useGetProductsQuery("")
 
   return (
     <div className="mt-[80px]  relative">

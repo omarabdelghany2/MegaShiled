@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import ServicePackageCard from "./ServicePackageCard"
-import { useGetAllMainServicesQuery, useGetSubServicePackagesQuery } from "@/app/api/ServicesApiSlice"
+import {  useGetSubServicePackagesQuery } from "@/app/api/ServicesApiSlice"
 import { MainService } from "@/types"
 import { useTranslation } from "react-i18next"
 
@@ -20,7 +20,7 @@ const Packages = ({
   setSelectedService,
   mainServicesData
 }: PackagesProps) => {
-  const [subServiceID, setSubServiceID] = useState("")
+  const [subServiceID, _] = useState("")
   const { data: subServicePackages } = useGetSubServicePackagesQuery({ id: subServiceID })
   const { t } = useTranslation();
   

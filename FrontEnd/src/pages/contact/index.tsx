@@ -1,10 +1,7 @@
 import {
   Facebook,
   Instagram,
-  Link,
   Mail,
-  MapPin,
-  Phone,
 } from "lucide-react"
 import { useRef } from "react"
 import { useTranslation } from "react-i18next"
@@ -41,7 +38,6 @@ export default Contact
 const ContactTable = () => {
   const emailRef = useRef<HTMLSpanElement>(null)
   const phoneRef = useRef<HTMLSpanElement>(null)
-  const locationRef = useRef<HTMLSpanElement>(null)
   return (
     <div className=" w-full bg-[#111214] relative z-20">
       <div className="flex items-center py-5 px-3 border-b border-solid border-primary-gray text-white">

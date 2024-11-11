@@ -224,7 +224,7 @@ const PersonalInfo = ({
         </div>
       </div>
       <div className={styles.datesection}>
-      <Calendar onChange={handleResetTime} value={value}  className={`p-4 h-80 text-lg ${styles.calendar}`} locale={t('locale.lang')} tileClassName={({ date,  view }) => { 
+      <Calendar onChange={handleResetTime} value={value}  className={`p-4 h-80 text-lg ${styles.calendar}`} locale={t('locale.lang')} tileClassName={({ date }) => { 
         if( isSameDay (date, value as Date)) {
           return  styles.highlight
         }

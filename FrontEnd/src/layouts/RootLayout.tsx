@@ -30,7 +30,7 @@ const RootLayout = () => {
         w-32 cursor-pointer hover:scale-110
         transition-transform duration-200
         "
-          href="https://wa.me/+966539373016"
+          href="https://wa.me/+201040200012"
           target="_blank"
         >
           {/* <div

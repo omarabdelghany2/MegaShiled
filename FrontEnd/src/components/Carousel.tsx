@@ -1,24 +1,24 @@
+import { API } from "@/utils/server";
 import { motion } from "framer-motion"
 
 import { CarIcon } from "lucide-react"
 import { useTranslation } from "react-i18next";
-import video from "/vid.mp4"
 
 const Carousel = () => {
   const { t } = useTranslation();
 
-  //bg-carCabin bg-cover bg-no-repeat bg-center
+  //bg-carCabin bg-cover bg-no-repeat bg-center backdrop-blur-sm
   return (
     <div className="overflow-hidden">
 
       <motion.div
-        className="relative h-[100vh]  flex flex-col items-center font-arabic justify-center"
+        className="relative h-[100vh]  flex flex-col items-center fontn-arabic justify-center"
         initial={{ scale: 1.5, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
       >
-        <video src={video} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop playsInline></video>
-        <div className="absolute z-9 inset-0 bg-black/20 backdrop-blur-sm" />
+        <video src={`${API.media}video/vid.webm`} className="absolute w-full object-cover bg-red-500 h-[100vh] z-8" autoPlay muted loop playsInline></video>
+        <div className="absolute z-9 inset-0 bg-black/20 " />
         <div className="z-10 bg-white/20 rounded-full p-3 mb-2">
           <CarIcon  
             size={55}

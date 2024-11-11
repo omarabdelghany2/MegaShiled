@@ -46,7 +46,7 @@ const Dashboard = () => {
           dispatch(toggleAuth(false));
         }
       })
-      .catch(error => {
+      .catch(_ => {
         dispatch(toggleAuth(true))
       })
 

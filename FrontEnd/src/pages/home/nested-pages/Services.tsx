@@ -1,7 +1,4 @@
 import { ReactNode, useState } from "react"
-import bigCar from "/bigCar.png"
-import mediumCar from "/mediumCar.png"
-import smallCar from "/smallCar.png"
 import {
   AdditionalServices,
   Packages,
@@ -9,6 +6,7 @@ import {
 } from "@/components"
 import { useGetAllMainServicesQuery } from "@/app/api/ServicesApiSlice"
 import { useTranslation } from "react-i18next"
+import { API } from "@/utils/server";
 
 
 const Services = () => {
@@ -32,7 +30,7 @@ const Services = () => {
           </span>
           <div className="flex items-center gap-3 font-bold text-center  justify-center my-5 mx-5">
             <SelectCard
-              img={smallCar}
+              img={`${API.media}public/smallCar.webp`}
               setActive={setActive}
               id={0}
               active={active === 0}
@@ -41,7 +39,7 @@ const Services = () => {
               {t('reserve.sectionOne.small')}
             </SelectCard>
             <SelectCard
-              img={mediumCar}
+              img={`${API.media}public/mediumCar.webp`}
               setActive={setActive}
               id={1}
               active={active === 1}
@@ -50,7 +48,7 @@ const Services = () => {
               {t('reserve.sectionOne.medium')}
             </SelectCard>
             <SelectCard
-              img={bigCar}
+              img={`${API.media}public/bigCar.webp`}
               setActive={setActive}
               id={2}
               active={active === 2}
@@ -64,10 +62,10 @@ const Services = () => {
           <img
             src={
               active === 0
-                ? smallCar
+                ? `${API.media}public/smallCar.webp`
                 : active === 1
-                ? mediumCar
-                : bigCar
+                ? `${API.media}public/mediumCar.webp`
+                : `${API.media}public/bigCar.webp`
             }
             alt={`car-size-${active}`}
             className={`${className} mx-auto transition-all duration-300`}

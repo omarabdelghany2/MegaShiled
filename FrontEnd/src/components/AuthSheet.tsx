@@ -17,7 +17,6 @@ import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import {
   useLoginMutation,
-  useRegisterMutation,
 } from "@/app/api/AuthApiSlice"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
@@ -32,7 +31,7 @@ const AuthSheet = ({
   buttonContent = "سجل",
 }: AuthProps) => {
   const isOpen = useAppSelector(authSelector)
-  const [registerType, setRegisterType] = useState("login")
+  const [_, setRegisterType] = useState("login")
 
   return (
     <Sheet open={isOpen}>
@@ -69,11 +68,11 @@ type LoginProps = {
   setRegisterType: Dispatch<SetStateAction<string>>
 }
 
-type RegisterProps = {
-  setRegisterType: Dispatch<SetStateAction<string>>
-}
+// type RegisterProps = {
+//   setRegisterType: Dispatch<SetStateAction<string>>
+// }
 
-const Login = ({ setRegisterType }: LoginProps) => {
+const Login = ({ }: LoginProps) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -132,63 +131,63 @@ const Login = ({ setRegisterType }: LoginProps) => {
   )
 }
 
-const Register = ({ setRegisterType }: RegisterProps) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
+// const Register = ({ setRegisterType }: RegisterProps) => {
+//   const [email, setEmail] = useState("")
+//   const [password, setPassword] = useState("")
+//   const [name, setName] = useState("")
 
-  const [register] = useRegisterMutation()
+//   const [register] = useRegisterMutation()
 
-  const dispatch = useDispatch()
+//   const dispatch = useDispatch()
 
-  function handleRegister(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    e.preventDefault()
+//   function handleRegister(
+//     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+//   ) {
+//     e.preventDefault()
 
-    register({
-      name,
-      email,
-      password,
-    })
-      .unwrap()
-      .then(data => {
-        if (data.user) {
-          dispatch(toggleAuth(false))
-        }
-      })
-      .catch(error => console.log(error.status))
-  }
+//     register({
+//       name,
+//       email,
+//       password,
+//     })
+//       .unwrap()
+//       .then(data => {
+//         if (data.user) {
+//           dispatch(toggleAuth(false))
+//         }
+//       })
+//       .catch(error => console.log(error.status))
+//   }
 
-  return (
-    <form className="flex flex-col gap-4 items-center">
-      <Input
-        placeholder="الاسم"
-        type="text"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <Input
-        placeholder="البريد الالكتروني"
-        type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <Input
-        placeholder="كلمة المرور"
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <Button onClick={handleRegister}>دخول</Button>
-      <button
-        className="text-white hover:text-primary w-fit mx-auto block font-arabic"
-        onClick={() => setRegisterType("login")}
-        type="button"
-      >
-        لديك حساب مسبقا؟{"  "}
-        <span className="underline">تسجيل الدخول</span>
-      </button>
-    </form>
-  )
-}
+//   return (
+//     <form className="flex flex-col gap-4 items-center">
+//       <Input
+//         placeholder="الاسم"
+//         type="text"
+//         value={name}
+//         onChange={e => setName(e.target.value)}
+//       />
+//       <Input
+//         placeholder="البريد الالكتروني"
+//         type="email"
+//         value={email}
+//         onChange={e => setEmail(e.target.value)}
+//       />
+//       <Input
+//         placeholder="كلمة المرور"
+//         type="password"
+//         value={password}
+//         onChange={e => setPassword(e.target.value)}
+//       />
+//       <Button onClick={handleRegister}>دخول</Button>
+//       <button
+//         className="text-white hover:text-primary w-fit mx-auto block font-arabic"
+//         onClick={() => setRegisterType("login")}
+//         type="button"
+//       >
+//         لديك حساب مسبقا؟{"  "}
+//         <span className="underline">تسجيل الدخول</span>
+//       </button>
+//     </form>
+//   )
+// }

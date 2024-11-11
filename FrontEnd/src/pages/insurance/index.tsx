@@ -1,5 +1,3 @@
-import { Description } from "@/components"
-import { insuranceTerms } from "@/constants"
 
 const Insurance = () => {
   return (

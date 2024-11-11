@@ -15,7 +15,6 @@ import { Input } from "./ui/input"
 import { useEffect, useState } from "react"
 import { Label } from "./ui/label"
 import { Button } from "./ui/button"
-import { useUploadImageMutation } from "@/app/api/ProductsApiSlice"
 import {
   useGetServiceByIDQuery,
   useUpdateMainServiceMutation,
@@ -32,13 +31,9 @@ const EditServiceModal = ({
   withButton = false,
   mode,
 }: EditServiceModalProps) => {
-  const [labelContent, setLabelContent] =
-    useState("اختر صورة")
   const [englishName, setEnglishName] = useState("")
   const [arabicName, setArabicName] = useState("")
-  const [description, setDescription] = useState("")
   const [isAdditional, setIsAdditional] = useState(false)
-  const [image, setImage] = useState("")
 
   const isOpen = useAppSelector(
     IsEditServiceModalOpenSelector
@@ -49,7 +44,6 @@ const EditServiceModal = ({
     id: id,
   })
   const [updateMainService] = useUpdateMainServiceMutation()
-  const [uploadImage] = useUploadImageMutation()
 
   const handleSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

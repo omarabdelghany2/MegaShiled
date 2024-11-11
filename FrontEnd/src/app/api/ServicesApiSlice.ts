@@ -142,7 +142,9 @@ const ServicesApiSlice = apiSlice.injectEndpoints({
       providesTags: ["mainServices"],
     }),
     GetSubServices: builder.query<
-      { packages: Service[]; count: number },
+      {
+        services: any; packages: Service[]; count: number 
+},
       { id: string }
     >({
       query: args => ({

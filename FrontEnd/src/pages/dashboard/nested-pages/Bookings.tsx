@@ -6,7 +6,7 @@ import ContentTable from "@/components/Table"
 import { useState } from "react"
 
 const Bookings = () => {
-  const [pending, setPending] = useState(false)
+  const [pending, _] = useState(false)
 
   const { data: items, isLoading } = useGetAllBookingsQuery("")
 

@@ -1,5 +1,4 @@
 import { SearchCheck } from "lucide-react"
-import mobileCar from "/reservation-mobile.png"
 import { motion } from "framer-motion"
 import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
@@ -78,11 +77,11 @@ const Adds = () => {
           {t('sectionLeft.book')}
           </h1>
 
-          <img
-            src={mobileCar}
+          {/* <img
+            src={`${API.media}public/reservation-mobile.png`}
             alt="reserve"
             className="block mx-auto z-50 h-40"
-          />
+          /> */}
 
           <button
             className={`flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 bottom-0  z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5

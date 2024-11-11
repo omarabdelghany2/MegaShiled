@@ -1,9 +1,6 @@
 import {
-  About,
   Adds,
   Carousel,
-  Locations,
-  Welcome,
 } from "@/components"
 import { Route, Routes } from "react-router-dom"
 import Services from "./nested-pages/Services"
