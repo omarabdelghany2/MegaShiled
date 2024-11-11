@@ -38,7 +38,7 @@ const Carousel = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.5 + 0.3 }}
-          className={`z-10 text-6xl ${ t("locale.lang") === "en" ? "tracking-wider text-7xl font-bold font-landing": "font-arabic" } text-center mb-2 text-white leading-[70px]`}
+          className={`z-10 text-6xl ${ t("locale.lang") === "en" ? "tracking-wider text-7xl font-bold font-landing": "font-arabic" } text-center px-3 mb-2 text-white leading-[70px]`}
           dangerouslySetInnerHTML={{ __html: t('home.title') }}
         >
          

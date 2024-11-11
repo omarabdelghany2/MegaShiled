@@ -30,6 +30,9 @@
     },
     "sectionLeft" : {
         "book": "Book Appointment",
+        "titleone": "Easy Booking",
+        "titletwo": "Exclusive Deals",
+        "titlethree": "24/7 Support",
         "button": "Book Now"
     },
     "location": {
@@ -39,7 +42,11 @@
         "address1": "Alexandria, Fleming",
         "address2": "Giza, Sheikh Zayed",
         "address3": "Cairo, Maadi",
-        "address4": "New Damietta City"
+        "address4": "New Damietta City",
+        "short1": "Cairo",
+        "short2": "Alexandria",
+        "short3": "Giza",
+        "short4": "New Damietta"
     },
     "reserve": {
         "sectionOne": {

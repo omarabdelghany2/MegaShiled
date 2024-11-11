@@ -22,18 +22,18 @@ const Footer = () => {
           <a className="bg-primary p-3 rounded-full">
             <Phone size={30} color="#fff" />
           </a>
-          <h1 className="text-xl text-right flex flex-col ">
-            <a href="tel:201080001059">201080001059 - Cairo </a>
-            <a href="tel:201080001058">201080001058 - Alexandria</a>
-            <a href="tel:201080001052">201080001052 - Giza</a>
-            <a href="tel:201080001057">201080001057 - New Demietta</a>
+          <h1 className={`text-md text-right flex flex-col ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
+            <a href="tel:201080001059">201080001059 - {t("footer.short1")} </a>
+            <a href="tel:201080001058">201080001058 - {t("footer.short2")}</a>
+            <a href="tel:201080001052">201080001052 - {t("footer.short3")}</a>
+            <a href="tel:201080001057">201080001057 - {t("footer.short4")}</a>
           </h1>
         </span>
         <span className="flex sm:justify-center justify-start  items-center gap-5 my-3">
           <a className="bg-primary p-3 rounded-full">
             <MapPin size={30} color="#ffff" />
           </a>
-          <p className="text-md flex flex-col gap-2 justify-start text-end gap-2  font-arabic font-semibold">
+          <p className={`text-md flex flex-col gap-2 justify-start text-end gap-2 font-semibold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
             <a target="_blank" href="https://maps.app.goo.gl/F57gKBMC72W4FzxMA">{t('footer.address3')}</a>
             <a target="_blank" href="https://maps.app.goo.gl/RG1hD1E2qAdJhrM26">{t('footer.address1')}</a>
             <a target="_blank" href="https://maps.app.goo.gl/2kouaYR9dMB1QKKA8" >{t('footer.address2')}</a>
@@ -45,7 +45,7 @@ const Footer = () => {
             <MailOpen size={30} color="#fff" />
           </a>
 
-          <p className="text-md flex flex-col sm:justify-center justify-start text-end gap-2  font-arabic font-semibold">
+          <p className={`text-md flex flex-col sm:justify-center justify-start text-end gap-2 font-semibold ${t('locale.lang') === "ar" ? "font-arabic" : "font-landing"}`}>
             <a>info@megashieldeg.com</a>
             <a>sales@megashieldeg.com</a>
             <a>hr@megashieldeg.com</a>

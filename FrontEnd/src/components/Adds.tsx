@@ -37,13 +37,13 @@ const Adds = () => {
             <li className="flex items-center justify-center w-full gap-2">
               <SearchCheck color="#d80032" />
               <span className={`text-xl  font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
-                {t('sectionRight.titleone')}
+                {t('sectionRight.titletwo')}
               </span>
             </li>
             <li className="flex items-center justify-center w-full gap-2">
               <SearchCheck color="#d80032" />
               <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
-              {t('sectionRight.titletwo')}
+              {t('sectionRight.titleone')}
               </span>
             </li>
             <li className="flex items-center justify-center w-full gap-2">
@@ -76,6 +76,30 @@ const Adds = () => {
           <h1 className={`text-white sm:text-8xl text-4xl z-50 font-bold mb-4 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
           {t('sectionLeft.book')}
           </h1>
+
+          <ul
+            className="flex flex-col justify-center items-start gap-4 list-none
+          mb-6"
+          >
+            <li className="flex items-center justify-center w-full gap-2">
+              <SearchCheck color="#d80032" />
+              <span className={`text-xl  font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+                {t('sectionLeft.titleone')}
+              </span>
+            </li>
+            <li className="flex items-center justify-center w-full gap-2">
+              <SearchCheck color="#d80032" />
+              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+              {t('sectionLeft.titletwo')}
+              </span>
+            </li>
+            <li className="flex items-center justify-center w-full gap-2">
+              <SearchCheck color="#d80032" />
+              <span className={`text-xl font-bold ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}>
+              {t('sectionLeft.titlethree')}
+              </span>
+            </li>
+          </ul>
 
           {/* <img
             src={`${API.media}public/reservation-mobile.png`}
