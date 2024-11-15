@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 import Calendar from 'react-calendar';
 import styles from "../components/styles/components/PersonalInfo.module.scss"
 import { isFriday, isSunday , format, isSameDay, addDays, setHours, setMinutes, parse } from 'date-fns';
-
+import * as Yup from 'yup';
 import "../styles/calendar/calendar.scss"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -68,32 +68,55 @@ const PersonalInfo = ({
   
   const [book] = useAddBookingMutation()
 
+
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required('First name is required'),
+    lastName: Yup.string().required('Last name is required'),
+    phone: Yup.string()
+      .matches(/^[0-9]{11}$/, 'Phone number must be 11 digits')
+      .required('Phone number is required'),
+    city: Yup.string().required('City is required'),
+    date: Yup.date().nullable().required('Date is required'),
+    time: Yup.string().required('Time is required'),
+    services: Yup.array()
+    .of(Yup.string()) // Ensure it's an array of strings
+    .min(1, 'You must select at least one service') // Ensure at least one service is present
+    .required('Services are required'),
+  });
+
   const handleAddBooking = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault()
 
-    if (!firstName || !lastName || !phone || !city || !value || !time) {
-      toast("يرجى ملء جميع الحقول", { type: "error" });
-      return;
-    }
-
-    book({
-      carSize:
-        carSize === 0
-          ? "small"
-          : carSize === 1
-          ? "medium"
-          : carSize === 2
-          ? "large"
-          : "",
+    const formData = {
+      firstName,
+      lastName,
+      phone,
       city,
-      customerFname: firstName,
-      customerLname: lastName,
-      customerPhone: phone,
-      date: `${concatenateDateAndTime(format(value as Date, 'yyyy-MM-dd'), time)}`,
-      services: cart.items.map(itm => itm.id),
-    })
+      date: value,
+      time,
+    };
+
+    validationSchema
+    .validate(formData, { abortEarly: false }) // Validate all fields, not just the first error
+    .then(() => {
+      book({
+        carSize:
+          carSize === 0
+            ? "small"
+            : carSize === 1
+            ? "medium"
+            : carSize === 2
+            ? "large"
+            : "",
+        city,
+        customerFname: firstName,
+        customerLname: lastName,
+        customerPhone: phone,
+        date: `${concatenateDateAndTime(format(value as Date, 'yyyy-MM-dd'), time)}`,
+        services: cart.items.map(itm => itm.id),
+      })
       .unwrap()
       .then(() => {
         toast("تم اتمام حجزك بنجاح", { type: "success" })
@@ -107,6 +130,16 @@ const PersonalInfo = ({
       .catch(err => {
         toast(err.data.msg, { type: "error" })
       })
+    })
+    .catch((err) => {
+      // Handle validation errors
+      if (err instanceof Yup.ValidationError) {
+        err.errors.forEach((error) => {
+          toast(error, { type: "error" }); // Display all errors as toasts
+        });
+      }
+    });
+
   }
 
   const concatenateDateAndTime = (dateStr: string, timeStr: string): string => {
