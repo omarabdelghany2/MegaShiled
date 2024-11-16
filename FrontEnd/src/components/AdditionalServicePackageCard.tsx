@@ -31,7 +31,7 @@ const AdditionalServicePackageCard = ({
       style={{
         backgroundImage: `url(/polishers.jpg)`,
       }}
-      className="min-w-[400px] bg-slate-950 rounded-md shadow-md relative overflow-hidden
+      className="sm:w-[400px] w-full bg-slate-950 rounded-md shadow-md relative overflow-hidden
       bg-cover bg-center bg-no-repeat"
     >
       <div className="absolute top-0 h-full w-[70px] z-0 bg-primary/70 left-8 -skew-x-12" />

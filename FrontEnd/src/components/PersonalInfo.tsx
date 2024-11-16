@@ -81,7 +81,6 @@ const PersonalInfo = ({
     services: Yup.array()
     .of(Yup.string()) // Ensure it's an array of strings
     .min(1, 'You must select at least one service') // Ensure at least one service is present
-    .required('Services are required'),
   });
 
   const handleAddBooking = (
