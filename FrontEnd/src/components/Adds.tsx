@@ -2,11 +2,13 @@ import { SearchCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
+import { toggleMenu } from "@/app/features/MenuSlice"
 
 const Adds = () => {
   const navigate = useNavigate()
   const { t } = useTranslation();
-
+  const dispatch = useDispatch()
 
 
   return (
@@ -53,7 +55,7 @@ const Adds = () => {
               </span>
             </li>
           </ul>
-          <Link to={"/shopping"}>
+          <Link to={"/shopping"} onClick={() => dispatch(toggleMenu())}>
             <button
               className={`flex items-center  justify-center text-3xl font-bold h-20 w-[220px] absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-primary hover:scale-90 mx-auto my-5 border-4 border-solid border-transparent transition-colors ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
             >
@@ -107,14 +109,15 @@ const Adds = () => {
             className="block mx-auto z-50 h-40"
           /> */}
 
-          <button
-            className={`flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 bottom-0  z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
-          border-4 border-solid border-transparent
-          transition-colors hover:scale-90 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
-            onClick={() => navigate("/service")}
-          >
-            {t('sectionLeft.button')}
-          </button>
+          <Link to={"/service"} onClick={() =>  dispatch(toggleMenu())}>
+            <button
+              className={`flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 bottom-0  z-50 text-3xl font-bold font-arabic h-20 w-[220px] bg-black mx-auto my-5
+            border-4 border-solid border-transparent
+            transition-colors hover:scale-90 ${t("locale.lang") === "ar" ? "font-arabic": "font-landing"}`}
+            >
+              {t('sectionLeft.button')}
+            </button>
+          </Link>
         </div>
       </motion.div>
     </section>

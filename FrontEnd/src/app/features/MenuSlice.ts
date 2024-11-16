@@ -20,7 +20,7 @@ const menuSlice = createSlice({
     closeMenu: (state) => {
       state.isOpen = false;
     },
-    toggleMenu: (state) => {
+    toggleMenu: () => {
       const toggle = SheetPrimitive.Trigger as unknown as HTMLButtonElement
       toggle.click()
     },

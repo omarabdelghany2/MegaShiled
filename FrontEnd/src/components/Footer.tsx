@@ -1,5 +1,4 @@
 import { MailOpen, MapPin, Phone } from "lucide-react"
-import { NavLink } from "."
 import logo from "/logo.png"
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
